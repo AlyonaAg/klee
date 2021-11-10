@@ -1,0 +1,12 @@
+array $tlvNum[4] : w32 -> w8 = symbolic
+array proxy[0][28] : w32 -> w8 = symbolic
+(query [(Eq false
+             (Ule (ReadLSB w32 0 $tlvNum)
+                  (ReadLSB w32 24 proxy[0])))
+         (Eq false
+             (Ult (Add w64 4
+                           N0:(ZExt w64 (ReadLSB w32 4 proxy[0])))
+                  27))
+         (Eq false
+             (Ult (Add w64 18446744073709551204 N0) 27))]
+        false)

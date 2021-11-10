@@ -153,6 +153,8 @@ private:
   ExecutionState(const ExecutionState &state);
 
 public:
+  uint recursive_calls = 0;
+  
   using stack_ty = std::vector<StackFrame>;
 
   // Execution - Control Flow specific

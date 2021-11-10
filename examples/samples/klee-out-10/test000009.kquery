@@ -1,0 +1,114 @@
+array struct1[2400] : w32 -> w8 = symbolic
+array struct2[16] : w32 -> w8 = symbolic
+(query [(Eq false
+             (Eq 0
+                 (And w32 (ReadLSB w32 0 struct2)
+                          1)))
+         (Slt 0
+              (ZExt w32 (Read w8 2254 struct1)))
+         (Eq 1 (Read w8 1230 struct1))
+         (Eq false
+             (Ult 0
+                  (Mul w64 8
+                           (ZExt w64 N0:(Select w32 (Ult N1:(Select w32 (Ult 1
+                                                                             N2:(Sub w32 (ReadLSB w32 708 struct1)
+                                                                                         N3:(ReadLSB w32 712 struct1)))
+                                                                        1
+                                                                        N2)
+                                                         N4:(Sub w32 N5:(ReadLSB w32 704 struct1)
+                                                                     (And w32 N3 (Add w32 4294967295 N5))))
+                                                    N1
+                                                    N4)))))
+         (Ult 0
+              (Mul w64 8
+                       (ZExt w64 (Sub w32 N1 N0))))
+         (Eq false
+             (Ult (Add w64 18446721691187504320
+                           N6:(ReadLSB w64 696 struct1))
+                  1536))
+         (Eq false
+             (Ult (Add w64 18446721691187502784 N6) 1536))
+         (Eq false
+             (Ult (Add w64 18446721691187500224 N6) 768))
+         (Eq false
+             (Ult (Add w64 18446721691054807280 N6) 4))
+         (Eq false
+             (Ult (Add w64 18446721691054807272 N6) 8))
+         (Eq false
+             (Ult (Add w64 18446721691054807264 N6) 8))
+         (Eq false
+             (Ult (Add w64 18446721691054807256 N6) 8))
+         (Eq false
+             (Ult (Add w64 18446649660403170176 N6) 16))
+         (Eq false
+             (Ult (Add w64 18446649660403079472 N6) 8))
+         (Eq false
+             (Ult (Add w64 18446649660403079360 N6) 8))
+         (Eq false
+             (Ult (Add w64 18446649660403079352 N6) 8))
+         (Eq false
+             (Ult (Add w64 18446649660403079296 N6) 4))
+         (Eq false
+             (Ult (Add w64 18446649660403079280 N6) 8))
+         (Eq false
+             (Ult (Add w64 18446649660403079272 N6) 8))
+         (Eq false
+             (Ult (Add w64 18446649660403079192 N6) 4))
+         (Eq false
+             (Ult (Add w64 18446649660403079184 N6) 8))
+         (Eq false
+             (Ult (Add w64 18446649660403079160 N6) 4))
+         (Eq false
+             (Ult (Add w64 18446649660403079144 N6) 4))
+         (Eq false
+             (Ult (Add w64 18446649660403079096 N6) 8))
+         (Eq false
+             (Ult (Add w64 18446649660403079064 N6) 1))
+         (Eq false
+             (Ult (Add w64 18446649660403079048 N6) 8))
+         (Eq false
+             (Ult (Add w64 18446649660403079016 N6) 8))
+         (Eq false
+             (Ult (Add w64 18446649660403078920 N6) 4))
+         (Eq false
+             (Ult (Add w64 18446649660403078864 N6) 4))
+         (Eq false
+             (Ult (Add w64 18446649660403078752 N6) 4))
+         (Eq false
+             (Ult (Add w64 18446649660403078744 N6) 8))
+         (Eq false
+             (Ult (Add w64 18446649660403078192 N6) 8))
+         (Eq false
+             (Ult (Add w64 18446649660403078136 N6) 8))
+         (Eq false
+             (Ult (Add w64 18446649660403077880 N6) 8))
+         (Eq false
+             (Ult (Add w64 18446649660403077840 N6) 8))
+         (Eq false
+             (Ult (Add w64 18446649660403077760 N6) 8))
+         (Ult N7:(Add w64 18446649660402453504 N6) 2400)
+         (Ult N8:(Add w64 18446649660402453505 N6) 2400)
+         (Ult N9:(Add w64 18446649660402453506 N6) 2400)
+         (Ult N10:(Add w64 18446649660402453507 N6) 2400)
+         (Ult N11:(Add w64 18446649660402453508 N6) 2400)
+         (Ult N12:(Add w64 18446649660402453509 N6) 2400)
+         (Ult N13:(Add w64 18446649660402453510 N6) 2400)
+         (Ult N14:(Add w64 18446649660402453511 N6) 2400)
+         (Eq 94413306472600
+             (Concat w64 (Read w8 (Extract w32 0 N14)
+                                  U0:[47=0, 46=0, 45=85, 44=222, 43=79, 42=152, 41=38, 40=216] @ struct1)
+                         (Concat w56 (Read w8 (Extract w32 0 N13)
+                                              U0)
+                                     (Concat w48 (Read w8 (Extract w32 0 N12)
+                                                          U0)
+                                                 (Concat w40 (Read w8 (Extract w32 0 N11)
+                                                                      U0)
+                                                             (Concat w32 (Read w8 (Extract w32 0 N10)
+                                                                                  U0)
+                                                                         (Concat w24 (Read w8 (Extract w32 0 N9)
+                                                                                              U0)
+                                                                                     (Concat w16 (Read w8 (Extract w32 0 N8)
+                                                                                                          U0)
+                                                                                                 (Read w8 (Extract w32 0 N7)
+                                                                                                          U0)))))))))]
+        false)

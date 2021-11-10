@@ -1,0 +1,31 @@
+array buff[4096] : w32 -> w8 = symbolic
+array buffLen[4] : w32 -> w8 = symbolic
+array const_arr1[23] : w32 -> w8 = [70 69 73 95 68 66 71 95 71 101 116 68 101 98 117 103 83 119 105 116 99 104 0]
+array dynTlv[72] : w32 -> w8 = symbolic
+array memcpy_s[4] : w32 -> w8 = symbolic
+array tlvNum[4] : w32 -> w8 = symbolic
+(query [(Ult 0
+              N0:(ReadLSB w32 0 tlvNum))
+         (Eq false
+             (Ult N1:(ReadLSB w32 0 buffLen)
+                  N2:(Extract w32 0 (Add w64 4
+                                             (ZExt w64 N3:(ReadLSB w16 2 dynTlv))))))
+         (Slt (ZExt w32 (ReadLSB w16 0 dynTlv))
+              (ZExt w32 (ReadLSB w16 0 buff)))
+         (Eq false
+             (Slt (ZExt w32 N3)
+                  (ZExt w32 (ReadLSB w16 2 buff))))
+         (Eq 1
+             (ReadLSB w32 0 memcpy_s))
+         (Ult 1 N0)
+         (Eq false
+             (Ult N1
+                  (Add w32 N2
+                           (Extract w32 0 (Add w64 4
+                                                   (ZExt w64 (ReadLSB w16 14 dynTlv)))))))
+         (Eq false
+             (Ult N4:(ZExt w64 N2) 4095))
+         (Ult N5:(Add w64 18446744073709494624 N4) 22)
+         (Slt (ZExt w32 (ReadLSB w16 12 dynTlv))
+              (ZExt w32 (ReadLSB w16 N6:(Extract w32 0 N5) const_arr1)))]
+        false)

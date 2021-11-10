@@ -91,6 +91,7 @@ void klee::initializeSearchOptions() {
     } else {
       CoreSearch.push_back(Searcher::RandomPath);
       CoreSearch.push_back(Searcher::NURS_CovNew);
+      // CoreSearch.push_back(Searcher::DFS);
     }
   }
 }

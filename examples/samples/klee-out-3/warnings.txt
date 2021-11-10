@@ -1,0 +1,2 @@
+KLEE: WARNING ONCE: Alignment of memory from call "malloc" is not modelled. Using alignment of 8.
+KLEE: WARNING ONCE: silently concretizing (reason: floating point) expression (ReadLSB w16 0 Rte_SWC_APP_SOC_PacSOC_CurSOC_ratSOC) to value 0 (:0)

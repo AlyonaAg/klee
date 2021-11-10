@@ -1,0 +1,45 @@
+     [no debug info]:49:1:  %retval = alloca i32, align 4
+     [no debug info]:50:1:  %n1 = alloca i32*, align 8
+     [no debug info]:51:1:  %n2 = alloca %union.str_n2, align 4
+     [no debug info]:52:1:  store i32 0, i32* %retval, align 4
+     [no debug info]:53:1:  %call = call noalias i8* @malloc(i64 4) #3
+     [no debug info]:54:1:  %0 = bitcast i8* %call to i32*
+     [no debug info]:55:1:  store i32* %0, i32** %n1, align 8
+     [no debug info]:56:1:  %1 = bitcast %union.str_n2* %n2 to i8*
+     [no debug info]:57:1:  call void @klee_make_symbolic(i8* %1, i64 4, i8* getelementptr inbounds ([3 x i8], [3 x i8]* @.str.2, i64 0, i64 0))
+     [no debug info]:58:1:  %2 = load i32*, i32** %n1, align 8
+     [no debug info]:59:1:  store i32 15, i32* %2, align 4
+     [no debug info]:60:1:  %3 = load i32*, i32** %n1, align 8
+     [no debug info]:61:1:  %uiRet = bitcast %union.str_n2* %n2 to i32*
+     [no debug info]:62:1:  %call1 = call i32 @compare(i32* %3, i32* %uiRet)
+     [no debug info]:15:1:  %retval = alloca i32, align 4
+     [no debug info]:16:1:  %n1.addr = alloca i32*, align 8
+     [no debug info]:17:1:  %n2.addr = alloca i32*, align 8
+     [no debug info]:18:1:  store i32* %n1, i32** %n1.addr, align 8
+     [no debug info]:19:1:  store i32* %n2, i32** %n2.addr, align 8
+     [no debug info]:20:1:  %0 = load i32*, i32** %n1.addr, align 8
+     [no debug info]:21:1:  store i32 15, i32* %0, align 4
+     [no debug info]:22:1:  %1 = load i32*, i32** %n1.addr, align 8
+     [no debug info]:23:1:  %2 = load i32, i32* %1, align 4
+     [no debug info]:24:1:  %3 = load i32*, i32** %n2.addr, align 8
+     [no debug info]:25:1:  %4 = load i32, i32* %3, align 4
+     [no debug info]:26:1:  %cmp = icmp eq i32 %2, %4
+     [no debug info]:27:1:  br i1 %cmp, label %if.then, label %if.else
+     [no debug info]:30:1:  %call = call i32 (i8*, ...) @printf(i8* getelementptr inbounds ([4 x i8], [4 x i8]* @.str, i64 0, i64 0))
+     [no debug info]:35:2:  %call1 = call i32 (i8*, ...) @printf(i8* getelementptr inbounds ([4 x i8], [4 x i8]* @.str.1, i64 0, i64 0))
+     [no debug info]:36:2:  store i32 2, i32* %retval, align 4
+     [no debug info]:37:2:  br label %return
+     [no debug info]:40:2:  %5 = load i32, i32* %retval, align 4
+     [no debug info]:41:2:  ret i32 %5
+     [no debug info]:63:2:  %4 = load i32*, i32** %n1, align 8
+     [no debug info]:31:1:  store i32 1, i32* %retval, align 4
+     [no debug info]:64:2:  %5 = bitcast i32* %4 to i8*
+     [no debug info]:65:2:  call void @free(i8* %5) #3
+     [no debug info]:66:2:  ret i32 0
+     [no debug info]:32:1:  br label %return
+     [no debug info]:40:1:  %5 = load i32, i32* %retval, align 4
+     [no debug info]:41:1:  ret i32 %5
+     [no debug info]:63:1:  %4 = load i32*, i32** %n1, align 8
+     [no debug info]:64:1:  %5 = bitcast i32* %4 to i8*
+     [no debug info]:65:1:  call void @free(i8* %5) #3
+     [no debug info]:66:1:  ret i32 0

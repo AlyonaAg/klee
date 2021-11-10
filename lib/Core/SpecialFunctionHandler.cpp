@@ -832,6 +832,7 @@ void SpecialFunctionHandler::handleMakeSymbolic(ExecutionState &state,
                                                 std::vector<ref<Expr> > &arguments) {
   std::string name;
 
+// klee_message("klee_make_symbolic in SpecialFunctionHandler");
   if (arguments.size() != 3) {
     executor.terminateStateOnError(state, "Incorrect number of arguments to klee_make_symbolic(void*, size_t, char*)", Executor::User);
     return;

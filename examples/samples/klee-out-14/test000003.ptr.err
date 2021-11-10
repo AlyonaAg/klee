@@ -1,0 +1,11 @@
+Error: memory error: out of bound pointer
+Stack: 
+	#000001286 in AIS_ZoneMQueryZoneCfg (consistent, thisLocal=94718085021696, msgInfo=94718086002704)
+	#100001429 in main ()
+Info: 
+	address: (Add w64 8
+          (ReadLSB w64 60 struct2))
+	example: 72340172838076681
+	range: [0, 18446744073709551615]
+	next: object at 23451931827008 of size 1536
+		MO32[1536] (no allocation info)

@@ -1,0 +1,3 @@
+set logging on
+b Executor.cpp:3671
+run get_sign.bc

@@ -10,6 +10,7 @@
 #include "klee-replay.h"
 
 #include "klee/ADT/KTest.h"
+// #include "klee/Support/ErrorHandling.h"
 
 #include <assert.h>
 #include <errno.h>
@@ -458,6 +459,9 @@ void klee_posix_prefer_cex(void *buffer, uintptr_t condition) {
 
 void klee_make_symbolic(void *addr, size_t nbytes, const char *name) {
   /* XXX remove model version code once new tests gen'd */
+// klee_message("klee_make_symbolic in klee_replay");
+fprintf(stdout, "klee_make_symbolic in klee_replay");
+
   if (obj_index >= input->numObjects) {
     if (strcmp("model_version", name) == 0) {
       assert(nbytes == 4);
