@@ -1,0 +1,31 @@
+     if_my.c:12 0:41:1:  %retval = alloca i32, align 4
+     if_my.c:12 0:42:1:  %a = alloca i8, align 1
+     if_my.c:12 0:43:1:  %b = alloca i8, align 1
+     if_my.c:12 0:44:1:  store i32 0, i32* %retval, align 4
+     if_my.c:14 7:45:1:  call void @llvm.dbg.declare(metadata i8* %a, metadata !27, metadata !DIExpression()), !dbg !29
+     if_my.c:15 7:46:1:  call void @llvm.dbg.declare(metadata i8* %b, metadata !30, metadata !DIExpression()), !dbg !31
+     if_my.c:16 2:47:1:  call void @klee_make_symbolic(i8* %a, i64 1, i8* getelementptr inbounds ([2 x i8], [2 x i8]* @.str, i64 0, i64 0)), !dbg !16
+     if_my.c:17 2:48:1:  call void @klee_make_symbolic(i8* %b, i64 1, i8* getelementptr inbounds ([2 x i8], [2 x i8]* @.str.1, i64 0, i64 0)), !dbg !17
+     if_my.c:18 6:49:1:  %0 = load i8, i8* %a, align 1, !dbg !18
+     if_my.c:18 6:50:1:  %conv = sext i8 %0 to i32, !dbg !18
+     if_my.c:18 9:51:1:  %1 = load i8, i8* %b, align 1, !dbg !19
+     if_my.c:18 9:52:1:  %conv1 = sext i8 %1 to i32, !dbg !19
+     if_my.c:18 2:53:1:  call void @ifs(i32 %conv, i32 %conv1), !dbg !20
+     if_my.c:4 0:12:1:  %a.addr = alloca i32, align 4
+     if_my.c:4 0:13:1:  %b.addr = alloca i32, align 4
+     if_my.c:4 0:14:1:  store i32 %a, i32* %a.addr, align 4
+     if_my.c:4 14:15:1:  call void @llvm.dbg.declare(metadata i32* %a.addr, metadata !11, metadata !DIExpression()), !dbg !12
+     if_my.c:4 0:16:1:  store i32 %b, i32* %b.addr, align 4
+     if_my.c:4 21:17:1:  call void @llvm.dbg.declare(metadata i32* %b.addr, metadata !13, metadata !DIExpression()), !dbg !14
+     if_my.c:6 6:18:1:  %0 = load i32, i32* %a.addr, align 4, !dbg !15
+     if_my.c:6 11:19:1:  %1 = load i32, i32* %b.addr, align 4, !dbg !17
+     if_my.c:6 8:20:1:  %cmp = icmp eq i32 %0, %1, !dbg !18
+     if_my.c:6 6:21:1:  br i1 %cmp, label %if.then, label %if.else, !dbg !19
+     if_my.c:9 5:28:2:  store i32 2, i32* %a.addr, align 4, !dbg !22
+     if_my.c:4 0:29:2:  br label %if.end
+     if_my.c:10 1:32:2:  ret void, !dbg !23
+     if_my.c:19 2:54:2:  ret i32 0, !dbg !21
+     if_my.c:7 5:24:1:  store i32 1, i32* %a.addr, align 4, !dbg !20
+     if_my.c:7 3:25:1:  br label %if.end, !dbg !21
+     if_my.c:10 1:32:1:  ret void, !dbg !23
+     if_my.c:19 2:54:1:  ret i32 0, !dbg !21

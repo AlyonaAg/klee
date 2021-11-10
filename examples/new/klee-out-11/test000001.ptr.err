@@ -1,0 +1,10 @@
+Error: memory error: out of bound pointer
+Stack: 
+	#000000025 in compare (n1=94192847061664, n2)
+	#100000065 in main ()
+Info: 
+	address: (SExt w64 (ReadLSB w32 0 n2))
+	example: 0
+	range: [0, 18446744073709551615]
+	next: object at 22975144102720 of size 1536
+		MO9[1536] (no allocation info)

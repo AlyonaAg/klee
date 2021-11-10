@@ -1,0 +1,6 @@
+Error: memory error: object read only
+Stack: 
+	#000000384 in VME_DB_GetRec (pstTable, pKey, uiKeyLen=36, phRec)
+	#100000800 in AIS_ZoneMZoneHostInfoCfg (msgInfo=94718084414656, aiInofZoneHostInfo=94718084414704, aiInofZoneHost=94718085112448, zoneRec=94718084414752, thisLocal=94718085021696)
+	#200001282 in AIS_ZoneMQueryZoneCfg (consistent, thisLocal=94718085021696, msgInfo=94718086002704)
+	#300001429 in main ()

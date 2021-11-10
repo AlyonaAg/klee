@@ -1,0 +1,20 @@
+{
+    "files.associations": {
+        "string": "cpp",
+        "stdlib.h": "c",
+        "ktest.h": "c",
+        "array": "cpp",
+        "deque": "cpp",
+        "list": "cpp",
+        "unordered_map": "cpp",
+        "unordered_set": "cpp",
+        "vector": "cpp",
+        "string_view": "cpp",
+        "initializer_list": "cpp",
+        "regex": "cpp",
+        "*.def": "cpp",
+        "system_error": "cpp",
+        "*.inc": "cpp",
+        "*.tcc": "cpp"
+    }
+}

@@ -1155,6 +1155,7 @@ linkWithUclibc(StringRef libDir, std::string opt_suffix,
 #endif
 
 int main(int argc, char **argv, char **envp) {
+  klee_message("Start!!!!");
   atexit(llvm_shutdown);  // Call llvm_shutdown() on exit.
 
   KCommandLine::HideOptions(llvm::cl::GeneralCategory);
@@ -1433,11 +1434,11 @@ int main(int argc, char **argv, char **envp) {
     handler->getInfoStream() << startInfo.str();
     handler->getInfoStream().flush();
   }
-
+klee_message("Started...");
   if (!ReplayKTestDir.empty() || !ReplayKTestFile.empty()) {
     assert(SeedOutFile.empty());
     assert(SeedOutDir.empty());
-
+klee_message("!ReplayKTestDir.empty() || !ReplayKTestFile.empty()...");
     std::vector<std::string> kTestFiles = ReplayKTestFile;
     for (std::vector<std::string>::iterator
            it = ReplayKTestDir.begin(), ie = ReplayKTestDir.end();
@@ -1448,6 +1449,7 @@ int main(int argc, char **argv, char **envp) {
            it = kTestFiles.begin(), ie = kTestFiles.end();
          it != ie; ++it) {
       KTest *out = kTest_fromFile(it->c_str());
+klee_message("kTest_fromFile...");
       if (out) {
         kTests.push_back(out);
       } else {
@@ -1482,11 +1484,13 @@ int main(int argc, char **argv, char **envp) {
       kTests.pop_back();
     }
   } else {
+klee_message("ReplayKTestDir.empty() && ReplayKTestFile.empty()...");
     std::vector<KTest *> seeds;
     for (std::vector<std::string>::iterator
            it = SeedOutFile.begin(), ie = SeedOutFile.end();
          it != ie; ++it) {
       KTest *out = kTest_fromFile(it->c_str());
+klee_message("kTest_fromFile...");
       if (!out) {
         klee_error("unable to open: %s\n", (*it).c_str());
       }

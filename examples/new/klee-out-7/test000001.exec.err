@@ -1,0 +1,8 @@
+Error: external call with symbolic argument: printf
+File: sort.c
+Line: 52
+assembly.ll line: 270
+State: 1
+Stack: 
+	#000000270 in test (array=94442242967008, nelem=4) at sort.c:52
+	#100000371 in main () at sort.c:78

@@ -1,0 +1,1525 @@
+     [no debug info]:224:1:  %retval = alloca i32, align 4
+     [no debug info]:225:1:  %struct1 = alloca %struct.AisAppEnv*, align 8
+     [no debug info]:226:1:  %struct2 = alloca %struct.epoll_event*, align 8
+     [no debug info]:227:1:  store i32 0, i32* %retval, align 4
+     [no debug info]:228:1:  %call = call i8* @malloc(i64 2400)
+     [no debug info]:229:1:  %0 = bitcast i8* %call to %struct.AisAppEnv*
+     [no debug info]:230:1:  store %struct.AisAppEnv* %0, %struct.AisAppEnv** %struct1, align 8
+     [no debug info]:231:1:  %call1 = call i8* @malloc(i64 16)
+     [no debug info]:232:1:  %1 = bitcast i8* %call1 to %struct.epoll_event*
+     [no debug info]:233:1:  store %struct.epoll_event* %1, %struct.epoll_event** %struct2, align 8
+     [no debug info]:234:1:  %2 = load %struct.AisAppEnv*, %struct.AisAppEnv** %struct1, align 8
+     [no debug info]:235:1:  %3 = bitcast %struct.AisAppEnv* %2 to i8*
+     [no debug info]:236:1:  call void @klee_make_symbolic(i8* %3, i64 2400, i8* getelementptr inbounds ([8 x i8], [8 x i8]* @.str, i64 0, i64 0))
+     [no debug info]:237:1:  %4 = load %struct.epoll_event*, %struct.epoll_event** %struct2, align 8
+     [no debug info]:238:1:  %5 = bitcast %struct.epoll_event* %4 to i8*
+     [no debug info]:239:1:  call void @klee_make_symbolic(i8* %5, i64 16, i8* getelementptr inbounds ([8 x i8], [8 x i8]* @.str.1, i64 0, i64 0))
+     [no debug info]:240:1:  %6 = load %struct.AisAppEnv*, %struct.AisAppEnv** %struct1, align 8
+     [no debug info]:241:1:  %7 = load %struct.epoll_event*, %struct.epoll_event** %struct2, align 8
+     [no debug info]:242:1:  call void @AIS_AppEnvProcEpollEvent(%struct.AisAppEnv* %6, %struct.epoll_event* %7)
+     [no debug info]:167:1:  %env.addr = alloca %struct.AisAppEnv*, align 8
+     [no debug info]:168:1:  %event.addr = alloca %struct.epoll_event*, align 8
+     [no debug info]:169:1:  %in = alloca i32, align 4
+     [no debug info]:170:1:  %len = alloca i32, align 4
+     [no debug info]:171:1:  %i = alloca i32, align 4
+     [no debug info]:172:1:  store %struct.AisAppEnv* %env, %struct.AisAppEnv** %env.addr, align 8
+     [no debug info]:173:1:  store %struct.epoll_event* %event, %struct.epoll_event** %event.addr, align 8
+     [no debug info]:174:1:  %0 = load %struct.epoll_event*, %struct.epoll_event** %event.addr, align 8
+     [no debug info]:175:1:  %events = getelementptr inbounds %struct.epoll_event, %struct.epoll_event* %0, i32 0, i32 0
+     [no debug info]:176:1:  %1 = load i32, i32* %events, align 8
+     [no debug info]:177:1:  %and = and i32 %1, 1
+     [no debug info]:178:1:  store i32 %and, i32* %in, align 4
+     [no debug info]:179:1:  %2 = load i32, i32* %in, align 4
+     [no debug info]:180:1:  %tobool = icmp ne i32 %2, 0
+     [no debug info]:181:1:  br i1 %tobool, label %do.body, label %return
+     [no debug info]:218:2:  ret void
+     [no debug info]:243:2:  ret i32 0
+     [no debug info]:184:1:  %3 = load %struct.AisAppEnv*, %struct.AisAppEnv** %env.addr, align 8
+     [no debug info]:185:1:  %bufLen = getelementptr inbounds %struct.AisAppEnv, %struct.AisAppEnv* %3, i32 0, i32 12
+     [no debug info]:186:1:  %4 = load i8, i8* %bufLen, align 2
+     [no debug info]:187:1:  %conv = zext i8 %4 to i32
+     [no debug info]:188:1:  store i32 %conv, i32* %len, align 4
+     [no debug info]:189:1:  store i32 0, i32* %i, align 4
+     [no debug info]:190:1:  br label %for.cond
+     [no debug info]:193:1:  %5 = load i32, i32* %i, align 4
+     [no debug info]:194:1:  %6 = load i32, i32* %len, align 4
+     [no debug info]:195:1:  %cmp = icmp slt i32 %5, %6
+     [no debug info]:196:1:  br i1 %cmp, label %for.body, label %do.cond
+     [no debug info]:213:3:  %12 = load i32, i32* %len, align 4
+     [no debug info]:214:3:  %cmp2 = icmp sgt i32 %12, 0
+     [no debug info]:215:3:  br i1 %cmp2, label %do.body, label %return
+     [no debug info]:218:3:  ret void
+     [no debug info]:243:3:  ret i32 0
+     [no debug info]:199:1:  %7 = load %struct.AisAppEnv*, %struct.AisAppEnv** %env.addr, align 8
+     [no debug info]:200:1:  %8 = load %struct.AisAppEnv*, %struct.AisAppEnv** %env.addr, align 8
+     [no debug info]:201:1:  %readBuf = getelementptr inbounds %struct.AisAppEnv, %struct.AisAppEnv* %8, i32 0, i32 11
+     [no debug info]:202:1:  %9 = load i32, i32* %i, align 4
+     [no debug info]:203:1:  %idxprom = sext i32 %9 to i64
+     [no debug info]:204:1:  %arrayidx = getelementptr inbounds [1024 x i8], [1024 x i8]* %readBuf, i64 0, i64 %idxprom
+     [no debug info]:205:1:  %10 = load i8, i8* %arrayidx, align 1
+     [no debug info]:206:1:  call void @AIS_AppEnvProcEvent(%struct.AisAppEnv* %7, i8 zeroext %10)
+     [no debug info]:104:1:  %env.addr = alloca %struct.AisAppEnv*, align 8
+     [no debug info]:105:1:  %ctrlMsg.addr = alloca i8, align 1
+     [no debug info]:106:1:  %message = alloca i8*, align 8
+     [no debug info]:107:1:  store %struct.AisAppEnv* %env, %struct.AisAppEnv** %env.addr, align 8
+     [no debug info]:108:1:  store i8 %ctrlMsg, i8* %ctrlMsg.addr, align 1
+     [no debug info]:109:1:  store i8* null, i8** %message, align 8
+     [no debug info]:110:1:  %0 = load %struct.AisAppEnv*, %struct.AisAppEnv** %env.addr, align 8
+     [no debug info]:111:1:  %info = getelementptr inbounds %struct.AisAppEnv, %struct.AisAppEnv* %0, i32 0, i32 0
+     [no debug info]:112:1:  %msgHandler = getelementptr inbounds %struct.TagAisAppInfo, %struct.TagAisAppInfo* %info, i32 0, i32 5
+     [no debug info]:113:1:  store i32 (i8*, %struct.TagAisAppInfo*, i32, i8*)* @AISiLossLessLocalMsgHandler, i32 (i8*, %struct.TagAisAppInfo*, i32, i8*)** %msgHandler, align 8
+     [no debug info]:114:1:  %1 = load i8, i8* %ctrlMsg.addr, align 1
+     [no debug info]:115:1:  %conv = zext i8 %1 to i32
+     [no debug info]:116:1:  %cond = icmp eq i32 %conv, 1
+     [no debug info]:117:1:  br i1 %cond, label %while.cond, label %sw.default
+     [no debug info]:150:4:  %12 = load %struct.AisAppEnv*, %struct.AisAppEnv** %env.addr, align 8
+     [no debug info]:151:4:  %stat7 = getelementptr inbounds %struct.AisAppEnv, %struct.AisAppEnv* %12, i32 0, i32 14
+     [no debug info]:152:4:  %unknownCtrlMsg = getelementptr inbounds %struct.AisAppStat, %struct.AisAppStat* %stat7, i32 0, i32 8
+     [no debug info]:120:1:  %2 = load %struct.AisAppEnv*, %struct.AisAppEnv** %env.addr, align 8
+     [no debug info]:153:4:  %13 = load i64, i64* %unknownCtrlMsg, align 8
+     [no debug info]:154:4:  %inc8 = add i64 %13, 1
+     [no debug info]:155:4:  store i64 %inc8, i64* %unknownCtrlMsg, align 8
+     [no debug info]:156:4:  br label %sw.epilog
+     [no debug info]:159:4:  ret void
+     [no debug info]:207:4:  %11 = load i32, i32* %i, align 4
+     [no debug info]:208:4:  %inc = add nsw i32 %11, 1
+     [no debug info]:209:4:  store i32 %inc, i32* %i, align 4
+     [no debug info]:210:4:  br label %for.cond
+     [no debug info]:193:4:  %5 = load i32, i32* %i, align 4
+     [no debug info]:194:4:  %6 = load i32, i32* %len, align 4
+     [no debug info]:121:1:  %v8Queue = getelementptr inbounds %struct.AisAppEnv, %struct.AisAppEnv* %2, i32 0, i32 3
+     [no debug info]:195:4:  %cmp = icmp slt i32 %5, %6
+     [no debug info]:196:4:  br i1 %cmp, label %for.body, label %do.cond
+     [no debug info]:213:5:  %12 = load i32, i32* %len, align 4
+     [no debug info]:214:5:  %cmp2 = icmp sgt i32 %12, 0
+     [no debug info]:215:5:  br i1 %cmp2, label %do.body, label %return
+     [no debug info]:184:5:  %3 = load %struct.AisAppEnv*, %struct.AisAppEnv** %env.addr, align 8
+     [no debug info]:185:5:  %bufLen = getelementptr inbounds %struct.AisAppEnv, %struct.AisAppEnv* %3, i32 0, i32 12
+     [no debug info]:186:5:  %4 = load i8, i8* %bufLen, align 2
+     [no debug info]:187:5:  %conv = zext i8 %4 to i32
+     [no debug info]:188:5:  store i32 %conv, i32* %len, align 4
+     [no debug info]:189:5:  store i32 0, i32* %i, align 4
+     [no debug info]:122:1:  %arraydecay = getelementptr inbounds [16 x %struct.AisKfifo], [16 x %struct.AisKfifo]* %v8Queue, i64 0, i64 0
+     [no debug info]:190:5:  br label %for.cond
+     [no debug info]:193:5:  %5 = load i32, i32* %i, align 4
+     [no debug info]:194:5:  %6 = load i32, i32* %len, align 4
+     [no debug info]:199:4:  %7 = load %struct.AisAppEnv*, %struct.AisAppEnv** %env.addr, align 8
+     [no debug info]:195:5:  %cmp = icmp slt i32 %5, %6
+     [no debug info]:196:5:  br i1 %cmp, label %for.body, label %do.cond
+     [no debug info]:199:5:  %7 = load %struct.AisAppEnv*, %struct.AisAppEnv** %env.addr, align 8
+     [no debug info]:123:1:  %call = call i32 @AIS_KfifoGet(%struct.AisKfifo* %arraydecay, i8** %message)
+     [no debug info]:200:5:  %8 = load %struct.AisAppEnv*, %struct.AisAppEnv** %env.addr, align 8
+     [no debug info]:201:5:  %readBuf = getelementptr inbounds %struct.AisAppEnv, %struct.AisAppEnv* %8, i32 0, i32 11
+     [no debug info]:202:5:  %9 = load i32, i32* %i, align 4
+     [no debug info]:38:1:  %retval = alloca i32, align 4
+     [no debug info]:203:5:  %idxprom = sext i32 %9 to i64
+     [no debug info]:204:5:  %arrayidx = getelementptr inbounds [1024 x i8], [1024 x i8]* %readBuf, i64 0, i64 %idxprom
+     [no debug info]:205:5:  %10 = load i8, i8* %arrayidx, align 1
+     [no debug info]:200:4:  %8 = load %struct.AisAppEnv*, %struct.AisAppEnv** %env.addr, align 8
+     [no debug info]:206:5:  call void @AIS_AppEnvProcEvent(%struct.AisAppEnv* %7, i8 zeroext %10)
+     [no debug info]:104:5:  %env.addr = alloca %struct.AisAppEnv*, align 8
+     [no debug info]:105:5:  %ctrlMsg.addr = alloca i8, align 1
+     [no debug info]:39:1:  %pstKFifo.addr = alloca %struct.AisKfifo*, align 8
+     [no debug info]:106:5:  %message = alloca i8*, align 8
+     [no debug info]:107:5:  store %struct.AisAppEnv* %env, %struct.AisAppEnv** %env.addr, align 8
+     [no debug info]:108:5:  store i8 %ctrlMsg, i8* %ctrlMsg.addr, align 1
+     [no debug info]:40:1:  %element.addr = alloca i8**, align 8
+     [no debug info]:109:5:  store i8* null, i8** %message, align 8
+     [no debug info]:110:5:  %0 = load %struct.AisAppEnv*, %struct.AisAppEnv** %env.addr, align 8
+     [no debug info]:111:5:  %info = getelementptr inbounds %struct.AisAppEnv, %struct.AisAppEnv* %0, i32 0, i32 0
+     [no debug info]:201:4:  %readBuf = getelementptr inbounds %struct.AisAppEnv, %struct.AisAppEnv* %8, i32 0, i32 11
+     [no debug info]:112:5:  %msgHandler = getelementptr inbounds %struct.TagAisAppInfo, %struct.TagAisAppInfo* %info, i32 0, i32 5
+     [no debug info]:113:5:  store i32 (i8*, %struct.TagAisAppInfo*, i32, i8*)* @AISiLossLessLocalMsgHandler, i32 (i8*, %struct.TagAisAppInfo*, i32, i8*)** %msgHandler, align 8
+     [no debug info]:114:5:  %1 = load i8, i8* %ctrlMsg.addr, align 1
+     [no debug info]:115:5:  %conv = zext i8 %1 to i32
+     [no debug info]:116:5:  %cond = icmp eq i32 %conv, 1
+     [no debug info]:117:5:  br i1 %cond, label %while.cond, label %sw.default
+     [no debug info]:150:5:  %12 = load %struct.AisAppEnv*, %struct.AisAppEnv** %env.addr, align 8
+     [no debug info]:151:5:  %stat7 = getelementptr inbounds %struct.AisAppEnv, %struct.AisAppEnv* %12, i32 0, i32 14
+     [no debug info]:152:5:  %unknownCtrlMsg = getelementptr inbounds %struct.AisAppStat, %struct.AisAppStat* %stat7, i32 0, i32 8
+     [no debug info]:153:5:  %13 = load i64, i64* %unknownCtrlMsg, align 8
+     [no debug info]:154:5:  %inc8 = add i64 %13, 1
+     [no debug info]:155:5:  store i64 %inc8, i64* %unknownCtrlMsg, align 8
+     [no debug info]:156:5:  br label %sw.epilog
+     [no debug info]:159:5:  ret void
+     [no debug info]:207:5:  %11 = load i32, i32* %i, align 4
+     [no debug info]:208:5:  %inc = add nsw i32 %11, 1
+     [no debug info]:209:5:  store i32 %inc, i32* %i, align 4
+     [no debug info]:210:5:  br label %for.cond
+     [no debug info]:193:5:  %5 = load i32, i32* %i, align 4
+     [no debug info]:194:5:  %6 = load i32, i32* %len, align 4
+     [no debug info]:195:5:  %cmp = icmp slt i32 %5, %6
+     [no debug info]:196:5:  br i1 %cmp, label %for.body, label %do.cond
+     [no debug info]:213:5:  %12 = load i32, i32* %len, align 4
+     [no debug info]:41:1:  store %struct.AisKfifo* %pstKFifo, %struct.AisKfifo** %pstKFifo.addr, align 8
+     [no debug info]:214:5:  %cmp2 = icmp sgt i32 %12, 0
+     [no debug info]:215:5:  br i1 %cmp2, label %do.body, label %return
+     [no debug info]:184:5:  %3 = load %struct.AisAppEnv*, %struct.AisAppEnv** %env.addr, align 8
+     [no debug info]:202:4:  %9 = load i32, i32* %i, align 4
+     [no debug info]:185:5:  %bufLen = getelementptr inbounds %struct.AisAppEnv, %struct.AisAppEnv* %3, i32 0, i32 12
+     [no debug info]:186:5:  %4 = load i8, i8* %bufLen, align 2
+     [no debug info]:187:5:  %conv = zext i8 %4 to i32
+     [no debug info]:188:5:  store i32 %conv, i32* %len, align 4
+     [no debug info]:189:5:  store i32 0, i32* %i, align 4
+     [no debug info]:190:5:  br label %for.cond
+     [no debug info]:193:5:  %5 = load i32, i32* %i, align 4
+     [no debug info]:194:5:  %6 = load i32, i32* %len, align 4
+     [no debug info]:195:5:  %cmp = icmp slt i32 %5, %6
+     [no debug info]:196:5:  br i1 %cmp, label %for.body, label %do.cond
+     [no debug info]:199:5:  %7 = load %struct.AisAppEnv*, %struct.AisAppEnv** %env.addr, align 8
+     [no debug info]:200:5:  %8 = load %struct.AisAppEnv*, %struct.AisAppEnv** %env.addr, align 8
+     [no debug info]:201:5:  %readBuf = getelementptr inbounds %struct.AisAppEnv, %struct.AisAppEnv* %8, i32 0, i32 11
+     [no debug info]:202:5:  %9 = load i32, i32* %i, align 4
+     [no debug info]:203:5:  %idxprom = sext i32 %9 to i64
+     [no debug info]:42:1:  store i8** %element, i8*** %element.addr, align 8
+     [no debug info]:204:5:  %arrayidx = getelementptr inbounds [1024 x i8], [1024 x i8]* %readBuf, i64 0, i64 %idxprom
+     [no debug info]:205:5:  %10 = load i8, i8* %arrayidx, align 1
+     [no debug info]:206:5:  call void @AIS_AppEnvProcEvent(%struct.AisAppEnv* %7, i8 zeroext %10)
+     [no debug info]:43:1:  %0 = load %struct.AisKfifo*, %struct.AisKfifo** %pstKFifo.addr, align 8
+     [no debug info]:104:5:  %env.addr = alloca %struct.AisAppEnv*, align 8
+     [no debug info]:105:5:  %ctrlMsg.addr = alloca i8, align 1
+     [no debug info]:106:5:  %message = alloca i8*, align 8
+     [no debug info]:107:5:  store %struct.AisAppEnv* %env, %struct.AisAppEnv** %env.addr, align 8
+     [no debug info]:108:5:  store i8 %ctrlMsg, i8* %ctrlMsg.addr, align 1
+     [no debug info]:109:5:  store i8* null, i8** %message, align 8
+     [no debug info]:110:5:  %0 = load %struct.AisAppEnv*, %struct.AisAppEnv** %env.addr, align 8
+     [no debug info]:111:5:  %info = getelementptr inbounds %struct.AisAppEnv, %struct.AisAppEnv* %0, i32 0, i32 0
+     [no debug info]:112:5:  %msgHandler = getelementptr inbounds %struct.TagAisAppInfo, %struct.TagAisAppInfo* %info, i32 0, i32 5
+     [no debug info]:113:5:  store i32 (i8*, %struct.TagAisAppInfo*, i32, i8*)* @AISiLossLessLocalMsgHandler, i32 (i8*, %struct.TagAisAppInfo*, i32, i8*)** %msgHandler, align 8
+     [no debug info]:114:5:  %1 = load i8, i8* %ctrlMsg.addr, align 1
+     [no debug info]:44:1:  %in = getelementptr inbounds %struct.AisKfifo, %struct.AisKfifo* %0, i32 0, i32 2
+     [no debug info]:115:5:  %conv = zext i8 %1 to i32
+     [no debug info]:116:5:  %cond = icmp eq i32 %conv, 1
+     [no debug info]:117:5:  br i1 %cond, label %while.cond, label %sw.default
+     [no debug info]:45:1:  %1 = load i32, i32* %in, align 4
+     [no debug info]:150:5:  %12 = load %struct.AisAppEnv*, %struct.AisAppEnv** %env.addr, align 8
+     [no debug info]:151:5:  %stat7 = getelementptr inbounds %struct.AisAppEnv, %struct.AisAppEnv* %12, i32 0, i32 14
+     [no debug info]:152:5:  %unknownCtrlMsg = getelementptr inbounds %struct.AisAppStat, %struct.AisAppStat* %stat7, i32 0, i32 8
+     [no debug info]:46:1:  %2 = load %struct.AisKfifo*, %struct.AisKfifo** %pstKFifo.addr, align 8
+     [no debug info]:153:5:  %13 = load i64, i64* %unknownCtrlMsg, align 8
+     [no debug info]:154:5:  %inc8 = add i64 %13, 1
+     [no debug info]:155:5:  store i64 %inc8, i64* %unknownCtrlMsg, align 8
+     [no debug info]:47:1:  %out = getelementptr inbounds %struct.AisKfifo, %struct.AisKfifo* %2, i32 0, i32 3
+     [no debug info]:156:5:  br label %sw.epilog
+     [no debug info]:159:5:  ret void
+     [no debug info]:207:5:  %11 = load i32, i32* %i, align 4
+     [no debug info]:48:1:  %3 = load i32, i32* %out, align 8
+     [no debug info]:208:5:  %inc = add nsw i32 %11, 1
+     [no debug info]:209:5:  store i32 %inc, i32* %i, align 4
+     [no debug info]:210:5:  br label %for.cond
+     [no debug info]:193:5:  %5 = load i32, i32* %i, align 4
+     [no debug info]:194:5:  %6 = load i32, i32* %len, align 4
+     [no debug info]:195:5:  %cmp = icmp slt i32 %5, %6
+     [no debug info]:196:5:  br i1 %cmp, label %for.body, label %do.cond
+     [no debug info]:203:4:  %idxprom = sext i32 %9 to i64
+     [no debug info]:213:5:  %12 = load i32, i32* %len, align 4
+     [no debug info]:214:5:  %cmp2 = icmp sgt i32 %12, 0
+     [no debug info]:215:5:  br i1 %cmp2, label %do.body, label %return
+     [no debug info]:184:5:  %3 = load %struct.AisAppEnv*, %struct.AisAppEnv** %env.addr, align 8
+     [no debug info]:185:5:  %bufLen = getelementptr inbounds %struct.AisAppEnv, %struct.AisAppEnv* %3, i32 0, i32 12
+     [no debug info]:186:5:  %4 = load i8, i8* %bufLen, align 2
+     [no debug info]:187:5:  %conv = zext i8 %4 to i32
+     [no debug info]:188:5:  store i32 %conv, i32* %len, align 4
+     [no debug info]:189:5:  store i32 0, i32* %i, align 4
+     [no debug info]:190:5:  br label %for.cond
+     [no debug info]:193:5:  %5 = load i32, i32* %i, align 4
+     [no debug info]:194:5:  %6 = load i32, i32* %len, align 4
+     [no debug info]:195:5:  %cmp = icmp slt i32 %5, %6
+     [no debug info]:196:5:  br i1 %cmp, label %for.body, label %do.cond
+     [no debug info]:199:5:  %7 = load %struct.AisAppEnv*, %struct.AisAppEnv** %env.addr, align 8
+     [no debug info]:204:4:  %arrayidx = getelementptr inbounds [1024 x i8], [1024 x i8]* %readBuf, i64 0, i64 %idxprom
+     [no debug info]:200:5:  %8 = load %struct.AisAppEnv*, %struct.AisAppEnv** %env.addr, align 8
+     [no debug info]:201:5:  %readBuf = getelementptr inbounds %struct.AisAppEnv, %struct.AisAppEnv* %8, i32 0, i32 11
+     [no debug info]:202:5:  %9 = load i32, i32* %i, align 4
+     [no debug info]:205:4:  %10 = load i8, i8* %arrayidx, align 1
+     [no debug info]:203:5:  %idxprom = sext i32 %9 to i64
+     [no debug info]:204:5:  %arrayidx = getelementptr inbounds [1024 x i8], [1024 x i8]* %readBuf, i64 0, i64 %idxprom
+     [no debug info]:205:5:  %10 = load i8, i8* %arrayidx, align 1
+     [no debug info]:206:5:  call void @AIS_AppEnvProcEvent(%struct.AisAppEnv* %7, i8 zeroext %10)
+     [no debug info]:104:5:  %env.addr = alloca %struct.AisAppEnv*, align 8
+     [no debug info]:105:5:  %ctrlMsg.addr = alloca i8, align 1
+     [no debug info]:106:5:  %message = alloca i8*, align 8
+     [no debug info]:49:1:  %cmp = icmp eq i32 %1, %3
+     [no debug info]:107:5:  store %struct.AisAppEnv* %env, %struct.AisAppEnv** %env.addr, align 8
+     [no debug info]:108:5:  store i8 %ctrlMsg, i8* %ctrlMsg.addr, align 1
+     [no debug info]:109:5:  store i8* null, i8** %message, align 8
+     [no debug info]:50:1:  br i1 %cmp, label %if.then, label %if.end
+     [no debug info]:57:6:  %4 = load %struct.AisKfifo*, %struct.AisKfifo** %pstKFifo.addr, align 8
+     [no debug info]:58:6:  %buffer = getelementptr inbounds %struct.AisKfifo, %struct.AisKfifo* %4, i32 0, i32 0
+     [no debug info]:59:6:  %5 = load i8**, i8*** %buffer, align 8
+     [no debug info]:110:5:  %0 = load %struct.AisAppEnv*, %struct.AisAppEnv** %env.addr, align 8
+     [no debug info]:60:6:  %6 = load %struct.AisKfifo*, %struct.AisKfifo** %pstKFifo.addr, align 8
+     [no debug info]:61:6:  %out1 = getelementptr inbounds %struct.AisKfifo, %struct.AisKfifo* %6, i32 0, i32 3
+     [no debug info]:62:6:  %7 = load i32, i32* %out1, align 8
+     [no debug info]:53:1:  store i32 1, i32* %retval, align 4
+     [no debug info]:63:6:  %inc = add i32 %7, 1
+     [no debug info]:64:6:  store i32 %inc, i32* %out1, align 8
+     [no debug info]:65:6:  %8 = load %struct.AisKfifo*, %struct.AisKfifo** %pstKFifo.addr, align 8
+     [no debug info]:111:5:  %info = getelementptr inbounds %struct.AisAppEnv, %struct.AisAppEnv* %0, i32 0, i32 0
+     [no debug info]:66:6:  %size = getelementptr inbounds %struct.AisKfifo, %struct.AisKfifo* %8, i32 0, i32 1
+     [no debug info]:67:6:  %9 = load i32, i32* %size, align 8
+     [no debug info]:68:6:  %sub = sub i32 %9, 1
+     [no debug info]:206:4:  call void @AIS_AppEnvProcEvent(%struct.AisAppEnv* %7, i8 zeroext %10)
+     [no debug info]:69:6:  %and = and i32 %7, %sub
+     [no debug info]:70:6:  %idxprom = zext i32 %and to i64
+     [no debug info]:71:6:  %arrayidx = getelementptr inbounds i8*, i8** %5, i64 %idxprom
+     [no debug info]:104:4:  %env.addr = alloca %struct.AisAppEnv*, align 8
+     [no debug info]:72:6:  %10 = load i8*, i8** %arrayidx, align 8
+     [no debug info]:73:23:  %11 = load i8**, i8*** %element.addr, align 8
+     [no debug info]:74:23:  store i8* %10, i8** %11, align 8
+     [no debug info]:73:7:  %11 = load i8**, i8*** %element.addr, align 8
+     [no debug info]:75:23:  store i32 0, i32* %retval, align 4
+     [no debug info]:76:23:  br label %return
+     [no debug info]:79:23:  %12 = load i32, i32* %retval, align 4
+     [no debug info]:112:5:  %msgHandler = getelementptr inbounds %struct.TagAisAppInfo, %struct.TagAisAppInfo* %info, i32 0, i32 5
+     [no debug info]:80:23:  ret i32 %12
+     [no debug info]:124:23:  %cmp = icmp eq i32 %call, 0
+     [no debug info]:125:23:  br i1 %cmp, label %while.body, label %sw.epilog
+     [no debug info]:105:4:  %ctrlMsg.addr = alloca i8, align 1
+     [no debug info]:128:23:  %3 = load %struct.AisAppEnv*, %struct.AisAppEnv** %env.addr, align 8
+     [no debug info]:129:23:  %stat = getelementptr inbounds %struct.AisAppEnv, %struct.AisAppEnv* %3, i32 0, i32 14
+     [no debug info]:130:23:  %timerMsgRead = getelementptr inbounds %struct.AisAppStat, %struct.AisAppStat* %stat, i32 0, i32 13
+     [no debug info]:106:4:  %message = alloca i8*, align 8
+     [no debug info]:131:23:  %4 = load i64, i64* %timerMsgRead, align 8
+     [no debug info]:132:23:  %inc = add i64 %4, 1
+     [no debug info]:133:23:  store i64 %inc, i64* %timerMsgRead, align 8
+     [no debug info]:73:9:  %11 = load i8**, i8*** %element.addr, align 8
+     [no debug info]:134:23:  %5 = load %struct.AisAppEnv*, %struct.AisAppEnv** %env.addr, align 8
+     [no debug info]:135:23:  %info2 = getelementptr inbounds %struct.AisAppEnv, %struct.AisAppEnv* %5, i32 0, i32 0
+     [no debug info]:136:23:  %msgHandler3 = getelementptr inbounds %struct.TagAisAppInfo, %struct.TagAisAppInfo* %info2, i32 0, i32 5
+     [no debug info]:74:7:  store i8* %10, i8** %11, align 8
+     [no debug info]:137:23:  %6 = load i32 (i8*, %struct.TagAisAppInfo*, i32, i8*)*, i32 (i8*, %struct.TagAisAppInfo*, i32, i8*)** %msgHandler3, align 8
+     [no debug info]:138:23:  %7 = load %struct.AisAppEnv*, %struct.AisAppEnv** %env.addr, align 8
+     [no debug info]:139:23:  %appLocal = getelementptr inbounds %struct.AisAppEnv, %struct.AisAppEnv* %7, i32 0, i32 5
+     [no debug info]:75:7:  store i32 0, i32* %retval, align 4
+     [no debug info]:140:23:  %8 = load i8*, i8** %appLocal, align 8
+     [no debug info]:141:23:  %9 = load %struct.AisAppEnv*, %struct.AisAppEnv** %env.addr, align 8
+     [no debug info]:142:23:  %info4 = getelementptr inbounds %struct.AisAppEnv, %struct.AisAppEnv* %9, i32 0, i32 0
+     [no debug info]:107:4:  store %struct.AisAppEnv* %env, %struct.AisAppEnv** %env.addr, align 8
+     [no debug info]:143:23:  %10 = load i8*, i8** %message, align 8
+     [no debug info]:144:23:  %call5 = call i32 %6(i8* %8, %struct.TagAisAppInfo* %info4, i32 1, i8* %10)
+     [no debug info]:86:23:  %appLocal.addr = alloca i8*, align 8
+     [no debug info]:54:1:  br label %return
+     [no debug info]:87:23:  %info.addr = alloca %struct.TagAisAppInfo*, align 8
+     [no debug info]:88:23:  %type.addr = alloca i32, align 4
+     [no debug info]:89:23:  %msg.addr = alloca i8*, align 8
+     [no debug info]:79:1:  %12 = load i32, i32* %retval, align 4
+     [no debug info]:90:23:  store i8* %appLocal, i8** %appLocal.addr, align 8
+     [no debug info]:91:23:  store %struct.TagAisAppInfo* %info, %struct.TagAisAppInfo** %info.addr, align 8
+     [no debug info]:92:23:  store i32 %type, i32* %type.addr, align 4
+     [no debug info]:73:6:  %11 = load i8**, i8*** %element.addr, align 8
+     [no debug info]:93:23:  store i8* %msg, i8** %msg.addr, align 8
+     [no debug info]:94:23:  %0 = load i8*, i8** %msg.addr, align 8
+     [no debug info]:95:23:  %cmp = icmp eq i8* %0, null
+     [no debug info]:108:4:  store i8 %ctrlMsg, i8* %ctrlMsg.addr, align 1
+     [no debug info]:96:23:  %1 = zext i1 %cmp to i64
+     [no debug info]:97:23:  %cond = select i1 %cmp, i32 1, i32 0
+     [no debug info]:98:23:  ret i32 %cond
+     [no debug info]:113:5:  store i32 (i8*, %struct.TagAisAppInfo*, i32, i8*)* @AISiLossLessLocalMsgHandler, i32 (i8*, %struct.TagAisAppInfo*, i32, i8*)** %msgHandler, align 8
+     [no debug info]:145:23:  %11 = load i8*, i8** %message, align 8
+     [no debug info]:146:23:  %call6 = call i32 (i8*, ...) bitcast (i32 (...)* @free to i32 (i8*, ...)*)(i8* %11)
+     [no debug info]:147:39:  br label %while.cond
+     [no debug info]:80:1:  ret i32 %12
+     [no debug info]:120:39:  %2 = load %struct.AisAppEnv*, %struct.AisAppEnv** %env.addr, align 8
+     [no debug info]:121:39:  %v8Queue = getelementptr inbounds %struct.AisAppEnv, %struct.AisAppEnv* %2, i32 0, i32 3
+     [no debug info]:122:39:  %arraydecay = getelementptr inbounds [16 x %struct.AisKfifo], [16 x %struct.AisKfifo]* %v8Queue, i64 0, i64 0
+     [no debug info]:74:6:  store i8* %10, i8** %11, align 8
+     [no debug info]:123:39:  %call = call i32 @AIS_KfifoGet(%struct.AisKfifo* %arraydecay, i8** %message)
+     [no debug info]:38:39:  %retval = alloca i32, align 4
+     [no debug info]:39:39:  %pstKFifo.addr = alloca %struct.AisKfifo*, align 8
+     [no debug info]:75:6:  store i32 0, i32* %retval, align 4
+     [no debug info]:40:39:  %element.addr = alloca i8**, align 8
+     [no debug info]:41:39:  store %struct.AisKfifo* %pstKFifo, %struct.AisKfifo** %pstKFifo.addr, align 8
+     [no debug info]:42:39:  store i8** %element, i8*** %element.addr, align 8
+     [no debug info]:114:5:  %1 = load i8, i8* %ctrlMsg.addr, align 1
+     [no debug info]:43:39:  %0 = load %struct.AisKfifo*, %struct.AisKfifo** %pstKFifo.addr, align 8
+     [no debug info]:44:39:  %in = getelementptr inbounds %struct.AisKfifo, %struct.AisKfifo* %0, i32 0, i32 2
+     [no debug info]:45:39:  %1 = load i32, i32* %in, align 4
+     [no debug info]:124:1:  %cmp = icmp eq i32 %call, 0
+     [no debug info]:46:39:  %2 = load %struct.AisKfifo*, %struct.AisKfifo** %pstKFifo.addr, align 8
+     [no debug info]:47:39:  %out = getelementptr inbounds %struct.AisKfifo, %struct.AisKfifo* %2, i32 0, i32 3
+     [no debug info]:48:39:  %3 = load i32, i32* %out, align 8
+     [no debug info]:125:1:  br i1 %cmp, label %while.body, label %sw.epilog
+     [no debug info]:49:39:  %cmp = icmp eq i32 %1, %3
+     [no debug info]:50:39:  br i1 %cmp, label %if.then, label %if.end
+     [no debug info]:57:48:  %4 = load %struct.AisKfifo*, %struct.AisKfifo** %pstKFifo.addr, align 8
+     [no debug info]:159:1:  ret void
+     [no debug info]:58:48:  %buffer = getelementptr inbounds %struct.AisKfifo, %struct.AisKfifo* %4, i32 0, i32 0
+     [no debug info]:59:48:  %5 = load i8**, i8*** %buffer, align 8
+     [no debug info]:60:48:  %6 = load %struct.AisKfifo*, %struct.AisKfifo** %pstKFifo.addr, align 8
+     [no debug info]:115:5:  %conv = zext i8 %1 to i32
+     [no debug info]:61:48:  %out1 = getelementptr inbounds %struct.AisKfifo, %struct.AisKfifo* %6, i32 0, i32 3
+     [no debug info]:62:48:  %7 = load i32, i32* %out1, align 8
+     [no debug info]:63:48:  %inc = add i32 %7, 1
+     [no debug info]:116:5:  %cond = icmp eq i32 %conv, 1
+     [no debug info]:64:48:  store i32 %inc, i32* %out1, align 8
+     [no debug info]:65:48:  %8 = load %struct.AisKfifo*, %struct.AisKfifo** %pstKFifo.addr, align 8
+     [no debug info]:66:48:  %size = getelementptr inbounds %struct.AisKfifo, %struct.AisKfifo* %8, i32 0, i32 1
+     [no debug info]:117:5:  br i1 %cond, label %while.cond, label %sw.default
+     [no debug info]:67:48:  %9 = load i32, i32* %size, align 8
+     [no debug info]:68:48:  %sub = sub i32 %9, 1
+     [no debug info]:69:48:  %and = and i32 %7, %sub
+     [no debug info]:109:4:  store i8* null, i8** %message, align 8
+     [no debug info]:70:48:  %idxprom = zext i32 %and to i64
+     [no debug info]:71:48:  %arrayidx = getelementptr inbounds i8*, i8** %5, i64 %idxprom
+     [no debug info]:72:48:  %10 = load i8*, i8** %arrayidx, align 8
+     [no debug info]:207:1:  %11 = load i32, i32* %i, align 4
+     [no debug info]:73:58:  %11 = load i8**, i8*** %element.addr, align 8
+     [no debug info]:74:58:  store i8* %10, i8** %11, align 8
+     [no debug info]:75:58:  store i32 0, i32* %retval, align 4
+     [no debug info]:76:6:  br label %return
+     [no debug info]:76:58:  br label %return
+     [no debug info]:79:58:  %12 = load i32, i32* %retval, align 4
+     [no debug info]:80:58:  ret i32 %12
+     [no debug info]:150:5:  %12 = load %struct.AisAppEnv*, %struct.AisAppEnv** %env.addr, align 8
+     [no debug info]:124:58:  %cmp = icmp eq i32 %call, 0
+     [no debug info]:125:58:  br i1 %cmp, label %while.body, label %sw.epilog
+     [no debug info]:128:58:  %3 = load %struct.AisAppEnv*, %struct.AisAppEnv** %env.addr, align 8
+     [no debug info]:151:5:  %stat7 = getelementptr inbounds %struct.AisAppEnv, %struct.AisAppEnv* %12, i32 0, i32 14
+     [no debug info]:129:58:  %stat = getelementptr inbounds %struct.AisAppEnv, %struct.AisAppEnv* %3, i32 0, i32 14
+     [no debug info]:130:58:  %timerMsgRead = getelementptr inbounds %struct.AisAppStat, %struct.AisAppStat* %stat, i32 0, i32 13
+     [no debug info]:131:58:  %4 = load i64, i64* %timerMsgRead, align 8
+     [no debug info]:73:10:  %11 = load i8**, i8*** %element.addr, align 8
+     [no debug info]:132:58:  %inc = add i64 %4, 1
+     [no debug info]:133:58:  store i64 %inc, i64* %timerMsgRead, align 8
+     [no debug info]:134:58:  %5 = load %struct.AisAppEnv*, %struct.AisAppEnv** %env.addr, align 8
+     [no debug info]:208:1:  %inc = add nsw i32 %11, 1
+     [no debug info]:135:58:  %info2 = getelementptr inbounds %struct.AisAppEnv, %struct.AisAppEnv* %5, i32 0, i32 0
+     [no debug info]:136:58:  %msgHandler3 = getelementptr inbounds %struct.TagAisAppInfo, %struct.TagAisAppInfo* %info2, i32 0, i32 5
+     [no debug info]:137:58:  %6 = load i32 (i8*, %struct.TagAisAppInfo*, i32, i8*)*, i32 (i8*, %struct.TagAisAppInfo*, i32, i8*)** %msgHandler3, align 8
+     [no debug info]:110:4:  %0 = load %struct.AisAppEnv*, %struct.AisAppEnv** %env.addr, align 8
+     [no debug info]:138:58:  %7 = load %struct.AisAppEnv*, %struct.AisAppEnv** %env.addr, align 8
+     [no debug info]:139:58:  %appLocal = getelementptr inbounds %struct.AisAppEnv, %struct.AisAppEnv* %7, i32 0, i32 5
+     [no debug info]:140:58:  %8 = load i8*, i8** %appLocal, align 8
+     [no debug info]:73:8:  %11 = load i8**, i8*** %element.addr, align 8
+     [no debug info]:141:58:  %9 = load %struct.AisAppEnv*, %struct.AisAppEnv** %env.addr, align 8
+     [no debug info]:142:58:  %info4 = getelementptr inbounds %struct.AisAppEnv, %struct.AisAppEnv* %9, i32 0, i32 0
+     [no debug info]:143:58:  %10 = load i8*, i8** %message, align 8
+     [no debug info]:209:1:  store i32 %inc, i32* %i, align 4
+     [no debug info]:144:58:  %call5 = call i32 %6(i8* %8, %struct.TagAisAppInfo* %info4, i32 1, i8* %10)
+     [no debug info]:86:58:  %appLocal.addr = alloca i8*, align 8
+     [no debug info]:87:58:  %info.addr = alloca %struct.TagAisAppInfo*, align 8
+     [no debug info]:76:7:  br label %return
+     [no debug info]:88:58:  %type.addr = alloca i32, align 4
+     [no debug info]:89:58:  %msg.addr = alloca i8*, align 8
+     [no debug info]:90:58:  store i8* %appLocal, i8** %appLocal.addr, align 8
+     [no debug info]:210:1:  br label %for.cond
+     [no debug info]:91:58:  store %struct.TagAisAppInfo* %info, %struct.TagAisAppInfo** %info.addr, align 8
+     [no debug info]:92:58:  store i32 %type, i32* %type.addr, align 4
+     [no debug info]:93:58:  store i8* %msg, i8** %msg.addr, align 8
+     [no debug info]:152:5:  %unknownCtrlMsg = getelementptr inbounds %struct.AisAppStat, %struct.AisAppStat* %stat7, i32 0, i32 8
+     [no debug info]:94:58:  %0 = load i8*, i8** %msg.addr, align 8
+     [no debug info]:95:58:  %cmp = icmp eq i8* %0, null
+     [no debug info]:96:58:  %1 = zext i1 %cmp to i64
+     [no debug info]:193:1:  %5 = load i32, i32* %i, align 4
+     [no debug info]:97:58:  %cond = select i1 %cmp, i32 1, i32 0
+     [no debug info]:98:58:  ret i32 %cond
+     [no debug info]:145:58:  %11 = load i8*, i8** %message, align 8
+     [no debug info]:153:5:  %13 = load i64, i64* %unknownCtrlMsg, align 8
+     [no debug info]:146:58:  %call6 = call i32 (i8*, ...) bitcast (i32 (...)* @free to i32 (i8*, ...)*)(i8* %11)
+     [no debug info]:147:58:  br label %while.cond
+     [no debug info]:120:58:  %2 = load %struct.AisAppEnv*, %struct.AisAppEnv** %env.addr, align 8
+     [no debug info]:194:1:  %6 = load i32, i32* %len, align 4
+     [no debug info]:121:58:  %v8Queue = getelementptr inbounds %struct.AisAppEnv, %struct.AisAppEnv* %2, i32 0, i32 3
+     [no debug info]:122:58:  %arraydecay = getelementptr inbounds [16 x %struct.AisKfifo], [16 x %struct.AisKfifo]* %v8Queue, i64 0, i64 0
+     [no debug info]:123:58:  %call = call i32 @AIS_KfifoGet(%struct.AisKfifo* %arraydecay, i8** %message)
+     [no debug info]:195:1:  %cmp = icmp slt i32 %5, %6
+     [no debug info]:38:58:  %retval = alloca i32, align 4
+     [no debug info]:39:58:  %pstKFifo.addr = alloca %struct.AisKfifo*, align 8
+     [no debug info]:40:58:  %element.addr = alloca i8**, align 8
+     [no debug info]:79:7:  %12 = load i32, i32* %retval, align 4
+     [no debug info]:41:58:  store %struct.AisKfifo* %pstKFifo, %struct.AisKfifo** %pstKFifo.addr, align 8
+     [no debug info]:42:58:  store i8** %element, i8*** %element.addr, align 8
+     [no debug info]:43:58:  %0 = load %struct.AisKfifo*, %struct.AisKfifo** %pstKFifo.addr, align 8
+     [no debug info]:74:10:  store i8* %10, i8** %11, align 8
+     [no debug info]:44:58:  %in = getelementptr inbounds %struct.AisKfifo, %struct.AisKfifo* %0, i32 0, i32 2
+     [no debug info]:45:58:  %1 = load i32, i32* %in, align 4
+     [no debug info]:73:57:  %11 = load i8**, i8*** %element.addr, align 8
+     [no debug info]:74:8:  store i8* %10, i8** %11, align 8
+     [no debug info]:74:57:  store i8* %10, i8** %11, align 8
+     [no debug info]:75:57:  store i32 0, i32* %retval, align 4
+     [no debug info]:76:57:  br label %return
+     [no debug info]:75:8:  store i32 0, i32* %retval, align 4
+     [no debug info]:79:57:  %12 = load i32, i32* %retval, align 4
+     [no debug info]:80:57:  ret i32 %12
+     [no debug info]:124:57:  %cmp = icmp eq i32 %call, 0
+     [no debug info]:75:10:  store i32 0, i32* %retval, align 4
+     [no debug info]:125:57:  br i1 %cmp, label %while.body, label %sw.epilog
+     [no debug info]:128:57:  %3 = load %struct.AisAppEnv*, %struct.AisAppEnv** %env.addr, align 8
+     [no debug info]:129:57:  %stat = getelementptr inbounds %struct.AisAppEnv, %struct.AisAppEnv* %3, i32 0, i32 14
+     [no debug info]:111:4:  %info = getelementptr inbounds %struct.AisAppEnv, %struct.AisAppEnv* %0, i32 0, i32 0
+     [no debug info]:130:57:  %timerMsgRead = getelementptr inbounds %struct.AisAppStat, %struct.AisAppStat* %stat, i32 0, i32 13
+     [no debug info]:131:57:  %4 = load i64, i64* %timerMsgRead, align 8
+     [no debug info]:132:57:  %inc = add i64 %4, 1
+     [no debug info]:154:5:  %inc8 = add i64 %13, 1
+     [no debug info]:133:57:  store i64 %inc, i64* %timerMsgRead, align 8
+     [no debug info]:134:57:  %5 = load %struct.AisAppEnv*, %struct.AisAppEnv** %env.addr, align 8
+     [no debug info]:135:57:  %info2 = getelementptr inbounds %struct.AisAppEnv, %struct.AisAppEnv* %5, i32 0, i32 0
+     [no debug info]:112:4:  %msgHandler = getelementptr inbounds %struct.TagAisAppInfo, %struct.TagAisAppInfo* %info, i32 0, i32 5
+     [no debug info]:136:57:  %msgHandler3 = getelementptr inbounds %struct.TagAisAppInfo, %struct.TagAisAppInfo* %info2, i32 0, i32 5
+     [no debug info]:137:57:  %6 = load i32 (i8*, %struct.TagAisAppInfo*, i32, i8*)*, i32 (i8*, %struct.TagAisAppInfo*, i32, i8*)** %msgHandler3, align 8
+     [no debug info]:138:57:  %7 = load %struct.AisAppEnv*, %struct.AisAppEnv** %env.addr, align 8
+     [no debug info]:155:5:  store i64 %inc8, i64* %unknownCtrlMsg, align 8
+     [no debug info]:139:57:  %appLocal = getelementptr inbounds %struct.AisAppEnv, %struct.AisAppEnv* %7, i32 0, i32 5
+     [no debug info]:140:57:  %8 = load i8*, i8** %appLocal, align 8
+     [no debug info]:141:57:  %9 = load %struct.AisAppEnv*, %struct.AisAppEnv** %env.addr, align 8
+     [no debug info]:156:5:  br label %sw.epilog
+     [no debug info]:142:57:  %info4 = getelementptr inbounds %struct.AisAppEnv, %struct.AisAppEnv* %9, i32 0, i32 0
+     [no debug info]:143:57:  %10 = load i8*, i8** %message, align 8
+     [no debug info]:144:57:  %call5 = call i32 %6(i8* %8, %struct.TagAisAppInfo* %info4, i32 1, i8* %10)
+     [no debug info]:159:5:  ret void
+     [no debug info]:86:57:  %appLocal.addr = alloca i8*, align 8
+     [no debug info]:87:57:  %info.addr = alloca %struct.TagAisAppInfo*, align 8
+     [no debug info]:88:57:  %type.addr = alloca i32, align 4
+     [no debug info]:79:6:  %12 = load i32, i32* %retval, align 4
+     [no debug info]:89:57:  %msg.addr = alloca i8*, align 8
+     [no debug info]:90:57:  store i8* %appLocal, i8** %appLocal.addr, align 8
+     [no debug info]:91:57:  store %struct.TagAisAppInfo* %info, %struct.TagAisAppInfo** %info.addr, align 8
+     [no debug info]:113:4:  store i32 (i8*, %struct.TagAisAppInfo*, i32, i8*)* @AISiLossLessLocalMsgHandler, i32 (i8*, %struct.TagAisAppInfo*, i32, i8*)** %msgHandler, align 8
+     [no debug info]:92:57:  store i32 %type, i32* %type.addr, align 4
+     [no debug info]:93:57:  store i8* %msg, i8** %msg.addr, align 8
+     [no debug info]:94:57:  %0 = load i8*, i8** %msg.addr, align 8
+     [no debug info]:114:4:  %1 = load i8, i8* %ctrlMsg.addr, align 1
+     [no debug info]:95:57:  %cmp = icmp eq i8* %0, null
+     [no debug info]:96:57:  %1 = zext i1 %cmp to i64
+     [no debug info]:97:57:  %cond = select i1 %cmp, i32 1, i32 0
+     [no debug info]:196:1:  br i1 %cmp, label %for.body, label %do.cond
+     [no debug info]:213:60:  %12 = load i32, i32* %len, align 4
+     [no debug info]:214:60:  %cmp2 = icmp sgt i32 %12, 0
+     [no debug info]:215:60:  br i1 %cmp2, label %do.body, label %return
+     [no debug info]:115:4:  %conv = zext i8 %1 to i32
+     [no debug info]:184:60:  %3 = load %struct.AisAppEnv*, %struct.AisAppEnv** %env.addr, align 8
+     [no debug info]:185:60:  %bufLen = getelementptr inbounds %struct.AisAppEnv, %struct.AisAppEnv* %3, i32 0, i32 12
+     [no debug info]:186:60:  %4 = load i8, i8* %bufLen, align 2
+     [no debug info]:116:4:  %cond = icmp eq i32 %conv, 1
+     [no debug info]:187:60:  %conv = zext i8 %4 to i32
+     [no debug info]:188:60:  store i32 %conv, i32* %len, align 4
+     [no debug info]:189:60:  store i32 0, i32* %i, align 4
+     [no debug info]:190:60:  br label %for.cond
+     [no debug info]:193:60:  %5 = load i32, i32* %i, align 4
+     [no debug info]:194:60:  %6 = load i32, i32* %len, align 4
+     [no debug info]:195:60:  %cmp = icmp slt i32 %5, %6
+     [no debug info]:117:4:  br i1 %cond, label %while.cond, label %sw.default
+     [no debug info]:150:61:  %12 = load %struct.AisAppEnv*, %struct.AisAppEnv** %env.addr, align 8
+     [no debug info]:151:61:  %stat7 = getelementptr inbounds %struct.AisAppEnv, %struct.AisAppEnv* %12, i32 0, i32 14
+     [no debug info]:152:61:  %unknownCtrlMsg = getelementptr inbounds %struct.AisAppStat, %struct.AisAppStat* %stat7, i32 0, i32 8
+     [no debug info]:199:1:  %7 = load %struct.AisAppEnv*, %struct.AisAppEnv** %env.addr, align 8
+     [no debug info]:153:61:  %13 = load i64, i64* %unknownCtrlMsg, align 8
+     [no debug info]:154:61:  %inc8 = add i64 %13, 1
+     [no debug info]:155:61:  store i64 %inc8, i64* %unknownCtrlMsg, align 8
+     [no debug info]:76:8:  br label %return
+     [no debug info]:156:61:  br label %sw.epilog
+     [no debug info]:159:61:  ret void
+     [no debug info]:207:61:  %11 = load i32, i32* %i, align 4
+     [no debug info]:73:13:  %11 = load i8**, i8*** %element.addr, align 8
+     [no debug info]:208:61:  %inc = add nsw i32 %11, 1
+     [no debug info]:209:61:  store i32 %inc, i32* %i, align 4
+     [no debug info]:210:61:  br label %for.cond
+     [no debug info]:207:5:  %11 = load i32, i32* %i, align 4
+     [no debug info]:193:61:  %5 = load i32, i32* %i, align 4
+     [no debug info]:194:61:  %6 = load i32, i32* %len, align 4
+     [no debug info]:195:61:  %cmp = icmp slt i32 %5, %6
+     [no debug info]:208:5:  %inc = add nsw i32 %11, 1
+     [no debug info]:196:61:  br i1 %cmp, label %for.body, label %do.cond
+     [no debug info]:213:62:  %12 = load i32, i32* %len, align 4
+     [no debug info]:214:62:  %cmp2 = icmp sgt i32 %12, 0
+     [no debug info]:120:4:  %2 = load %struct.AisAppEnv*, %struct.AisAppEnv** %env.addr, align 8
+     [no debug info]:215:62:  br i1 %cmp2, label %do.body, label %return
+     [no debug info]:184:62:  %3 = load %struct.AisAppEnv*, %struct.AisAppEnv** %env.addr, align 8
+     [no debug info]:185:62:  %bufLen = getelementptr inbounds %struct.AisAppEnv, %struct.AisAppEnv* %3, i32 0, i32 12
+     [no debug info]:80:6:  ret i32 %12
+     [no debug info]:186:62:  %4 = load i8, i8* %bufLen, align 2
+     [no debug info]:187:62:  %conv = zext i8 %4 to i32
+     [no debug info]:188:62:  store i32 %conv, i32* %len, align 4
+     [no debug info]:209:5:  store i32 %inc, i32* %i, align 4
+     [no debug info]:189:62:  store i32 0, i32* %i, align 4
+     [no debug info]:190:62:  br label %for.cond
+     [no debug info]:193:62:  %5 = load i32, i32* %i, align 4
+     [no debug info]:121:4:  %v8Queue = getelementptr inbounds %struct.AisAppEnv, %struct.AisAppEnv* %2, i32 0, i32 3
+     [no debug info]:194:62:  %6 = load i32, i32* %len, align 4
+     [no debug info]:195:62:  %cmp = icmp slt i32 %5, %6
+     [no debug info]:196:62:  br i1 %cmp, label %for.body, label %do.cond
+     [no debug info]:210:5:  br label %for.cond
+     [no debug info]:199:62:  %7 = load %struct.AisAppEnv*, %struct.AisAppEnv** %env.addr, align 8
+     [no debug info]:200:62:  %8 = load %struct.AisAppEnv*, %struct.AisAppEnv** %env.addr, align 8
+     [no debug info]:201:62:  %readBuf = getelementptr inbounds %struct.AisAppEnv, %struct.AisAppEnv* %8, i32 0, i32 11
+     [no debug info]:196:60:  br i1 %cmp, label %for.body, label %do.cond
+     [no debug info]:202:62:  %9 = load i32, i32* %i, align 4
+     [no debug info]:203:62:  %idxprom = sext i32 %9 to i64
+     [no debug info]:204:62:  %arrayidx = getelementptr inbounds [1024 x i8], [1024 x i8]* %readBuf, i64 0, i64 %idxprom
+     [no debug info]:200:1:  %8 = load %struct.AisAppEnv*, %struct.AisAppEnv** %env.addr, align 8
+     [no debug info]:205:62:  %10 = load i8, i8* %arrayidx, align 1
+     [no debug info]:206:62:  call void @AIS_AppEnvProcEvent(%struct.AisAppEnv* %7, i8 zeroext %10)
+     [no debug info]:104:62:  %env.addr = alloca %struct.AisAppEnv*, align 8
+     [no debug info]:193:5:  %5 = load i32, i32* %i, align 4
+     [no debug info]:105:62:  %ctrlMsg.addr = alloca i8, align 1
+     [no debug info]:106:62:  %message = alloca i8*, align 8
+     [no debug info]:107:62:  store %struct.AisAppEnv* %env, %struct.AisAppEnv** %env.addr, align 8
+     [no debug info]:194:5:  %6 = load i32, i32* %len, align 4
+     [no debug info]:108:62:  store i8 %ctrlMsg, i8* %ctrlMsg.addr, align 1
+     [no debug info]:109:62:  store i8* null, i8** %message, align 8
+     [no debug info]:110:62:  %0 = load %struct.AisAppEnv*, %struct.AisAppEnv** %env.addr, align 8
+     [no debug info]:124:6:  %cmp = icmp eq i32 %call, 0
+     [no debug info]:111:62:  %info = getelementptr inbounds %struct.AisAppEnv, %struct.AisAppEnv* %0, i32 0, i32 0
+     [no debug info]:112:62:  %msgHandler = getelementptr inbounds %struct.TagAisAppInfo, %struct.TagAisAppInfo* %info, i32 0, i32 5
+     [no debug info]:113:62:  store i32 (i8*, %struct.TagAisAppInfo*, i32, i8*)* @AISiLossLessLocalMsgHandler, i32 (i8*, %struct.TagAisAppInfo*, i32, i8*)** %msgHandler, align 8
+     [no debug info]:195:5:  %cmp = icmp slt i32 %5, %6
+     [no debug info]:114:62:  %1 = load i8, i8* %ctrlMsg.addr, align 1
+     [no debug info]:115:62:  %conv = zext i8 %1 to i32
+     [no debug info]:116:62:  %cond = icmp eq i32 %conv, 1
+     [no debug info]:122:4:  %arraydecay = getelementptr inbounds [16 x %struct.AisKfifo], [16 x %struct.AisKfifo]* %v8Queue, i64 0, i64 0
+     [no debug info]:117:62:  br i1 %cond, label %while.cond, label %sw.default
+     [no debug info]:150:62:  %12 = load %struct.AisAppEnv*, %struct.AisAppEnv** %env.addr, align 8
+     [no debug info]:151:62:  %stat7 = getelementptr inbounds %struct.AisAppEnv, %struct.AisAppEnv* %12, i32 0, i32 14
+     [no debug info]:196:5:  br i1 %cmp, label %for.body, label %do.cond
+     [no debug info]:152:62:  %unknownCtrlMsg = getelementptr inbounds %struct.AisAppStat, %struct.AisAppStat* %stat7, i32 0, i32 8
+     [no debug info]:153:62:  %13 = load i64, i64* %unknownCtrlMsg, align 8
+     [no debug info]:154:62:  %inc8 = add i64 %13, 1
+     [no debug info]:155:62:  store i64 %inc8, i64* %unknownCtrlMsg, align 8
+     [no debug info]:156:62:  br label %sw.epilog
+     [no debug info]:159:62:  ret void
+     [no debug info]:207:62:  %11 = load i32, i32* %i, align 4
+     [no debug info]:80:7:  ret i32 %12
+     [no debug info]:208:62:  %inc = add nsw i32 %11, 1
+     [no debug info]:209:62:  store i32 %inc, i32* %i, align 4
+     [no debug info]:210:62:  br label %for.cond
+     [no debug info]:213:5:  %12 = load i32, i32* %len, align 4
+     [no debug info]:193:62:  %5 = load i32, i32* %i, align 4
+     [no debug info]:194:62:  %6 = load i32, i32* %len, align 4
+     [no debug info]:195:62:  %cmp = icmp slt i32 %5, %6
+     [no debug info]:124:7:  %cmp = icmp eq i32 %call, 0
+     [no debug info]:196:62:  br i1 %cmp, label %for.body, label %do.cond
+     [no debug info]:199:62:  %7 = load %struct.AisAppEnv*, %struct.AisAppEnv** %env.addr, align 8
+     [no debug info]:200:62:  %8 = load %struct.AisAppEnv*, %struct.AisAppEnv** %env.addr, align 8
+     [no debug info]:214:5:  %cmp2 = icmp sgt i32 %12, 0
+     [no debug info]:201:62:  %readBuf = getelementptr inbounds %struct.AisAppEnv, %struct.AisAppEnv* %8, i32 0, i32 11
+     [no debug info]:202:62:  %9 = load i32, i32* %i, align 4
+     [no debug info]:203:62:  %idxprom = sext i32 %9 to i64
+     [no debug info]:123:4:  %call = call i32 @AIS_KfifoGet(%struct.AisKfifo* %arraydecay, i8** %message)
+     [no debug info]:204:62:  %arrayidx = getelementptr inbounds [1024 x i8], [1024 x i8]* %readBuf, i64 0, i64 %idxprom
+     [no debug info]:205:62:  %10 = load i8, i8* %arrayidx, align 1
+     [no debug info]:206:62:  call void @AIS_AppEnvProcEvent(%struct.AisAppEnv* %7, i8 zeroext %10)
+     [no debug info]:38:4:  %retval = alloca i32, align 4
+     [no debug info]:104:62:  %env.addr = alloca %struct.AisAppEnv*, align 8
+     [no debug info]:105:62:  %ctrlMsg.addr = alloca i8, align 1
+     [no debug info]:106:62:  %message = alloca i8*, align 8
+     [no debug info]:199:60:  %7 = load %struct.AisAppEnv*, %struct.AisAppEnv** %env.addr, align 8
+     [no debug info]:107:62:  store %struct.AisAppEnv* %env, %struct.AisAppEnv** %env.addr, align 8
+     [no debug info]:108:62:  store i8 %ctrlMsg, i8* %ctrlMsg.addr, align 1
+     [no debug info]:109:62:  store i8* null, i8** %message, align 8
+     [no debug info]:200:60:  %8 = load %struct.AisAppEnv*, %struct.AisAppEnv** %env.addr, align 8
+     [no debug info]:110:62:  %0 = load %struct.AisAppEnv*, %struct.AisAppEnv** %env.addr, align 8
+     [no debug info]:111:62:  %info = getelementptr inbounds %struct.AisAppEnv, %struct.AisAppEnv* %0, i32 0, i32 0
+     [no debug info]:112:62:  %msgHandler = getelementptr inbounds %struct.TagAisAppInfo, %struct.TagAisAppInfo* %info, i32 0, i32 5
+     [no debug info]:215:5:  br i1 %cmp2, label %do.body, label %return
+     [no debug info]:113:62:  store i32 (i8*, %struct.TagAisAppInfo*, i32, i8*)* @AISiLossLessLocalMsgHandler, i32 (i8*, %struct.TagAisAppInfo*, i32, i8*)** %msgHandler, align 8
+     [no debug info]:114:62:  %1 = load i8, i8* %ctrlMsg.addr, align 1
+     [no debug info]:115:62:  %conv = zext i8 %1 to i32
+     [no debug info]:201:60:  %readBuf = getelementptr inbounds %struct.AisAppEnv, %struct.AisAppEnv* %8, i32 0, i32 11
+     [no debug info]:116:62:  %cond = icmp eq i32 %conv, 1
+     [no debug info]:117:62:  br i1 %cond, label %while.cond, label %sw.default
+     [no debug info]:150:62:  %12 = load %struct.AisAppEnv*, %struct.AisAppEnv** %env.addr, align 8
+     [no debug info]:202:60:  %9 = load i32, i32* %i, align 4
+     [no debug info]:151:62:  %stat7 = getelementptr inbounds %struct.AisAppEnv, %struct.AisAppEnv* %12, i32 0, i32 14
+     [no debug info]:152:62:  %unknownCtrlMsg = getelementptr inbounds %struct.AisAppStat, %struct.AisAppStat* %stat7, i32 0, i32 8
+     [no debug info]:153:62:  %13 = load i64, i64* %unknownCtrlMsg, align 8
+     [no debug info]:125:6:  br i1 %cmp, label %while.body, label %sw.epilog
+     [no debug info]:154:62:  %inc8 = add i64 %13, 1
+     [no debug info]:155:62:  store i64 %inc8, i64* %unknownCtrlMsg, align 8
+     [no debug info]:156:62:  br label %sw.epilog
+     [no debug info]:184:5:  %3 = load %struct.AisAppEnv*, %struct.AisAppEnv** %env.addr, align 8
+     [no debug info]:159:62:  ret void
+     [no debug info]:207:62:  %11 = load i32, i32* %i, align 4
+     [no debug info]:208:62:  %inc = add nsw i32 %11, 1
+     [no debug info]:185:5:  %bufLen = getelementptr inbounds %struct.AisAppEnv, %struct.AisAppEnv* %3, i32 0, i32 12
+     [no debug info]:209:62:  store i32 %inc, i32* %i, align 4
+     [no debug info]:210:62:  br label %for.cond
+     [no debug info]:193:62:  %5 = load i32, i32* %i, align 4
+     [no debug info]:186:5:  %4 = load i8, i8* %bufLen, align 2
+     [no debug info]:194:62:  %6 = load i32, i32* %len, align 4
+     [no debug info]:195:62:  %cmp = icmp slt i32 %5, %6
+     [no debug info]:196:62:  br i1 %cmp, label %for.body, label %do.cond
+     [no debug info]:128:6:  %3 = load %struct.AisAppEnv*, %struct.AisAppEnv** %env.addr, align 8
+     [no debug info]:213:62:  %12 = load i32, i32* %len, align 4
+     [no debug info]:214:62:  %cmp2 = icmp sgt i32 %12, 0
+     [no debug info]:215:62:  br i1 %cmp2, label %do.body, label %return
+     [no debug info]:129:6:  %stat = getelementptr inbounds %struct.AisAppEnv, %struct.AisAppEnv* %3, i32 0, i32 14
+     [no debug info]:184:62:  %3 = load %struct.AisAppEnv*, %struct.AisAppEnv** %env.addr, align 8
+     [no debug info]:185:62:  %bufLen = getelementptr inbounds %struct.AisAppEnv, %struct.AisAppEnv* %3, i32 0, i32 12
+     [no debug info]:186:62:  %4 = load i8, i8* %bufLen, align 2
+     [no debug info]:187:5:  %conv = zext i8 %4 to i32
+     [no debug info]:187:62:  %conv = zext i8 %4 to i32
+     [no debug info]:188:62:  store i32 %conv, i32* %len, align 4
+     [no debug info]:189:62:  store i32 0, i32* %i, align 4
+     [no debug info]:130:6:  %timerMsgRead = getelementptr inbounds %struct.AisAppStat, %struct.AisAppStat* %stat, i32 0, i32 13
+     [no debug info]:190:62:  br label %for.cond
+     [no debug info]:193:62:  %5 = load i32, i32* %i, align 4
+     [no debug info]:194:62:  %6 = load i32, i32* %len, align 4
+     [no debug info]:203:60:  %idxprom = sext i32 %9 to i64
+     [no debug info]:195:62:  %cmp = icmp slt i32 %5, %6
+     [no debug info]:196:62:  br i1 %cmp, label %for.body, label %do.cond
+     [no debug info]:199:62:  %7 = load %struct.AisAppEnv*, %struct.AisAppEnv** %env.addr, align 8
+     [no debug info]:201:1:  %readBuf = getelementptr inbounds %struct.AisAppEnv, %struct.AisAppEnv* %8, i32 0, i32 11
+     [no debug info]:200:62:  %8 = load %struct.AisAppEnv*, %struct.AisAppEnv** %env.addr, align 8
+     [no debug info]:201:62:  %readBuf = getelementptr inbounds %struct.AisAppEnv, %struct.AisAppEnv* %8, i32 0, i32 11
+     [no debug info]:202:62:  %9 = load i32, i32* %i, align 4
+     [no debug info]:188:5:  store i32 %conv, i32* %len, align 4
+     [no debug info]:203:62:  %idxprom = sext i32 %9 to i64
+     [no debug info]:204:62:  %arrayidx = getelementptr inbounds [1024 x i8], [1024 x i8]* %readBuf, i64 0, i64 %idxprom
+     [no debug info]:205:62:  %10 = load i8, i8* %arrayidx, align 1
+     [no debug info]:204:60:  %arrayidx = getelementptr inbounds [1024 x i8], [1024 x i8]* %readBuf, i64 0, i64 %idxprom
+     [no debug info]:206:62:  call void @AIS_AppEnvProcEvent(%struct.AisAppEnv* %7, i8 zeroext %10)
+     [no debug info]:104:62:  %env.addr = alloca %struct.AisAppEnv*, align 8
+     [no debug info]:105:62:  %ctrlMsg.addr = alloca i8, align 1
+     [no debug info]:131:6:  %4 = load i64, i64* %timerMsgRead, align 8
+     [no debug info]:106:62:  %message = alloca i8*, align 8
+     [no debug info]:107:62:  store %struct.AisAppEnv* %env, %struct.AisAppEnv** %env.addr, align 8
+     [no debug info]:108:62:  store i8 %ctrlMsg, i8* %ctrlMsg.addr, align 1
+     [no debug info]:189:5:  store i32 0, i32* %i, align 4
+     [no debug info]:109:62:  store i8* null, i8** %message, align 8
+     [no debug info]:110:62:  %0 = load %struct.AisAppEnv*, %struct.AisAppEnv** %env.addr, align 8
+     [no debug info]:111:62:  %info = getelementptr inbounds %struct.AisAppEnv, %struct.AisAppEnv* %0, i32 0, i32 0
+     [no debug info]:205:60:  %10 = load i8, i8* %arrayidx, align 1
+     [no debug info]:112:62:  %msgHandler = getelementptr inbounds %struct.TagAisAppInfo, %struct.TagAisAppInfo* %info, i32 0, i32 5
+     [no debug info]:113:62:  store i32 (i8*, %struct.TagAisAppInfo*, i32, i8*)* @AISiLossLessLocalMsgHandler, i32 (i8*, %struct.TagAisAppInfo*, i32, i8*)** %msgHandler, align 8
+     [no debug info]:114:62:  %1 = load i8, i8* %ctrlMsg.addr, align 1
+     [no debug info]:190:5:  br label %for.cond
+     [no debug info]:115:62:  %conv = zext i8 %1 to i32
+     [no debug info]:116:62:  %cond = icmp eq i32 %conv, 1
+     [no debug info]:117:62:  br i1 %cond, label %while.cond, label %sw.default
+     [no debug info]:132:6:  %inc = add i64 %4, 1
+     [no debug info]:150:62:  %12 = load %struct.AisAppEnv*, %struct.AisAppEnv** %env.addr, align 8
+     [no debug info]:151:62:  %stat7 = getelementptr inbounds %struct.AisAppEnv, %struct.AisAppEnv* %12, i32 0, i32 14
+     [no debug info]:152:62:  %unknownCtrlMsg = getelementptr inbounds %struct.AisAppStat, %struct.AisAppStat* %stat7, i32 0, i32 8
+     [no debug info]:193:5:  %5 = load i32, i32* %i, align 4
+     [no debug info]:153:62:  %13 = load i64, i64* %unknownCtrlMsg, align 8
+     [no debug info]:154:62:  %inc8 = add i64 %13, 1
+     [no debug info]:155:62:  store i64 %inc8, i64* %unknownCtrlMsg, align 8
+     [no debug info]:39:4:  %pstKFifo.addr = alloca %struct.AisKfifo*, align 8
+     [no debug info]:156:62:  br label %sw.epilog
+     [no debug info]:159:62:  ret void
+     [no debug info]:207:62:  %11 = load i32, i32* %i, align 4
+     [no debug info]:194:5:  %6 = load i32, i32* %len, align 4
+     [no debug info]:208:62:  %inc = add nsw i32 %11, 1
+     [no debug info]:209:62:  store i32 %inc, i32* %i, align 4
+     [no debug info]:210:62:  br label %for.cond
+     [no debug info]:74:9:  store i8* %10, i8** %11, align 8
+     [no debug info]:193:62:  %5 = load i32, i32* %i, align 4
+     [no debug info]:194:62:  %6 = load i32, i32* %len, align 4
+     [no debug info]:195:62:  %cmp = icmp slt i32 %5, %6
+     [no debug info]:195:5:  %cmp = icmp slt i32 %5, %6
+     [no debug info]:196:62:  br i1 %cmp, label %for.body, label %do.cond
+     [no debug info]:199:62:  %7 = load %struct.AisAppEnv*, %struct.AisAppEnv** %env.addr, align 8
+     [no debug info]:200:62:  %8 = load %struct.AisAppEnv*, %struct.AisAppEnv** %env.addr, align 8
+     [no debug info]:133:6:  store i64 %inc, i64* %timerMsgRead, align 8
+     [no debug info]:201:62:  %readBuf = getelementptr inbounds %struct.AisAppEnv, %struct.AisAppEnv* %8, i32 0, i32 11
+     [no debug info]:202:62:  %9 = load i32, i32* %i, align 4
+     [no debug info]:203:62:  %idxprom = sext i32 %9 to i64
+     [no debug info]:202:1:  %9 = load i32, i32* %i, align 4
+     [no debug info]:204:62:  %arrayidx = getelementptr inbounds [1024 x i8], [1024 x i8]* %readBuf, i64 0, i64 %idxprom
+     [no debug info]:205:62:  %10 = load i8, i8* %arrayidx, align 1
+     [no debug info]:206:62:  call void @AIS_AppEnvProcEvent(%struct.AisAppEnv* %7, i8 zeroext %10)
+     [no debug info]:196:5:  br i1 %cmp, label %for.body, label %do.cond
+     [no debug info]:104:62:  %env.addr = alloca %struct.AisAppEnv*, align 8
+     [no debug info]:105:62:  %ctrlMsg.addr = alloca i8, align 1
+     [no debug info]:106:62:  %message = alloca i8*, align 8
+     [no debug info]:199:5:  %7 = load %struct.AisAppEnv*, %struct.AisAppEnv** %env.addr, align 8
+     [no debug info]:107:62:  store %struct.AisAppEnv* %env, %struct.AisAppEnv** %env.addr, align 8
+     [no debug info]:108:62:  store i8 %ctrlMsg, i8* %ctrlMsg.addr, align 1
+     [no debug info]:109:62:  store i8* null, i8** %message, align 8
+     [no debug info]:40:4:  %element.addr = alloca i8**, align 8
+     [no debug info]:110:62:  %0 = load %struct.AisAppEnv*, %struct.AisAppEnv** %env.addr, align 8
+     [no debug info]:111:62:  %info = getelementptr inbounds %struct.AisAppEnv, %struct.AisAppEnv* %0, i32 0, i32 0
+     [no debug info]:112:62:  %msgHandler = getelementptr inbounds %struct.TagAisAppInfo, %struct.TagAisAppInfo* %info, i32 0, i32 5
+     [no debug info]:41:4:  store %struct.AisKfifo* %pstKFifo, %struct.AisKfifo** %pstKFifo.addr, align 8
+     [no debug info]:113:62:  store i32 (i8*, %struct.TagAisAppInfo*, i32, i8*)* @AISiLossLessLocalMsgHandler, i32 (i8*, %struct.TagAisAppInfo*, i32, i8*)** %msgHandler, align 8
+     [no debug info]:114:62:  %1 = load i8, i8* %ctrlMsg.addr, align 1
+     [no debug info]:115:62:  %conv = zext i8 %1 to i32
+     [no debug info]:42:4:  store i8** %element, i8*** %element.addr, align 8
+     [no debug info]:116:62:  %cond = icmp eq i32 %conv, 1
+     [no debug info]:117:62:  br i1 %cond, label %while.cond, label %sw.default
+     [no debug info]:150:62:  %12 = load %struct.AisAppEnv*, %struct.AisAppEnv** %env.addr, align 8
+     [no debug info]:151:62:  %stat7 = getelementptr inbounds %struct.AisAppEnv, %struct.AisAppEnv* %12, i32 0, i32 14
+     [no debug info]:152:62:  %unknownCtrlMsg = getelementptr inbounds %struct.AisAppStat, %struct.AisAppStat* %stat7, i32 0, i32 8
+     [no debug info]:153:62:  %13 = load i64, i64* %unknownCtrlMsg, align 8
+     [no debug info]:154:62:  %inc8 = add i64 %13, 1
+     [no debug info]:200:5:  %8 = load %struct.AisAppEnv*, %struct.AisAppEnv** %env.addr, align 8
+     [no debug info]:155:62:  store i64 %inc8, i64* %unknownCtrlMsg, align 8
+     [no debug info]:156:62:  br label %sw.epilog
+     [no debug info]:159:62:  ret void
+     [no debug info]:207:62:  %11 = load i32, i32* %i, align 4
+     [no debug info]:208:62:  %inc = add nsw i32 %11, 1
+     [no debug info]:209:62:  store i32 %inc, i32* %i, align 4
+     [no debug info]:210:62:  br label %for.cond
+     [no debug info]:134:6:  %5 = load %struct.AisAppEnv*, %struct.AisAppEnv** %env.addr, align 8
+     [no debug info]:193:62:  %5 = load i32, i32* %i, align 4
+     [no debug info]:194:62:  %6 = load i32, i32* %len, align 4
+     [no debug info]:195:62:  %cmp = icmp slt i32 %5, %6
+     [no debug info]:199:61:  %7 = load %struct.AisAppEnv*, %struct.AisAppEnv** %env.addr, align 8
+     [no debug info]:196:62:  br i1 %cmp, label %for.body, label %do.cond
+     [no debug info]:213:62:  %12 = load i32, i32* %len, align 4
+     [no debug info]:214:62:  %cmp2 = icmp sgt i32 %12, 0
+     [no debug info]:201:5:  %readBuf = getelementptr inbounds %struct.AisAppEnv, %struct.AisAppEnv* %8, i32 0, i32 11
+     [no debug info]:215:62:  br i1 %cmp2, label %do.body, label %return
+     [no debug info]:184:62:  %3 = load %struct.AisAppEnv*, %struct.AisAppEnv** %env.addr, align 8
+     [no debug info]:185:62:  %bufLen = getelementptr inbounds %struct.AisAppEnv, %struct.AisAppEnv* %3, i32 0, i32 12
+     [no debug info]:125:7:  br i1 %cmp, label %while.body, label %sw.epilog
+     [no debug info]:186:62:  %4 = load i8, i8* %bufLen, align 2
+     [no debug info]:187:62:  %conv = zext i8 %4 to i32
+     [no debug info]:188:62:  store i32 %conv, i32* %len, align 4
+     [no debug info]:202:5:  %9 = load i32, i32* %i, align 4
+     [no debug info]:189:62:  store i32 0, i32* %i, align 4
+     [no debug info]:190:62:  br label %for.cond
+     [no debug info]:193:62:  %5 = load i32, i32* %i, align 4
+     [no debug info]:43:4:  %0 = load %struct.AisKfifo*, %struct.AisKfifo** %pstKFifo.addr, align 8
+     [no debug info]:194:62:  %6 = load i32, i32* %len, align 4
+     [no debug info]:195:62:  %cmp = icmp slt i32 %5, %6
+     [no debug info]:196:62:  br i1 %cmp, label %for.body, label %do.cond
+     [no debug info]:128:7:  %3 = load %struct.AisAppEnv*, %struct.AisAppEnv** %env.addr, align 8
+     [no debug info]:199:62:  %7 = load %struct.AisAppEnv*, %struct.AisAppEnv** %env.addr, align 8
+     [no debug info]:200:62:  %8 = load %struct.AisAppEnv*, %struct.AisAppEnv** %env.addr, align 8
+     [no debug info]:201:62:  %readBuf = getelementptr inbounds %struct.AisAppEnv, %struct.AisAppEnv* %8, i32 0, i32 11
+     [no debug info]:206:60:  call void @AIS_AppEnvProcEvent(%struct.AisAppEnv* %7, i8 zeroext %10)
+     [no debug info]:202:62:  %9 = load i32, i32* %i, align 4
+     [no debug info]:203:62:  %idxprom = sext i32 %9 to i64
+     [no debug info]:204:62:  %arrayidx = getelementptr inbounds [1024 x i8], [1024 x i8]* %readBuf, i64 0, i64 %idxprom
+     [no debug info]:44:4:  %in = getelementptr inbounds %struct.AisKfifo, %struct.AisKfifo* %0, i32 0, i32 2
+     [no debug info]:205:62:  %10 = load i8, i8* %arrayidx, align 1
+     [no debug info]:206:62:  call void @AIS_AppEnvProcEvent(%struct.AisAppEnv* %7, i8 zeroext %10)
+     [no debug info]:104:62:  %env.addr = alloca %struct.AisAppEnv*, align 8
+     [no debug info]:45:4:  %1 = load i32, i32* %in, align 4
+     [no debug info]:105:62:  %ctrlMsg.addr = alloca i8, align 1
+     [no debug info]:106:62:  %message = alloca i8*, align 8
+     [no debug info]:107:62:  store %struct.AisAppEnv* %env, %struct.AisAppEnv** %env.addr, align 8
+     [no debug info]:203:1:  %idxprom = sext i32 %9 to i64
+     [no debug info]:108:62:  store i8 %ctrlMsg, i8* %ctrlMsg.addr, align 1
+     [no debug info]:109:62:  store i8* null, i8** %message, align 8
+     [no debug info]:110:62:  %0 = load %struct.AisAppEnv*, %struct.AisAppEnv** %env.addr, align 8
+     [no debug info]:129:7:  %stat = getelementptr inbounds %struct.AisAppEnv, %struct.AisAppEnv* %3, i32 0, i32 14
+     [no debug info]:111:62:  %info = getelementptr inbounds %struct.AisAppEnv, %struct.AisAppEnv* %0, i32 0, i32 0
+     [no debug info]:112:62:  %msgHandler = getelementptr inbounds %struct.TagAisAppInfo, %struct.TagAisAppInfo* %info, i32 0, i32 5
+     [no debug info]:113:62:  store i32 (i8*, %struct.TagAisAppInfo*, i32, i8*)* @AISiLossLessLocalMsgHandler, i32 (i8*, %struct.TagAisAppInfo*, i32, i8*)** %msgHandler, align 8
+     [no debug info]:204:1:  %arrayidx = getelementptr inbounds [1024 x i8], [1024 x i8]* %readBuf, i64 0, i64 %idxprom
+     [no debug info]:114:62:  %1 = load i8, i8* %ctrlMsg.addr, align 1
+     [no debug info]:115:62:  %conv = zext i8 %1 to i32
+     [no debug info]:116:62:  %cond = icmp eq i32 %conv, 1
+     [no debug info]:135:6:  %info2 = getelementptr inbounds %struct.AisAppEnv, %struct.AisAppEnv* %5, i32 0, i32 0
+     [no debug info]:117:62:  br i1 %cond, label %while.cond, label %sw.default
+     [no debug info]:150:62:  %12 = load %struct.AisAppEnv*, %struct.AisAppEnv** %env.addr, align 8
+     [no debug info]:151:62:  %stat7 = getelementptr inbounds %struct.AisAppEnv, %struct.AisAppEnv* %12, i32 0, i32 14
+     [no debug info]:46:4:  %2 = load %struct.AisKfifo*, %struct.AisKfifo** %pstKFifo.addr, align 8
+     [no debug info]:152:62:  %unknownCtrlMsg = getelementptr inbounds %struct.AisAppStat, %struct.AisAppStat* %stat7, i32 0, i32 8
+     [no debug info]:153:62:  %13 = load i64, i64* %unknownCtrlMsg, align 8
+     [no debug info]:154:62:  %inc8 = add i64 %13, 1
+     [no debug info]:47:4:  %out = getelementptr inbounds %struct.AisKfifo, %struct.AisKfifo* %2, i32 0, i32 3
+     [no debug info]:155:62:  store i64 %inc8, i64* %unknownCtrlMsg, align 8
+     [no debug info]:156:62:  br label %sw.epilog
+     [no debug info]:159:62:  ret void
+     [no debug info]:203:5:  %idxprom = sext i32 %9 to i64
+     [no debug info]:207:62:  %11 = load i32, i32* %i, align 4
+     [no debug info]:208:62:  %inc = add nsw i32 %11, 1
+     [no debug info]:209:62:  store i32 %inc, i32* %i, align 4
+     [no debug info]:136:6:  %msgHandler3 = getelementptr inbounds %struct.TagAisAppInfo, %struct.TagAisAppInfo* %info2, i32 0, i32 5
+     [no debug info]:210:62:  br label %for.cond
+     [no debug info]:193:62:  %5 = load i32, i32* %i, align 4
+     [no debug info]:194:62:  %6 = load i32, i32* %len, align 4
+     [no debug info]:204:5:  %arrayidx = getelementptr inbounds [1024 x i8], [1024 x i8]* %readBuf, i64 0, i64 %idxprom
+     [no debug info]:195:62:  %cmp = icmp slt i32 %5, %6
+     [no debug info]:196:62:  br i1 %cmp, label %for.body, label %do.cond
+     [no debug info]:199:62:  %7 = load %struct.AisAppEnv*, %struct.AisAppEnv** %env.addr, align 8
+     [no debug info]:205:5:  %10 = load i8, i8* %arrayidx, align 1
+     [no debug info]:200:62:  %8 = load %struct.AisAppEnv*, %struct.AisAppEnv** %env.addr, align 8
+     [no debug info]:201:62:  %readBuf = getelementptr inbounds %struct.AisAppEnv, %struct.AisAppEnv* %8, i32 0, i32 11
+     [no debug info]:202:62:  %9 = load i32, i32* %i, align 4
+     [no debug info]:104:60:  %env.addr = alloca %struct.AisAppEnv*, align 8
+     [no debug info]:203:62:  %idxprom = sext i32 %9 to i64
+     [no debug info]:204:62:  %arrayidx = getelementptr inbounds [1024 x i8], [1024 x i8]* %readBuf, i64 0, i64 %idxprom
+     [no debug info]:205:62:  %10 = load i8, i8* %arrayidx, align 1
+     [no debug info]:105:60:  %ctrlMsg.addr = alloca i8, align 1
+     [no debug info]:206:62:  call void @AIS_AppEnvProcEvent(%struct.AisAppEnv* %7, i8 zeroext %10)
+     [no debug info]:104:62:  %env.addr = alloca %struct.AisAppEnv*, align 8
+     [no debug info]:105:62:  %ctrlMsg.addr = alloca i8, align 1
+     [no debug info]:48:4:  %3 = load i32, i32* %out, align 8
+     [no debug info]:106:62:  %message = alloca i8*, align 8
+     [no debug info]:107:62:  store %struct.AisAppEnv* %env, %struct.AisAppEnv** %env.addr, align 8
+     [no debug info]:108:62:  store i8 %ctrlMsg, i8* %ctrlMsg.addr, align 1
+     [no debug info]:130:7:  %timerMsgRead = getelementptr inbounds %struct.AisAppStat, %struct.AisAppStat* %stat, i32 0, i32 13
+     [no debug info]:109:62:  store i8* null, i8** %message, align 8
+     [no debug info]:110:62:  %0 = load %struct.AisAppEnv*, %struct.AisAppEnv** %env.addr, align 8
+     [no debug info]:111:62:  %info = getelementptr inbounds %struct.AisAppEnv, %struct.AisAppEnv* %0, i32 0, i32 0
+     [no debug info]:75:9:  store i32 0, i32* %retval, align 4
+     [no debug info]:112:62:  %msgHandler = getelementptr inbounds %struct.TagAisAppInfo, %struct.TagAisAppInfo* %info, i32 0, i32 5
+     [no debug info]:113:62:  store i32 (i8*, %struct.TagAisAppInfo*, i32, i8*)* @AISiLossLessLocalMsgHandler, i32 (i8*, %struct.TagAisAppInfo*, i32, i8*)** %msgHandler, align 8
+     [no debug info]:114:62:  %1 = load i8, i8* %ctrlMsg.addr, align 1
+     [no debug info]:131:7:  %4 = load i64, i64* %timerMsgRead, align 8
+     [no debug info]:115:62:  %conv = zext i8 %1 to i32
+     [no debug info]:116:62:  %cond = icmp eq i32 %conv, 1
+     [no debug info]:117:62:  br i1 %cond, label %while.cond, label %sw.default
+     [no debug info]:205:1:  %10 = load i8, i8* %arrayidx, align 1
+     [no debug info]:150:62:  %12 = load %struct.AisAppEnv*, %struct.AisAppEnv** %env.addr, align 8
+     [no debug info]:151:62:  %stat7 = getelementptr inbounds %struct.AisAppEnv, %struct.AisAppEnv* %12, i32 0, i32 14
+     [no debug info]:152:62:  %unknownCtrlMsg = getelementptr inbounds %struct.AisAppStat, %struct.AisAppStat* %stat7, i32 0, i32 8
+     [no debug info]:153:62:  %13 = load i64, i64* %unknownCtrlMsg, align 8
+     [no debug info]:154:62:  %inc8 = add i64 %13, 1
+     [no debug info]:155:62:  store i64 %inc8, i64* %unknownCtrlMsg, align 8
+     [no debug info]:156:62:  br label %sw.epilog
+     [no debug info]:137:6:  %6 = load i32 (i8*, %struct.TagAisAppInfo*, i32, i8*)*, i32 (i8*, %struct.TagAisAppInfo*, i32, i8*)** %msgHandler3, align 8
+     [no debug info]:159:62:  ret void
+     [no debug info]:207:62:  %11 = load i32, i32* %i, align 4
+     [no debug info]:208:62:  %inc = add nsw i32 %11, 1
+     [no debug info]:132:7:  %inc = add i64 %4, 1
+     [no debug info]:209:62:  store i32 %inc, i32* %i, align 4
+     [no debug info]:210:62:  br label %for.cond
+     [no debug info]:193:62:  %5 = load i32, i32* %i, align 4
+     [no debug info]:106:60:  %message = alloca i8*, align 8
+     [no debug info]:194:62:  %6 = load i32, i32* %len, align 4
+     [no debug info]:195:62:  %cmp = icmp slt i32 %5, %6
+     [no debug info]:196:62:  br i1 %cmp, label %for.body, label %do.cond
+     [no debug info]:206:5:  call void @AIS_AppEnvProcEvent(%struct.AisAppEnv* %7, i8 zeroext %10)
+     [no debug info]:213:62:  %12 = load i32, i32* %len, align 4
+     [no debug info]:214:62:  %cmp2 = icmp sgt i32 %12, 0
+     [no debug info]:215:62:  br i1 %cmp2, label %do.body, label %return
+     [no debug info]:104:5:  %env.addr = alloca %struct.AisAppEnv*, align 8
+     [no debug info]:184:62:  %3 = load %struct.AisAppEnv*, %struct.AisAppEnv** %env.addr, align 8
+     [no debug info]:185:62:  %bufLen = getelementptr inbounds %struct.AisAppEnv, %struct.AisAppEnv* %3, i32 0, i32 12
+     [no debug info]:186:62:  %4 = load i8, i8* %bufLen, align 2
+     [no debug info]:133:7:  store i64 %inc, i64* %timerMsgRead, align 8
+     [no debug info]:187:62:  %conv = zext i8 %4 to i32
+     [no debug info]:188:62:  store i32 %conv, i32* %len, align 4
+     [no debug info]:189:62:  store i32 0, i32* %i, align 4
+     [no debug info]:138:6:  %7 = load %struct.AisAppEnv*, %struct.AisAppEnv** %env.addr, align 8
+     [no debug info]:190:62:  br label %for.cond
+     [no debug info]:193:62:  %5 = load i32, i32* %i, align 4
+     [no debug info]:194:62:  %6 = load i32, i32* %len, align 4
+     [no debug info]:105:5:  %ctrlMsg.addr = alloca i8, align 1
+     [no debug info]:195:62:  %cmp = icmp slt i32 %5, %6
+     [no debug info]:196:62:  br i1 %cmp, label %for.body, label %do.cond
+     [no debug info]:199:62:  %7 = load %struct.AisAppEnv*, %struct.AisAppEnv** %env.addr, align 8
+     [no debug info]:49:4:  %cmp = icmp eq i32 %1, %3
+     [no debug info]:200:62:  %8 = load %struct.AisAppEnv*, %struct.AisAppEnv** %env.addr, align 8
+     [no debug info]:201:62:  %readBuf = getelementptr inbounds %struct.AisAppEnv, %struct.AisAppEnv* %8, i32 0, i32 11
+     [no debug info]:202:62:  %9 = load i32, i32* %i, align 4
+     [no debug info]:50:4:  br i1 %cmp, label %if.then, label %if.end
+     [no debug info]:57:63:  %4 = load %struct.AisKfifo*, %struct.AisKfifo** %pstKFifo.addr, align 8
+     [no debug info]:58:63:  %buffer = getelementptr inbounds %struct.AisKfifo, %struct.AisKfifo* %4, i32 0, i32 0
+     [no debug info]:59:63:  %5 = load i8**, i8*** %buffer, align 8
+     [no debug info]:107:60:  store %struct.AisAppEnv* %env, %struct.AisAppEnv** %env.addr, align 8
+     [no debug info]:60:63:  %6 = load %struct.AisKfifo*, %struct.AisKfifo** %pstKFifo.addr, align 8
+     [no debug info]:61:63:  %out1 = getelementptr inbounds %struct.AisKfifo, %struct.AisKfifo* %6, i32 0, i32 3
+     [no debug info]:62:63:  %7 = load i32, i32* %out1, align 8
+     [no debug info]:206:1:  call void @AIS_AppEnvProcEvent(%struct.AisAppEnv* %7, i8 zeroext %10)
+     [no debug info]:63:63:  %inc = add i32 %7, 1
+     [no debug info]:64:63:  store i32 %inc, i32* %out1, align 8
+     [no debug info]:65:63:  %8 = load %struct.AisKfifo*, %struct.AisKfifo** %pstKFifo.addr, align 8
+     [no debug info]:66:63:  %size = getelementptr inbounds %struct.AisKfifo, %struct.AisKfifo* %8, i32 0, i32 1
+     [no debug info]:67:63:  %9 = load i32, i32* %size, align 8
+     [no debug info]:68:63:  %sub = sub i32 %9, 1
+     [no debug info]:69:63:  %and = and i32 %7, %sub
+     [no debug info]:76:9:  br label %return
+     [no debug info]:70:63:  %idxprom = zext i32 %and to i64
+     [no debug info]:71:63:  %arrayidx = getelementptr inbounds i8*, i8** %5, i64 %idxprom
+     [no debug info]:72:63:  %10 = load i8*, i8** %arrayidx, align 8
+     [no debug info]:139:6:  %appLocal = getelementptr inbounds %struct.AisAppEnv, %struct.AisAppEnv* %7, i32 0, i32 5
+     [no debug info]:73:80:  %11 = load i8**, i8*** %element.addr, align 8
+     [no debug info]:74:80:  store i8* %10, i8** %11, align 8
+     [no debug info]:75:80:  store i32 0, i32* %retval, align 4
+     [no debug info]:140:6:  %8 = load i8*, i8** %appLocal, align 8
+     [no debug info]:76:80:  br label %return
+     [no debug info]:79:80:  %12 = load i32, i32* %retval, align 4
+     [no debug info]:80:80:  ret i32 %12
+     [no debug info]:200:61:  %8 = load %struct.AisAppEnv*, %struct.AisAppEnv** %env.addr, align 8
+     [no debug info]:124:80:  %cmp = icmp eq i32 %call, 0
+     [no debug info]:125:80:  br i1 %cmp, label %while.body, label %sw.epilog
+     [no debug info]:128:80:  %3 = load %struct.AisAppEnv*, %struct.AisAppEnv** %env.addr, align 8
+     [no debug info]:53:4:  store i32 1, i32* %retval, align 4
+     [no debug info]:129:80:  %stat = getelementptr inbounds %struct.AisAppEnv, %struct.AisAppEnv* %3, i32 0, i32 14
+     [no debug info]:130:80:  %timerMsgRead = getelementptr inbounds %struct.AisAppStat, %struct.AisAppStat* %stat, i32 0, i32 13
+     [no debug info]:131:80:  %4 = load i64, i64* %timerMsgRead, align 8
+     [no debug info]:203:62:  %idxprom = sext i32 %9 to i64
+     [no debug info]:132:80:  %inc = add i64 %4, 1
+     [no debug info]:133:80:  store i64 %inc, i64* %timerMsgRead, align 8
+     [no debug info]:134:80:  %5 = load %struct.AisAppEnv*, %struct.AisAppEnv** %env.addr, align 8
+     [no debug info]:204:62:  %arrayidx = getelementptr inbounds [1024 x i8], [1024 x i8]* %readBuf, i64 0, i64 %idxprom
+     [no debug info]:135:80:  %info2 = getelementptr inbounds %struct.AisAppEnv, %struct.AisAppEnv* %5, i32 0, i32 0
+     [no debug info]:136:80:  %msgHandler3 = getelementptr inbounds %struct.TagAisAppInfo, %struct.TagAisAppInfo* %info2, i32 0, i32 5
+     [no debug info]:137:80:  %6 = load i32 (i8*, %struct.TagAisAppInfo*, i32, i8*)*, i32 (i8*, %struct.TagAisAppInfo*, i32, i8*)** %msgHandler3, align 8
+     [no debug info]:205:62:  %10 = load i8, i8* %arrayidx, align 1
+     [no debug info]:138:80:  %7 = load %struct.AisAppEnv*, %struct.AisAppEnv** %env.addr, align 8
+     [no debug info]:139:80:  %appLocal = getelementptr inbounds %struct.AisAppEnv, %struct.AisAppEnv* %7, i32 0, i32 5
+     [no debug info]:140:80:  %8 = load i8*, i8** %appLocal, align 8
+     [no debug info]:106:5:  %message = alloca i8*, align 8
+     [no debug info]:141:80:  %9 = load %struct.AisAppEnv*, %struct.AisAppEnv** %env.addr, align 8
+     [no debug info]:142:80:  %info4 = getelementptr inbounds %struct.AisAppEnv, %struct.AisAppEnv* %9, i32 0, i32 0
+     [no debug info]:143:80:  %10 = load i8*, i8** %message, align 8
+     [no debug info]:79:8:  %12 = load i32, i32* %retval, align 4
+     [no debug info]:144:80:  %call5 = call i32 %6(i8* %8, %struct.TagAisAppInfo* %info4, i32 1, i8* %10)
+     [no debug info]:86:80:  %appLocal.addr = alloca i8*, align 8
+     [no debug info]:87:80:  %info.addr = alloca %struct.TagAisAppInfo*, align 8
+     [no debug info]:206:62:  call void @AIS_AppEnvProcEvent(%struct.AisAppEnv* %7, i8 zeroext %10)
+     [no debug info]:88:80:  %type.addr = alloca i32, align 4
+     [no debug info]:89:80:  %msg.addr = alloca i8*, align 8
+     [no debug info]:90:80:  store i8* %appLocal, i8** %appLocal.addr, align 8
+     [no debug info]:104:1:  %env.addr = alloca %struct.AisAppEnv*, align 8
+     [no debug info]:91:80:  store %struct.TagAisAppInfo* %info, %struct.TagAisAppInfo** %info.addr, align 8
+     [no debug info]:92:80:  store i32 %type, i32* %type.addr, align 4
+     [no debug info]:93:80:  store i8* %msg, i8** %msg.addr, align 8
+     [no debug info]:107:5:  store %struct.AisAppEnv* %env, %struct.AisAppEnv** %env.addr, align 8
+     [no debug info]:94:80:  %0 = load i8*, i8** %msg.addr, align 8
+     [no debug info]:95:80:  %cmp = icmp eq i8* %0, null
+     [no debug info]:96:80:  %1 = zext i1 %cmp to i64
+     [no debug info]:108:60:  store i8 %ctrlMsg, i8* %ctrlMsg.addr, align 1
+     [no debug info]:97:80:  %cond = select i1 %cmp, i32 1, i32 0
+     [no debug info]:98:80:  ret i32 %cond
+     [no debug info]:145:80:  %11 = load i8*, i8** %message, align 8
+     [no debug info]:54:4:  br label %return
+     [no debug info]:146:80:  %call6 = call i32 (i8*, ...) bitcast (i32 (...)* @free to i32 (i8*, ...)*)(i8* %11)
+     [no debug info]:147:96:  br label %while.cond
+     [no debug info]:120:96:  %2 = load %struct.AisAppEnv*, %struct.AisAppEnv** %env.addr, align 8
+     [no debug info]:108:5:  store i8 %ctrlMsg, i8* %ctrlMsg.addr, align 1
+     [no debug info]:121:96:  %v8Queue = getelementptr inbounds %struct.AisAppEnv, %struct.AisAppEnv* %2, i32 0, i32 3
+     [no debug info]:122:96:  %arraydecay = getelementptr inbounds [16 x %struct.AisKfifo], [16 x %struct.AisKfifo]* %v8Queue, i64 0, i64 0
+     [no debug info]:123:96:  %call = call i32 @AIS_KfifoGet(%struct.AisKfifo* %arraydecay, i8** %message)
+     [no debug info]:79:4:  %12 = load i32, i32* %retval, align 4
+     [no debug info]:38:96:  %retval = alloca i32, align 4
+     [no debug info]:39:96:  %pstKFifo.addr = alloca %struct.AisKfifo*, align 8
+     [no debug info]:40:96:  %element.addr = alloca i8**, align 8
+     [no debug info]:109:60:  store i8* null, i8** %message, align 8
+     [no debug info]:41:96:  store %struct.AisKfifo* %pstKFifo, %struct.AisKfifo** %pstKFifo.addr, align 8
+     [no debug info]:42:96:  store i8** %element, i8*** %element.addr, align 8
+     [no debug info]:43:96:  %0 = load %struct.AisKfifo*, %struct.AisKfifo** %pstKFifo.addr, align 8
+     [no debug info]:80:4:  ret i32 %12
+     [no debug info]:44:96:  %in = getelementptr inbounds %struct.AisKfifo, %struct.AisKfifo* %0, i32 0, i32 2
+     [no debug info]:45:96:  %1 = load i32, i32* %in, align 4
+     [no debug info]:46:96:  %2 = load %struct.AisKfifo*, %struct.AisKfifo** %pstKFifo.addr, align 8
+     [no debug info]:109:5:  store i8* null, i8** %message, align 8
+     [no debug info]:47:96:  %out = getelementptr inbounds %struct.AisKfifo, %struct.AisKfifo* %2, i32 0, i32 3
+     [no debug info]:48:96:  %3 = load i32, i32* %out, align 8
+     [no debug info]:49:96:  %cmp = icmp eq i32 %1, %3
+     [no debug info]:80:8:  ret i32 %12
+     [no debug info]:50:96:  br i1 %cmp, label %if.then, label %if.end
+     [no debug info]:57:105:  %4 = load %struct.AisKfifo*, %struct.AisKfifo** %pstKFifo.addr, align 8
+     [no debug info]:58:105:  %buffer = getelementptr inbounds %struct.AisKfifo, %struct.AisKfifo* %4, i32 0, i32 0
+     [no debug info]:124:4:  %cmp = icmp eq i32 %call, 0
+     [no debug info]:59:105:  %5 = load i8**, i8*** %buffer, align 8
+     [no debug info]:60:105:  %6 = load %struct.AisKfifo*, %struct.AisKfifo** %pstKFifo.addr, align 8
+     [no debug info]:61:105:  %out1 = getelementptr inbounds %struct.AisKfifo, %struct.AisKfifo* %6, i32 0, i32 3
+     [no debug info]:125:4:  br i1 %cmp, label %while.body, label %sw.epilog
+     [no debug info]:62:105:  %7 = load i32, i32* %out1, align 8
+     [no debug info]:63:105:  %inc = add i32 %7, 1
+     [no debug info]:64:105:  store i32 %inc, i32* %out1, align 8
+     [no debug info]:110:5:  %0 = load %struct.AisAppEnv*, %struct.AisAppEnv** %env.addr, align 8
+     [no debug info]:65:105:  %8 = load %struct.AisKfifo*, %struct.AisKfifo** %pstKFifo.addr, align 8
+     [no debug info]:66:105:  %size = getelementptr inbounds %struct.AisKfifo, %struct.AisKfifo* %8, i32 0, i32 1
+     [no debug info]:67:105:  %9 = load i32, i32* %size, align 8
+     [no debug info]:124:8:  %cmp = icmp eq i32 %call, 0
+     [no debug info]:68:105:  %sub = sub i32 %9, 1
+     [no debug info]:69:105:  %and = and i32 %7, %sub
+     [no debug info]:70:105:  %idxprom = zext i32 %and to i64
+     [no debug info]:105:1:  %ctrlMsg.addr = alloca i8, align 1
+     [no debug info]:71:105:  %arrayidx = getelementptr inbounds i8*, i8** %5, i64 %idxprom
+     [no debug info]:72:105:  %10 = load i8*, i8** %arrayidx, align 8
+     [no debug info]:73:115:  %11 = load i8**, i8*** %element.addr, align 8
+     [no debug info]:111:5:  %info = getelementptr inbounds %struct.AisAppEnv, %struct.AisAppEnv* %0, i32 0, i32 0
+     [no debug info]:74:115:  store i8* %10, i8** %11, align 8
+     [no debug info]:75:115:  store i32 0, i32* %retval, align 4
+     [no debug info]:76:115:  br label %return
+     [no debug info]:125:8:  br i1 %cmp, label %while.body, label %sw.epilog
+     [no debug info]:79:115:  %12 = load i32, i32* %retval, align 4
+     [no debug info]:80:115:  ret i32 %12
+     [no debug info]:124:115:  %cmp = icmp eq i32 %call, 0
+     [no debug info]:73:64:  %11 = load i8**, i8*** %element.addr, align 8
+     [no debug info]:125:115:  br i1 %cmp, label %while.body, label %sw.epilog
+     [no debug info]:128:115:  %3 = load %struct.AisAppEnv*, %struct.AisAppEnv** %env.addr, align 8
+     [no debug info]:129:115:  %stat = getelementptr inbounds %struct.AisAppEnv, %struct.AisAppEnv* %3, i32 0, i32 14
+     [no debug info]:106:1:  %message = alloca i8*, align 8
+     [no debug info]:130:115:  %timerMsgRead = getelementptr inbounds %struct.AisAppStat, %struct.AisAppStat* %stat, i32 0, i32 13
+     [no debug info]:131:115:  %4 = load i64, i64* %timerMsgRead, align 8
+     [no debug info]:132:115:  %inc = add i64 %4, 1
+     [no debug info]:74:13:  store i8* %10, i8** %11, align 8
+     [no debug info]:133:115:  store i64 %inc, i64* %timerMsgRead, align 8
+     [no debug info]:134:115:  %5 = load %struct.AisAppEnv*, %struct.AisAppEnv** %env.addr, align 8
+     [no debug info]:135:115:  %info2 = getelementptr inbounds %struct.AisAppEnv, %struct.AisAppEnv* %5, i32 0, i32 0
+     [no debug info]:112:5:  %msgHandler = getelementptr inbounds %struct.TagAisAppInfo, %struct.TagAisAppInfo* %info, i32 0, i32 5
+     [no debug info]:136:115:  %msgHandler3 = getelementptr inbounds %struct.TagAisAppInfo, %struct.TagAisAppInfo* %info2, i32 0, i32 5
+     [no debug info]:137:115:  %6 = load i32 (i8*, %struct.TagAisAppInfo*, i32, i8*)*, i32 (i8*, %struct.TagAisAppInfo*, i32, i8*)** %msgHandler3, align 8
+     [no debug info]:138:115:  %7 = load %struct.AisAppEnv*, %struct.AisAppEnv** %env.addr, align 8
+     [no debug info]:113:5:  store i32 (i8*, %struct.TagAisAppInfo*, i32, i8*)* @AISiLossLessLocalMsgHandler, i32 (i8*, %struct.TagAisAppInfo*, i32, i8*)** %msgHandler, align 8
+     [no debug info]:139:115:  %appLocal = getelementptr inbounds %struct.AisAppEnv, %struct.AisAppEnv* %7, i32 0, i32 5
+     [no debug info]:140:115:  %8 = load i8*, i8** %appLocal, align 8
+     [no debug info]:141:115:  %9 = load %struct.AisAppEnv*, %struct.AisAppEnv** %env.addr, align 8
+     [no debug info]:107:1:  store %struct.AisAppEnv* %env, %struct.AisAppEnv** %env.addr, align 8
+     [no debug info]:142:115:  %info4 = getelementptr inbounds %struct.AisAppEnv, %struct.AisAppEnv* %9, i32 0, i32 0
+     [no debug info]:143:115:  %10 = load i8*, i8** %message, align 8
+     [no debug info]:144:115:  %call5 = call i32 %6(i8* %8, %struct.TagAisAppInfo* %info4, i32 1, i8* %10)
+     [no debug info]:108:1:  store i8 %ctrlMsg, i8* %ctrlMsg.addr, align 1
+     [no debug info]:86:115:  %appLocal.addr = alloca i8*, align 8
+     [no debug info]:87:115:  %info.addr = alloca %struct.TagAisAppInfo*, align 8
+     [no debug info]:88:115:  %type.addr = alloca i32, align 4
+     [no debug info]:114:5:  %1 = load i8, i8* %ctrlMsg.addr, align 1
+     [no debug info]:89:115:  %msg.addr = alloca i8*, align 8
+     [no debug info]:90:115:  store i8* %appLocal, i8** %appLocal.addr, align 8
+     [no debug info]:91:115:  store %struct.TagAisAppInfo* %info, %struct.TagAisAppInfo** %info.addr, align 8
+     [no debug info]:115:5:  %conv = zext i8 %1 to i32
+     [no debug info]:92:115:  store i32 %type, i32* %type.addr, align 4
+     [no debug info]:93:115:  store i8* %msg, i8** %msg.addr, align 8
+     [no debug info]:94:115:  %0 = load i8*, i8** %msg.addr, align 8
+     [no debug info]:116:5:  %cond = icmp eq i32 %conv, 1
+     [no debug info]:95:115:  %cmp = icmp eq i8* %0, null
+     [no debug info]:96:115:  %1 = zext i1 %cmp to i64
+     [no debug info]:97:115:  %cond = select i1 %cmp, i32 1, i32 0
+     [no debug info]:141:6:  %9 = load %struct.AisAppEnv*, %struct.AisAppEnv** %env.addr, align 8
+     [no debug info]:98:115:  ret i32 %cond
+     [no debug info]:145:115:  %11 = load i8*, i8** %message, align 8
+     [no debug info]:146:115:  %call6 = call i32 (i8*, ...) bitcast (i32 (...)* @free to i32 (i8*, ...)*)(i8* %11)
+     [no debug info]:117:5:  br i1 %cond, label %while.cond, label %sw.default
+     [no debug info]:147:115:  br label %while.cond
+     [no debug info]:120:115:  %2 = load %struct.AisAppEnv*, %struct.AisAppEnv** %env.addr, align 8
+     [no debug info]:121:115:  %v8Queue = getelementptr inbounds %struct.AisAppEnv, %struct.AisAppEnv* %2, i32 0, i32 3
+     [no debug info]:201:61:  %readBuf = getelementptr inbounds %struct.AisAppEnv, %struct.AisAppEnv* %8, i32 0, i32 11
+     [no debug info]:122:115:  %arraydecay = getelementptr inbounds [16 x %struct.AisKfifo], [16 x %struct.AisKfifo]* %v8Queue, i64 0, i64 0
+     [no debug info]:123:115:  %call = call i32 @AIS_KfifoGet(%struct.AisKfifo* %arraydecay, i8** %message)
+     [no debug info]:38:115:  %retval = alloca i32, align 4
+     [no debug info]:109:1:  store i8* null, i8** %message, align 8
+     [no debug info]:39:115:  %pstKFifo.addr = alloca %struct.AisKfifo*, align 8
+     [no debug info]:40:115:  %element.addr = alloca i8**, align 8
+     [no debug info]:41:115:  store %struct.AisKfifo* %pstKFifo, %struct.AisKfifo** %pstKFifo.addr, align 8
+     [no debug info]:142:6:  %info4 = getelementptr inbounds %struct.AisAppEnv, %struct.AisAppEnv* %9, i32 0, i32 0
+     [no debug info]:42:115:  store i8** %element, i8*** %element.addr, align 8
+     [no debug info]:43:115:  %0 = load %struct.AisKfifo*, %struct.AisKfifo** %pstKFifo.addr, align 8
+     [no debug info]:44:115:  %in = getelementptr inbounds %struct.AisKfifo, %struct.AisKfifo* %0, i32 0, i32 2
+     [no debug info]:134:7:  %5 = load %struct.AisAppEnv*, %struct.AisAppEnv** %env.addr, align 8
+     [no debug info]:45:115:  %1 = load i32, i32* %in, align 4
+     [no debug info]:73:114:  %11 = load i8**, i8*** %element.addr, align 8
+     [no debug info]:74:114:  store i8* %10, i8** %11, align 8
+     [no debug info]:150:5:  %12 = load %struct.AisAppEnv*, %struct.AisAppEnv** %env.addr, align 8
+     [no debug info]:75:114:  store i32 0, i32* %retval, align 4
+     [no debug info]:76:114:  br label %return
+     [no debug info]:79:114:  %12 = load i32, i32* %retval, align 4
+     [no debug info]:143:6:  %10 = load i8*, i8** %message, align 8
+     [no debug info]:80:114:  ret i32 %12
+     [no debug info]:124:114:  %cmp = icmp eq i32 %call, 0
+     [no debug info]:125:114:  br i1 %cmp, label %while.body, label %sw.epilog
+     [no debug info]:110:1:  %0 = load %struct.AisAppEnv*, %struct.AisAppEnv** %env.addr, align 8
+     [no debug info]:128:114:  %3 = load %struct.AisAppEnv*, %struct.AisAppEnv** %env.addr, align 8
+     [no debug info]:129:114:  %stat = getelementptr inbounds %struct.AisAppEnv, %struct.AisAppEnv* %3, i32 0, i32 14
+     [no debug info]:130:114:  %timerMsgRead = getelementptr inbounds %struct.AisAppStat, %struct.AisAppStat* %stat, i32 0, i32 13
+     [no debug info]:151:5:  %stat7 = getelementptr inbounds %struct.AisAppEnv, %struct.AisAppEnv* %12, i32 0, i32 14
+     [no debug info]:131:114:  %4 = load i64, i64* %timerMsgRead, align 8
+     [no debug info]:132:114:  %inc = add i64 %4, 1
+     [no debug info]:133:114:  store i64 %inc, i64* %timerMsgRead, align 8
+     [no debug info]:202:61:  %9 = load i32, i32* %i, align 4
+     [no debug info]:134:114:  %5 = load %struct.AisAppEnv*, %struct.AisAppEnv** %env.addr, align 8
+     [no debug info]:135:114:  %info2 = getelementptr inbounds %struct.AisAppEnv, %struct.AisAppEnv* %5, i32 0, i32 0
+     [no debug info]:136:114:  %msgHandler3 = getelementptr inbounds %struct.TagAisAppInfo, %struct.TagAisAppInfo* %info2, i32 0, i32 5
+     [no debug info]:135:7:  %info2 = getelementptr inbounds %struct.AisAppEnv, %struct.AisAppEnv* %5, i32 0, i32 0
+     [no debug info]:137:114:  %6 = load i32 (i8*, %struct.TagAisAppInfo*, i32, i8*)*, i32 (i8*, %struct.TagAisAppInfo*, i32, i8*)** %msgHandler3, align 8
+     [no debug info]:138:114:  %7 = load %struct.AisAppEnv*, %struct.AisAppEnv** %env.addr, align 8
+     [no debug info]:139:114:  %appLocal = getelementptr inbounds %struct.AisAppEnv, %struct.AisAppEnv* %7, i32 0, i32 5
+     [no debug info]:104:62:  %env.addr = alloca %struct.AisAppEnv*, align 8
+     [no debug info]:140:114:  %8 = load i8*, i8** %appLocal, align 8
+     [no debug info]:141:114:  %9 = load %struct.AisAppEnv*, %struct.AisAppEnv** %env.addr, align 8
+     [no debug info]:142:114:  %info4 = getelementptr inbounds %struct.AisAppEnv, %struct.AisAppEnv* %9, i32 0, i32 0
+     [no debug info]:152:5:  %unknownCtrlMsg = getelementptr inbounds %struct.AisAppStat, %struct.AisAppStat* %stat7, i32 0, i32 8
+     [no debug info]:143:114:  %10 = load i8*, i8** %message, align 8
+     [no debug info]:144:114:  %call5 = call i32 %6(i8* %8, %struct.TagAisAppInfo* %info4, i32 1, i8* %10)
+     [no debug info]:86:114:  %appLocal.addr = alloca i8*, align 8
+     [no debug info]:110:60:  %0 = load %struct.AisAppEnv*, %struct.AisAppEnv** %env.addr, align 8
+     [no debug info]:87:114:  %info.addr = alloca %struct.TagAisAppInfo*, align 8
+     [no debug info]:88:114:  %type.addr = alloca i32, align 4
+     [no debug info]:89:114:  %msg.addr = alloca i8*, align 8
+     [no debug info]:111:60:  %info = getelementptr inbounds %struct.AisAppEnv, %struct.AisAppEnv* %0, i32 0, i32 0
+     [no debug info]:90:114:  store i8* %appLocal, i8** %appLocal.addr, align 8
+     [no debug info]:91:114:  store %struct.TagAisAppInfo* %info, %struct.TagAisAppInfo** %info.addr, align 8
+     [no debug info]:92:114:  store i32 %type, i32* %type.addr, align 4
+     [no debug info]:153:5:  %13 = load i64, i64* %unknownCtrlMsg, align 8
+     [no debug info]:93:114:  store i8* %msg, i8** %msg.addr, align 8
+     [no debug info]:94:114:  %0 = load i8*, i8** %msg.addr, align 8
+     [no debug info]:95:114:  %cmp = icmp eq i8* %0, null
+     [no debug info]:144:6:  %call5 = call i32 %6(i8* %8, %struct.TagAisAppInfo* %info4, i32 1, i8* %10)
+     [no debug info]:96:114:  %1 = zext i1 %cmp to i64
+     [no debug info]:97:114:  %cond = select i1 %cmp, i32 1, i32 0
+     [no debug info]:98:114:  ret i32 %cond
+     [no debug info]:111:1:  %info = getelementptr inbounds %struct.AisAppEnv, %struct.AisAppEnv* %0, i32 0, i32 0
+     [no debug info]:145:114:  %11 = load i8*, i8** %message, align 8
+     [no debug info]:146:114:  %call6 = call i32 (i8*, ...) bitcast (i32 (...)* @free to i32 (i8*, ...)*)(i8* %11)
+     [no debug info]:73:113:  %11 = load i8**, i8*** %element.addr, align 8
+     [no debug info]:112:60:  %msgHandler = getelementptr inbounds %struct.TagAisAppInfo, %struct.TagAisAppInfo* %info, i32 0, i32 5
+     [no debug info]:74:113:  store i8* %10, i8** %11, align 8
+     [no debug info]:75:113:  store i32 0, i32* %retval, align 4
+     [no debug info]:76:113:  br label %return
+     [no debug info]:86:6:  %appLocal.addr = alloca i8*, align 8
+     [no debug info]:79:113:  %12 = load i32, i32* %retval, align 4
+     [no debug info]:80:113:  ret i32 %12
+     [no debug info]:124:113:  %cmp = icmp eq i32 %call, 0
+     [no debug info]:113:60:  store i32 (i8*, %struct.TagAisAppInfo*, i32, i8*)* @AISiLossLessLocalMsgHandler, i32 (i8*, %struct.TagAisAppInfo*, i32, i8*)** %msgHandler, align 8
+     [no debug info]:125:113:  br i1 %cmp, label %while.body, label %sw.epilog
+     [no debug info]:128:113:  %3 = load %struct.AisAppEnv*, %struct.AisAppEnv** %env.addr, align 8
+     [no debug info]:129:113:  %stat = getelementptr inbounds %struct.AisAppEnv, %struct.AisAppEnv* %3, i32 0, i32 14
+     [no debug info]:154:5:  %inc8 = add i64 %13, 1
+     [no debug info]:130:113:  %timerMsgRead = getelementptr inbounds %struct.AisAppStat, %struct.AisAppStat* %stat, i32 0, i32 13
+     [no debug info]:131:113:  %4 = load i64, i64* %timerMsgRead, align 8
+     [no debug info]:132:113:  %inc = add i64 %4, 1
+     [no debug info]:155:5:  store i64 %inc8, i64* %unknownCtrlMsg, align 8
+     [no debug info]:133:113:  store i64 %inc, i64* %timerMsgRead, align 8
+     [no debug info]:134:113:  %5 = load %struct.AisAppEnv*, %struct.AisAppEnv** %env.addr, align 8
+     [no debug info]:135:113:  %info2 = getelementptr inbounds %struct.AisAppEnv, %struct.AisAppEnv* %5, i32 0, i32 0
+     [no debug info]:112:1:  %msgHandler = getelementptr inbounds %struct.TagAisAppInfo, %struct.TagAisAppInfo* %info, i32 0, i32 5
+     [no debug info]:136:113:  %msgHandler3 = getelementptr inbounds %struct.TagAisAppInfo, %struct.TagAisAppInfo* %info2, i32 0, i32 5
+     [no debug info]:137:113:  %6 = load i32 (i8*, %struct.TagAisAppInfo*, i32, i8*)*, i32 (i8*, %struct.TagAisAppInfo*, i32, i8*)** %msgHandler3, align 8
+     [no debug info]:138:113:  %7 = load %struct.AisAppEnv*, %struct.AisAppEnv** %env.addr, align 8
+     [no debug info]:73:63:  %11 = load i8**, i8*** %element.addr, align 8
+     [no debug info]:139:113:  %appLocal = getelementptr inbounds %struct.AisAppEnv, %struct.AisAppEnv* %7, i32 0, i32 5
+     [no debug info]:140:113:  %8 = load i8*, i8** %appLocal, align 8
+     [no debug info]:141:113:  %9 = load %struct.AisAppEnv*, %struct.AisAppEnv** %env.addr, align 8
+     [no debug info]:203:61:  %idxprom = sext i32 %9 to i64
+     [no debug info]:142:113:  %info4 = getelementptr inbounds %struct.AisAppEnv, %struct.AisAppEnv* %9, i32 0, i32 0
+     [no debug info]:143:113:  %10 = load i8*, i8** %message, align 8
+     [no debug info]:144:113:  %call5 = call i32 %6(i8* %8, %struct.TagAisAppInfo* %info4, i32 1, i8* %10)
+     [no debug info]:159:4:  ret void
+     [no debug info]:86:113:  %appLocal.addr = alloca i8*, align 8
+     [no debug info]:87:113:  %info.addr = alloca %struct.TagAisAppInfo*, align 8
+     [no debug info]:88:113:  %type.addr = alloca i32, align 4
+     [no debug info]:113:1:  store i32 (i8*, %struct.TagAisAppInfo*, i32, i8*)* @AISiLossLessLocalMsgHandler, i32 (i8*, %struct.TagAisAppInfo*, i32, i8*)** %msgHandler, align 8
+     [no debug info]:89:113:  %msg.addr = alloca i8*, align 8
+     [no debug info]:90:113:  store i8* %appLocal, i8** %appLocal.addr, align 8
+     [no debug info]:91:113:  store %struct.TagAisAppInfo* %info, %struct.TagAisAppInfo** %info.addr, align 8
+     [no debug info]:114:60:  %1 = load i8, i8* %ctrlMsg.addr, align 1
+     [no debug info]:92:113:  store i32 %type, i32* %type.addr, align 4
+     [no debug info]:93:113:  store i8* %msg, i8** %msg.addr, align 8
+     [no debug info]:94:113:  %0 = load i8*, i8** %msg.addr, align 8
+     [no debug info]:204:61:  %arrayidx = getelementptr inbounds [1024 x i8], [1024 x i8]* %readBuf, i64 0, i64 %idxprom
+     [no debug info]:95:113:  %cmp = icmp eq i8* %0, null
+     [no debug info]:96:113:  %1 = zext i1 %cmp to i64
+     [no debug info]:97:113:  %cond = select i1 %cmp, i32 1, i32 0
+     [no debug info]:156:5:  br label %sw.epilog
+     [no debug info]:98:113:  ret i32 %cond
+     [no debug info]:145:113:  %11 = load i8*, i8** %message, align 8
+     [no debug info]:146:113:  %call6 = call i32 (i8*, ...) bitcast (i32 (...)* @free to i32 (i8*, ...)*)(i8* %11)
+     [no debug info]:207:4:  %11 = load i32, i32* %i, align 4
+     [no debug info]:73:112:  %11 = load i8**, i8*** %element.addr, align 8
+     [no debug info]:74:112:  store i8* %10, i8** %11, align 8
+     [no debug info]:75:112:  store i32 0, i32* %retval, align 4
+     [no debug info]:73:67:  %11 = load i8**, i8*** %element.addr, align 8
+     [no debug info]:76:112:  br label %return
+     [no debug info]:79:112:  %12 = load i32, i32* %retval, align 4
+     [no debug info]:80:112:  ret i32 %12
+     [no debug info]:128:8:  %3 = load %struct.AisAppEnv*, %struct.AisAppEnv** %env.addr, align 8
+     [no debug info]:124:112:  %cmp = icmp eq i32 %call, 0
+     [no debug info]:125:112:  br i1 %cmp, label %while.body, label %sw.epilog
+     [no debug info]:128:112:  %3 = load %struct.AisAppEnv*, %struct.AisAppEnv** %env.addr, align 8
+     [no debug info]:87:6:  %info.addr = alloca %struct.TagAisAppInfo*, align 8
+     [no debug info]:129:112:  %stat = getelementptr inbounds %struct.AisAppEnv, %struct.AisAppEnv* %3, i32 0, i32 14
+     [no debug info]:130:112:  %timerMsgRead = getelementptr inbounds %struct.AisAppStat, %struct.AisAppStat* %stat, i32 0, i32 13
+     [no debug info]:131:112:  %4 = load i64, i64* %timerMsgRead, align 8
+     [no debug info]:115:60:  %conv = zext i8 %1 to i32
+     [no debug info]:132:112:  %inc = add i64 %4, 1
+     [no debug info]:133:112:  store i64 %inc, i64* %timerMsgRead, align 8
+     [no debug info]:134:112:  %5 = load %struct.AisAppEnv*, %struct.AisAppEnv** %env.addr, align 8
+     [no debug info]:208:4:  %inc = add nsw i32 %11, 1
+     [no debug info]:135:112:  %info2 = getelementptr inbounds %struct.AisAppEnv, %struct.AisAppEnv* %5, i32 0, i32 0
+     [no debug info]:136:112:  %msgHandler3 = getelementptr inbounds %struct.TagAisAppInfo, %struct.TagAisAppInfo* %info2, i32 0, i32 5
+     [no debug info]:137:112:  %6 = load i32 (i8*, %struct.TagAisAppInfo*, i32, i8*)*, i32 (i8*, %struct.TagAisAppInfo*, i32, i8*)** %msgHandler3, align 8
+     [no debug info]:116:60:  %cond = icmp eq i32 %conv, 1
+     [no debug info]:138:112:  %7 = load %struct.AisAppEnv*, %struct.AisAppEnv** %env.addr, align 8
+     [no debug info]:139:112:  %appLocal = getelementptr inbounds %struct.AisAppEnv, %struct.AisAppEnv* %7, i32 0, i32 5
+     [no debug info]:140:112:  %8 = load i8*, i8** %appLocal, align 8
+     [no debug info]:136:7:  %msgHandler3 = getelementptr inbounds %struct.TagAisAppInfo, %struct.TagAisAppInfo* %info2, i32 0, i32 5
+     [no debug info]:141:112:  %9 = load %struct.AisAppEnv*, %struct.AisAppEnv** %env.addr, align 8
+     [no debug info]:142:112:  %info4 = getelementptr inbounds %struct.AisAppEnv, %struct.AisAppEnv* %9, i32 0, i32 0
+     [no debug info]:143:112:  %10 = load i8*, i8** %message, align 8
+     [no debug info]:137:7:  %6 = load i32 (i8*, %struct.TagAisAppInfo*, i32, i8*)*, i32 (i8*, %struct.TagAisAppInfo*, i32, i8*)** %msgHandler3, align 8
+     [no debug info]:144:112:  %call5 = call i32 %6(i8* %8, %struct.TagAisAppInfo* %info4, i32 1, i8* %10)
+     [no debug info]:86:112:  %appLocal.addr = alloca i8*, align 8
+     [no debug info]:87:112:  %info.addr = alloca %struct.TagAisAppInfo*, align 8
+     [no debug info]:114:1:  %1 = load i8, i8* %ctrlMsg.addr, align 1
+     [no debug info]:88:112:  %type.addr = alloca i32, align 4
+     [no debug info]:89:112:  %msg.addr = alloca i8*, align 8
+     [no debug info]:90:112:  store i8* %appLocal, i8** %appLocal.addr, align 8
+     [no debug info]:159:5:  ret void
+     [no debug info]:91:112:  store %struct.TagAisAppInfo* %info, %struct.TagAisAppInfo** %info.addr, align 8
+     [no debug info]:92:112:  store i32 %type, i32* %type.addr, align 4
+     [no debug info]:93:112:  store i8* %msg, i8** %msg.addr, align 8
+     [no debug info]:117:60:  br i1 %cond, label %while.cond, label %sw.default
+     [no debug info]:94:112:  %0 = load i8*, i8** %msg.addr, align 8
+     [no debug info]:95:112:  %cmp = icmp eq i8* %0, null
+     [no debug info]:96:112:  %1 = zext i1 %cmp to i64
+     [no debug info]:115:1:  %conv = zext i8 %1 to i32
+     [no debug info]:97:112:  %cond = select i1 %cmp, i32 1, i32 0
+     [no debug info]:98:112:  ret i32 %cond
+     [no debug info]:145:112:  %11 = load i8*, i8** %message, align 8
+     [no debug info]:116:1:  %cond = icmp eq i32 %conv, 1
+     [no debug info]:146:112:  %call6 = call i32 (i8*, ...) bitcast (i32 (...)* @free to i32 (i8*, ...)*)(i8* %11)
+     [no debug info]:73:111:  %11 = load i8**, i8*** %element.addr, align 8
+     [no debug info]:74:111:  store i8* %10, i8** %11, align 8
+     [no debug info]:88:6:  %type.addr = alloca i32, align 4
+     [no debug info]:75:111:  store i32 0, i32* %retval, align 4
+     [no debug info]:76:111:  br label %return
+     [no debug info]:79:111:  %12 = load i32, i32* %retval, align 4
+     [no debug info]:120:60:  %2 = load %struct.AisAppEnv*, %struct.AisAppEnv** %env.addr, align 8
+     [no debug info]:80:111:  ret i32 %12
+     [no debug info]:124:111:  %cmp = icmp eq i32 %call, 0
+     [no debug info]:125:111:  br i1 %cmp, label %while.body, label %sw.epilog
+     [no debug info]:209:4:  store i32 %inc, i32* %i, align 4
+     [no debug info]:128:111:  %3 = load %struct.AisAppEnv*, %struct.AisAppEnv** %env.addr, align 8
+     [no debug info]:129:111:  %stat = getelementptr inbounds %struct.AisAppEnv, %struct.AisAppEnv* %3, i32 0, i32 14
+     [no debug info]:130:111:  %timerMsgRead = getelementptr inbounds %struct.AisAppStat, %struct.AisAppStat* %stat, i32 0, i32 13
+     [no debug info]:121:60:  %v8Queue = getelementptr inbounds %struct.AisAppEnv, %struct.AisAppEnv* %2, i32 0, i32 3
+     [no debug info]:131:111:  %4 = load i64, i64* %timerMsgRead, align 8
+     [no debug info]:132:111:  %inc = add i64 %4, 1
+     [no debug info]:133:111:  store i64 %inc, i64* %timerMsgRead, align 8
+     [no debug info]:207:5:  %11 = load i32, i32* %i, align 4
+     [no debug info]:134:111:  %5 = load %struct.AisAppEnv*, %struct.AisAppEnv** %env.addr, align 8
+     [no debug info]:135:111:  %info2 = getelementptr inbounds %struct.AisAppEnv, %struct.AisAppEnv* %5, i32 0, i32 0
+     [no debug info]:136:111:  %msgHandler3 = getelementptr inbounds %struct.TagAisAppInfo, %struct.TagAisAppInfo* %info2, i32 0, i32 5
+     [no debug info]:138:7:  %7 = load %struct.AisAppEnv*, %struct.AisAppEnv** %env.addr, align 8
+     [no debug info]:137:111:  %6 = load i32 (i8*, %struct.TagAisAppInfo*, i32, i8*)*, i32 (i8*, %struct.TagAisAppInfo*, i32, i8*)** %msgHandler3, align 8
+     [no debug info]:138:111:  %7 = load %struct.AisAppEnv*, %struct.AisAppEnv** %env.addr, align 8
+     [no debug info]:139:111:  %appLocal = getelementptr inbounds %struct.AisAppEnv, %struct.AisAppEnv* %7, i32 0, i32 5
+     [no debug info]:208:5:  %inc = add nsw i32 %11, 1
+     [no debug info]:140:111:  %8 = load i8*, i8** %appLocal, align 8
+     [no debug info]:141:111:  %9 = load %struct.AisAppEnv*, %struct.AisAppEnv** %env.addr, align 8
+     [no debug info]:142:111:  %info4 = getelementptr inbounds %struct.AisAppEnv, %struct.AisAppEnv* %9, i32 0, i32 0
+     [no debug info]:117:1:  br i1 %cond, label %while.cond, label %sw.default
+     [no debug info]:150:117:  %12 = load %struct.AisAppEnv*, %struct.AisAppEnv** %env.addr, align 8
+     [no debug info]:151:117:  %stat7 = getelementptr inbounds %struct.AisAppEnv, %struct.AisAppEnv* %12, i32 0, i32 14
+     [no debug info]:152:117:  %unknownCtrlMsg = getelementptr inbounds %struct.AisAppStat, %struct.AisAppStat* %stat7, i32 0, i32 8
+     [no debug info]:209:5:  store i32 %inc, i32* %i, align 4
+     [no debug info]:153:117:  %13 = load i64, i64* %unknownCtrlMsg, align 8
+     [no debug info]:154:117:  %inc8 = add i64 %13, 1
+     [no debug info]:155:117:  store i64 %inc8, i64* %unknownCtrlMsg, align 8
+     [no debug info]:210:5:  br label %for.cond
+     [no debug info]:156:117:  br label %sw.epilog
+     [no debug info]:159:117:  ret void
+     [no debug info]:207:117:  %11 = load i32, i32* %i, align 4
+     [no debug info]:89:6:  %msg.addr = alloca i8*, align 8
+     [no debug info]:208:117:  %inc = add nsw i32 %11, 1
+     [no debug info]:209:117:  store i32 %inc, i32* %i, align 4
+     [no debug info]:210:117:  br label %for.cond
+     [no debug info]:193:5:  %5 = load i32, i32* %i, align 4
+     [no debug info]:193:117:  %5 = load i32, i32* %i, align 4
+     [no debug info]:194:117:  %6 = load i32, i32* %len, align 4
+     [no debug info]:195:117:  %cmp = icmp slt i32 %5, %6
+     [no debug info]:120:1:  %2 = load %struct.AisAppEnv*, %struct.AisAppEnv** %env.addr, align 8
+     [no debug info]:196:117:  br i1 %cmp, label %for.body, label %do.cond
+     [no debug info]:213:118:  %12 = load i32, i32* %len, align 4
+     [no debug info]:214:118:  %cmp2 = icmp sgt i32 %12, 0
+     [no debug info]:76:10:  br label %return
+     [no debug info]:215:118:  br i1 %cmp2, label %do.body, label %return
+     [no debug info]:184:118:  %3 = load %struct.AisAppEnv*, %struct.AisAppEnv** %env.addr, align 8
+     [no debug info]:185:118:  %bufLen = getelementptr inbounds %struct.AisAppEnv, %struct.AisAppEnv* %3, i32 0, i32 12
+     [no debug info]:122:60:  %arraydecay = getelementptr inbounds [16 x %struct.AisKfifo], [16 x %struct.AisKfifo]* %v8Queue, i64 0, i64 0
+     [no debug info]:186:118:  %4 = load i8, i8* %bufLen, align 2
+     [no debug info]:187:118:  %conv = zext i8 %4 to i32
+     [no debug info]:188:118:  store i32 %conv, i32* %len, align 4
+     [no debug info]:79:10:  %12 = load i32, i32* %retval, align 4
+     [no debug info]:189:118:  store i32 0, i32* %i, align 4
+     [no debug info]:190:118:  br label %for.cond
+     [no debug info]:193:118:  %5 = load i32, i32* %i, align 4
+     [no debug info]:210:4:  br label %for.cond
+     [no debug info]:194:118:  %6 = load i32, i32* %len, align 4
+     [no debug info]:195:118:  %cmp = icmp slt i32 %5, %6
+     [no debug info]:196:118:  br i1 %cmp, label %for.body, label %do.cond
+     [no debug info]:90:6:  store i8* %appLocal, i8** %appLocal.addr, align 8
+     [no debug info]:199:118:  %7 = load %struct.AisAppEnv*, %struct.AisAppEnv** %env.addr, align 8
+     [no debug info]:200:118:  %8 = load %struct.AisAppEnv*, %struct.AisAppEnv** %env.addr, align 8
+     [no debug info]:201:118:  %readBuf = getelementptr inbounds %struct.AisAppEnv, %struct.AisAppEnv* %8, i32 0, i32 11
+     [no debug info]:194:5:  %6 = load i32, i32* %len, align 4
+     [no debug info]:202:118:  %9 = load i32, i32* %i, align 4
+     [no debug info]:203:118:  %idxprom = sext i32 %9 to i64
+     [no debug info]:204:118:  %arrayidx = getelementptr inbounds [1024 x i8], [1024 x i8]* %readBuf, i64 0, i64 %idxprom
+     [no debug info]:195:5:  %cmp = icmp slt i32 %5, %6
+     [no debug info]:205:118:  %10 = load i8, i8* %arrayidx, align 1
+     [no debug info]:206:118:  call void @AIS_AppEnvProcEvent(%struct.AisAppEnv* %7, i8 zeroext %10)
+     [no debug info]:104:118:  %env.addr = alloca %struct.AisAppEnv*, align 8
+     [no debug info]:91:6:  store %struct.TagAisAppInfo* %info, %struct.TagAisAppInfo** %info.addr, align 8
+     [no debug info]:105:118:  %ctrlMsg.addr = alloca i8, align 1
+     [no debug info]:106:118:  %message = alloca i8*, align 8
+     [no debug info]:107:118:  store %struct.AisAppEnv* %env, %struct.AisAppEnv** %env.addr, align 8
+     [no debug info]:92:6:  store i32 %type, i32* %type.addr, align 4
+     [no debug info]:108:118:  store i8 %ctrlMsg, i8* %ctrlMsg.addr, align 1
+     [no debug info]:109:118:  store i8* null, i8** %message, align 8
+     [no debug info]:110:118:  %0 = load %struct.AisAppEnv*, %struct.AisAppEnv** %env.addr, align 8
+     [no debug info]:121:1:  %v8Queue = getelementptr inbounds %struct.AisAppEnv, %struct.AisAppEnv* %2, i32 0, i32 3
+     [no debug info]:111:118:  %info = getelementptr inbounds %struct.AisAppEnv, %struct.AisAppEnv* %0, i32 0, i32 0
+     [no debug info]:112:118:  %msgHandler = getelementptr inbounds %struct.TagAisAppInfo, %struct.TagAisAppInfo* %info, i32 0, i32 5
+     [no debug info]:113:118:  store i32 (i8*, %struct.TagAisAppInfo*, i32, i8*)* @AISiLossLessLocalMsgHandler, i32 (i8*, %struct.TagAisAppInfo*, i32, i8*)** %msgHandler, align 8
+     [no debug info]:114:118:  %1 = load i8, i8* %ctrlMsg.addr, align 1
+     [no debug info]:115:118:  %conv = zext i8 %1 to i32
+     [no debug info]:116:118:  %cond = icmp eq i32 %conv, 1
+     [no debug info]:117:118:  br i1 %cond, label %while.cond, label %sw.default
+     [no debug info]:123:60:  %call = call i32 @AIS_KfifoGet(%struct.AisKfifo* %arraydecay, i8** %message)
+     [no debug info]:120:118:  %2 = load %struct.AisAppEnv*, %struct.AisAppEnv** %env.addr, align 8
+     [no debug info]:121:118:  %v8Queue = getelementptr inbounds %struct.AisAppEnv, %struct.AisAppEnv* %2, i32 0, i32 3
+     [no debug info]:122:118:  %arraydecay = getelementptr inbounds [16 x %struct.AisKfifo], [16 x %struct.AisKfifo]* %v8Queue, i64 0, i64 0
+     [no debug info]:196:5:  br i1 %cmp, label %for.body, label %do.cond
+     [no debug info]:123:118:  %call = call i32 @AIS_KfifoGet(%struct.AisKfifo* %arraydecay, i8** %message)
+     [no debug info]:38:118:  %retval = alloca i32, align 4
+     [no debug info]:39:118:  %pstKFifo.addr = alloca %struct.AisKfifo*, align 8
+     [no debug info]:213:5:  %12 = load i32, i32* %len, align 4
+     [no debug info]:40:118:  %element.addr = alloca i8**, align 8
+     [no debug info]:41:118:  store %struct.AisKfifo* %pstKFifo, %struct.AisKfifo** %pstKFifo.addr, align 8
+     [no debug info]:42:118:  store i8** %element, i8*** %element.addr, align 8
+     [no debug info]:139:7:  %appLocal = getelementptr inbounds %struct.AisAppEnv, %struct.AisAppEnv* %7, i32 0, i32 5
+     [no debug info]:43:118:  %0 = load %struct.AisKfifo*, %struct.AisKfifo** %pstKFifo.addr, align 8
+     [no debug info]:44:118:  %in = getelementptr inbounds %struct.AisKfifo, %struct.AisKfifo* %0, i32 0, i32 2
+     [no debug info]:45:118:  %1 = load i32, i32* %in, align 4
+     [no debug info]:38:60:  %retval = alloca i32, align 4
+     [no debug info]:46:118:  %2 = load %struct.AisKfifo*, %struct.AisKfifo** %pstKFifo.addr, align 8
+     [no debug info]:47:118:  %out = getelementptr inbounds %struct.AisKfifo, %struct.AisKfifo* %2, i32 0, i32 3
+     [no debug info]:48:118:  %3 = load i32, i32* %out, align 8
+     [no debug info]:39:60:  %pstKFifo.addr = alloca %struct.AisKfifo*, align 8
+     [no debug info]:49:118:  %cmp = icmp eq i32 %1, %3
+     [no debug info]:50:118:  br i1 %cmp, label %if.then, label %if.end
+     [no debug info]:53:118:  store i32 1, i32* %retval, align 4
+     [no debug info]:93:6:  store i8* %msg, i8** %msg.addr, align 8
+     [no debug info]:54:118:  br label %return
+     [no debug info]:79:118:  %12 = load i32, i32* %retval, align 4
+     [no debug info]:80:118:  ret i32 %12
+     [no debug info]:140:7:  %8 = load i8*, i8** %appLocal, align 8
+     [no debug info]:124:118:  %cmp = icmp eq i32 %call, 0
+     [no debug info]:125:118:  br i1 %cmp, label %while.body, label %sw.epilog
+     [no debug info]:159:118:  ret void
+     [no debug info]:73:11:  %11 = load i8**, i8*** %element.addr, align 8
+     [no debug info]:207:118:  %11 = load i32, i32* %i, align 4
+     [no debug info]:208:118:  %inc = add nsw i32 %11, 1
+     [no debug info]:209:118:  store i32 %inc, i32* %i, align 4
+     [no debug info]:210:118:  br label %for.cond
+     [no debug info]:193:118:  %5 = load i32, i32* %i, align 4
+     [no debug info]:194:118:  %6 = load i32, i32* %len, align 4
+     [no debug info]:195:118:  %cmp = icmp slt i32 %5, %6
+     [no debug info]:40:60:  %element.addr = alloca i8**, align 8
+     [no debug info]:196:118:  br i1 %cmp, label %for.body, label %do.cond
+     [no debug info]:199:118:  %7 = load %struct.AisAppEnv*, %struct.AisAppEnv** %env.addr, align 8
+     [no debug info]:200:118:  %8 = load %struct.AisAppEnv*, %struct.AisAppEnv** %env.addr, align 8
+     [no debug info]:41:60:  store %struct.AisKfifo* %pstKFifo, %struct.AisKfifo** %pstKFifo.addr, align 8
+     [no debug info]:201:118:  %readBuf = getelementptr inbounds %struct.AisAppEnv, %struct.AisAppEnv* %8, i32 0, i32 11
+     [no debug info]:202:118:  %9 = load i32, i32* %i, align 4
+     [no debug info]:203:118:  %idxprom = sext i32 %9 to i64
+     [no debug info]:80:10:  ret i32 %12
+     [no debug info]:204:118:  %arrayidx = getelementptr inbounds [1024 x i8], [1024 x i8]* %readBuf, i64 0, i64 %idxprom
+     [no debug info]:205:118:  %10 = load i8, i8* %arrayidx, align 1
+     [no debug info]:206:118:  call void @AIS_AppEnvProcEvent(%struct.AisAppEnv* %7, i8 zeroext %10)
+     [no debug info]:214:5:  %cmp2 = icmp sgt i32 %12, 0
+     [no debug info]:104:118:  %env.addr = alloca %struct.AisAppEnv*, align 8
+     [no debug info]:105:118:  %ctrlMsg.addr = alloca i8, align 1
+     [no debug info]:106:118:  %message = alloca i8*, align 8
+     [no debug info]:215:5:  br i1 %cmp2, label %do.body, label %return
+     [no debug info]:107:118:  store %struct.AisAppEnv* %env, %struct.AisAppEnv** %env.addr, align 8
+     [no debug info]:108:118:  store i8 %ctrlMsg, i8* %ctrlMsg.addr, align 1
+     [no debug info]:109:118:  store i8* null, i8** %message, align 8
+     [no debug info]:184:5:  %3 = load %struct.AisAppEnv*, %struct.AisAppEnv** %env.addr, align 8
+     [no debug info]:110:118:  %0 = load %struct.AisAppEnv*, %struct.AisAppEnv** %env.addr, align 8
+     [no debug info]:111:118:  %info = getelementptr inbounds %struct.AisAppEnv, %struct.AisAppEnv* %0, i32 0, i32 0
+     [no debug info]:112:118:  %msgHandler = getelementptr inbounds %struct.TagAisAppInfo, %struct.TagAisAppInfo* %info, i32 0, i32 5
+     [no debug info]:205:61:  %10 = load i8, i8* %arrayidx, align 1
+     [no debug info]:113:118:  store i32 (i8*, %struct.TagAisAppInfo*, i32, i8*)* @AISiLossLessLocalMsgHandler, i32 (i8*, %struct.TagAisAppInfo*, i32, i8*)** %msgHandler, align 8
+     [no debug info]:114:118:  %1 = load i8, i8* %ctrlMsg.addr, align 1
+     [no debug info]:115:118:  %conv = zext i8 %1 to i32
+     [no debug info]:74:63:  store i8* %10, i8** %11, align 8
+     [no debug info]:116:118:  %cond = icmp eq i32 %conv, 1
+     [no debug info]:117:118:  br i1 %cond, label %while.cond, label %sw.default
+     [no debug info]:150:118:  %12 = load %struct.AisAppEnv*, %struct.AisAppEnv** %env.addr, align 8
+     [no debug info]:185:5:  %bufLen = getelementptr inbounds %struct.AisAppEnv, %struct.AisAppEnv* %3, i32 0, i32 12
+     [no debug info]:151:118:  %stat7 = getelementptr inbounds %struct.AisAppEnv, %struct.AisAppEnv* %12, i32 0, i32 14
+     [no debug info]:152:118:  %unknownCtrlMsg = getelementptr inbounds %struct.AisAppStat, %struct.AisAppStat* %stat7, i32 0, i32 8
+     [no debug info]:153:118:  %13 = load i64, i64* %unknownCtrlMsg, align 8
+     [no debug info]:122:1:  %arraydecay = getelementptr inbounds [16 x %struct.AisKfifo], [16 x %struct.AisKfifo]* %v8Queue, i64 0, i64 0
+     [no debug info]:154:118:  %inc8 = add i64 %13, 1
+     [no debug info]:155:118:  store i64 %inc8, i64* %unknownCtrlMsg, align 8
+     [no debug info]:156:118:  br label %sw.epilog
+     [no debug info]:141:7:  %9 = load %struct.AisAppEnv*, %struct.AisAppEnv** %env.addr, align 8
+     [no debug info]:159:118:  ret void
+     [no debug info]:207:118:  %11 = load i32, i32* %i, align 4
+     [no debug info]:208:118:  %inc = add nsw i32 %11, 1
+     [no debug info]:42:60:  store i8** %element, i8*** %element.addr, align 8
+     [no debug info]:209:118:  store i32 %inc, i32* %i, align 4
+     [no debug info]:210:118:  br label %for.cond
+     [no debug info]:193:118:  %5 = load i32, i32* %i, align 4
+     [no debug info]:193:4:  %5 = load i32, i32* %i, align 4
+     [no debug info]:194:118:  %6 = load i32, i32* %len, align 4
+     [no debug info]:195:118:  %cmp = icmp slt i32 %5, %6
+     [no debug info]:196:118:  br i1 %cmp, label %for.body, label %do.cond
+     [no debug info]:94:6:  %0 = load i8*, i8** %msg.addr, align 8
+     [no debug info]:213:118:  %12 = load i32, i32* %len, align 4
+     [no debug info]:214:118:  %cmp2 = icmp sgt i32 %12, 0
+     [no debug info]:215:118:  br i1 %cmp2, label %do.body, label %return
+     [no debug info]:123:1:  %call = call i32 @AIS_KfifoGet(%struct.AisKfifo* %arraydecay, i8** %message)
+     [no debug info]:184:118:  %3 = load %struct.AisAppEnv*, %struct.AisAppEnv** %env.addr, align 8
+     [no debug info]:185:118:  %bufLen = getelementptr inbounds %struct.AisAppEnv, %struct.AisAppEnv* %3, i32 0, i32 12
+     [no debug info]:186:118:  %4 = load i8, i8* %bufLen, align 2
+     [no debug info]:186:5:  %4 = load i8, i8* %bufLen, align 2
+     [no debug info]:187:118:  %conv = zext i8 %4 to i32
+     [no debug info]:188:118:  store i32 %conv, i32* %len, align 4
+     [no debug info]:189:118:  store i32 0, i32* %i, align 4
+     [no debug info]:95:6:  %cmp = icmp eq i8* %0, null
+     [no debug info]:190:118:  br label %for.cond
+     [no debug info]:193:118:  %5 = load i32, i32* %i, align 4
+     [no debug info]:194:118:  %6 = load i32, i32* %len, align 4
+     [no debug info]:38:1:  %retval = alloca i32, align 4
+     [no debug info]:195:118:  %cmp = icmp slt i32 %5, %6
+     [no debug info]:196:118:  br i1 %cmp, label %for.body, label %do.cond
+     [no debug info]:199:118:  %7 = load %struct.AisAppEnv*, %struct.AisAppEnv** %env.addr, align 8
+     [no debug info]:142:7:  %info4 = getelementptr inbounds %struct.AisAppEnv, %struct.AisAppEnv* %9, i32 0, i32 0
+     [no debug info]:200:118:  %8 = load %struct.AisAppEnv*, %struct.AisAppEnv** %env.addr, align 8
+     [no debug info]:201:118:  %readBuf = getelementptr inbounds %struct.AisAppEnv, %struct.AisAppEnv* %8, i32 0, i32 11
+     [no debug info]:202:118:  %9 = load i32, i32* %i, align 4
+     [no debug info]:39:1:  %pstKFifo.addr = alloca %struct.AisKfifo*, align 8
+     [no debug info]:203:118:  %idxprom = sext i32 %9 to i64
+     [no debug info]:204:118:  %arrayidx = getelementptr inbounds [1024 x i8], [1024 x i8]* %readBuf, i64 0, i64 %idxprom
+     [no debug info]:205:118:  %10 = load i8, i8* %arrayidx, align 1
+     [no debug info]:187:5:  %conv = zext i8 %4 to i32
+     [no debug info]:206:118:  call void @AIS_AppEnvProcEvent(%struct.AisAppEnv* %7, i8 zeroext %10)
+     [no debug info]:104:118:  %env.addr = alloca %struct.AisAppEnv*, align 8
+     [no debug info]:105:118:  %ctrlMsg.addr = alloca i8, align 1
+     [no debug info]:43:60:  %0 = load %struct.AisKfifo*, %struct.AisKfifo** %pstKFifo.addr, align 8
+     [no debug info]:106:118:  %message = alloca i8*, align 8
+     [no debug info]:107:118:  store %struct.AisAppEnv* %env, %struct.AisAppEnv** %env.addr, align 8
+     [no debug info]:108:118:  store i8 %ctrlMsg, i8* %ctrlMsg.addr, align 1
+     [no debug info]:188:5:  store i32 %conv, i32* %len, align 4
+     [no debug info]:109:118:  store i8* null, i8** %message, align 8
+     [no debug info]:110:118:  %0 = load %struct.AisAppEnv*, %struct.AisAppEnv** %env.addr, align 8
+     [no debug info]:111:118:  %info = getelementptr inbounds %struct.AisAppEnv, %struct.AisAppEnv* %0, i32 0, i32 0
+     [no debug info]:206:61:  call void @AIS_AppEnvProcEvent(%struct.AisAppEnv* %7, i8 zeroext %10)
+     [no debug info]:112:118:  %msgHandler = getelementptr inbounds %struct.TagAisAppInfo, %struct.TagAisAppInfo* %info, i32 0, i32 5
+     [no debug info]:113:118:  store i32 (i8*, %struct.TagAisAppInfo*, i32, i8*)* @AISiLossLessLocalMsgHandler, i32 (i8*, %struct.TagAisAppInfo*, i32, i8*)** %msgHandler, align 8
+     [no debug info]:114:118:  %1 = load i8, i8* %ctrlMsg.addr, align 1
+     [no debug info]:96:6:  %1 = zext i1 %cmp to i64
+     [no debug info]:115:118:  %conv = zext i8 %1 to i32
+     [no debug info]:116:118:  %cond = icmp eq i32 %conv, 1
+     [no debug info]:117:118:  br i1 %cond, label %while.cond, label %sw.default
+     [no debug info]:105:62:  %ctrlMsg.addr = alloca i8, align 1
+     [no debug info]:120:118:  %2 = load %struct.AisAppEnv*, %struct.AisAppEnv** %env.addr, align 8
+     [no debug info]:121:118:  %v8Queue = getelementptr inbounds %struct.AisAppEnv, %struct.AisAppEnv* %2, i32 0, i32 3
+     [no debug info]:122:118:  %arraydecay = getelementptr inbounds [16 x %struct.AisKfifo], [16 x %struct.AisKfifo]* %v8Queue, i64 0, i64 0
+     [no debug info]:44:60:  %in = getelementptr inbounds %struct.AisKfifo, %struct.AisKfifo* %0, i32 0, i32 2
+     [no debug info]:123:118:  %call = call i32 @AIS_KfifoGet(%struct.AisKfifo* %arraydecay, i8** %message)
+     [no debug info]:38:118:  %retval = alloca i32, align 4
+     [no debug info]:39:118:  %pstKFifo.addr = alloca %struct.AisKfifo*, align 8
+     [no debug info]:104:61:  %env.addr = alloca %struct.AisAppEnv*, align 8
+     [no debug info]:40:118:  %element.addr = alloca i8**, align 8
+     [no debug info]:41:118:  store %struct.AisKfifo* %pstKFifo, %struct.AisKfifo** %pstKFifo.addr, align 8
+     [no debug info]:42:118:  store i8** %element, i8*** %element.addr, align 8
+     [no debug info]:74:11:  store i8* %10, i8** %11, align 8
+     [no debug info]:43:118:  %0 = load %struct.AisKfifo*, %struct.AisKfifo** %pstKFifo.addr, align 8
+     [no debug info]:44:118:  %in = getelementptr inbounds %struct.AisKfifo, %struct.AisKfifo* %0, i32 0, i32 2
+     [no debug info]:45:118:  %1 = load i32, i32* %in, align 4
+     [no debug info]:129:8:  %stat = getelementptr inbounds %struct.AisAppEnv, %struct.AisAppEnv* %3, i32 0, i32 14
+     [no debug info]:46:118:  %2 = load %struct.AisKfifo*, %struct.AisKfifo** %pstKFifo.addr, align 8
+     [no debug info]:47:118:  %out = getelementptr inbounds %struct.AisKfifo, %struct.AisKfifo* %2, i32 0, i32 3
+     [no debug info]:48:118:  %3 = load i32, i32* %out, align 8
+     [no debug info]:143:7:  %10 = load i8*, i8** %message, align 8
+     [no debug info]:49:118:  %cmp = icmp eq i32 %1, %3
+     [no debug info]:50:118:  br i1 %cmp, label %if.then, label %if.end
+     [no debug info]:53:118:  store i32 1, i32* %retval, align 4
+     [no debug info]:194:4:  %6 = load i32, i32* %len, align 4
+     [no debug info]:54:118:  br label %return
+     [no debug info]:79:118:  %12 = load i32, i32* %retval, align 4
+     [no debug info]:80:118:  ret i32 %12
+     [no debug info]:106:62:  %message = alloca i8*, align 8
+     [no debug info]:124:118:  %cmp = icmp eq i32 %call, 0
+     [no debug info]:125:118:  br i1 %cmp, label %while.body, label %sw.epilog
+     [no debug info]:159:118:  ret void
+     [no debug info]:97:6:  %cond = select i1 %cmp, i32 1, i32 0
+     [no debug info]:207:118:  %11 = load i32, i32* %i, align 4
+     [no debug info]:208:118:  %inc = add nsw i32 %11, 1
+     [no debug info]:209:118:  store i32 %inc, i32* %i

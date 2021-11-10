@@ -1,0 +1,46 @@
+array struct1[612] : w32 -> w8 = symbolic
+(query [(Slt 0
+              (ReadLSB w32 504 struct1))
+         (Eq false
+             (Ult (Add w64 18446720835914212548
+                           N0:(ReadLSB w64 484 struct1))
+                  1533))
+         (Eq false
+             (Ult (Add w64 18446720835914211012 N0) 1533))
+         (Eq false
+             (Ult (Add w64 18446720835914208452 N0) 765))
+         (Eq false
+             (Ult (Add w64 18446720835781515508 N0) 1))
+         (Eq false
+             (Ult (Add w64 18446720835781515500 N0) 5))
+         (Eq false
+             (Ult (Add w64 18446720835781515492 N0) 5))
+         (Eq false
+             (Ult (Add w64 18446720835781515484 N0) 5))
+         (Eq false
+             (Ult (Add w64 18446650095908854620 N0) 5))
+         (Eq false
+             (Ult (Add w64 18446650095908854572 N0) 1))
+         (Eq false
+             (Ult (Add w64 18446650095908854548 N0) 1))
+         (Eq false
+             (Ult (Add w64 18446650095908854524 N0) 1))
+         (Eq false
+             (Ult (Add w64 18446650095908854516 N0) 5))
+         (Eq false
+             (Ult (Add w64 18446650095908854508 N0) 5))
+         (Eq false
+             (Ult (Add w64 18446650095908854484 N0) 5))
+         (Eq false
+             (Ult (Add w64 18446650095908854468 N0) 5))
+         (Eq false
+             (Ult (Add w64 18446650095908854452 N0) 1))
+         (Eq false
+             (Ult (Add w64 18446650095908854436 N0) 1))
+         (Eq false
+             (Ult (Add w64 18446650095908854420 N0) 1))
+         (Eq false
+             (Ult (Add w64 18446650095908854404 N0) 1))
+         (Eq false
+             (Ult (Add w64 18446650095908641540 N0) 609))]
+        false)

@@ -1,0 +1,229 @@
+     [no debug info]:677:1:  %retval = alloca i32, align 4
+     [no debug info]:678:1:  %proxy = alloca %struct.tagQOS_TLV_PROXY*, align 8
+     [no debug info]:679:1:  %proxy_0_user_data = alloca [1024 x i8], align 16
+     [no debug info]:680:1:  %proxy_0_next = alloca %struct.tagQOS_TLV_PROXY*, align 8
+     [no debug info]:681:1:  %proxy_0_next_0_user_data = alloca [1024 x i8], align 16
+     [no debug info]:682:1:  %proxy_0_next_0_next = alloca %struct.tagQOS_TLV_PROXY*, align 8
+     [no debug info]:683:1:  %head = alloca %struct.tagVrpTLVHead*, align 8
+     [no debug info]:684:1:  %tlvNum = alloca i32, align 4
+     [no debug info]:685:1:  %res = alloca i32, align 4
+     [no debug info]:686:1:  %RET = alloca i32, align 4
+     [no debug info]:687:1:  store i32 0, i32* %retval, align 4
+     [no debug info]:688:1:  %call = call i8* @malloc(i64 28)
+     [no debug info]:689:1:  %0 = bitcast i8* %call to %struct.tagQOS_TLV_PROXY*
+     [no debug info]:690:1:  store %struct.tagQOS_TLV_PROXY* %0, %struct.tagQOS_TLV_PROXY** %proxy, align 8
+     [no debug info]:691:1:  %1 = load %struct.tagQOS_TLV_PROXY*, %struct.tagQOS_TLV_PROXY** %proxy, align 8
+     [no debug info]:692:1:  %2 = bitcast %struct.tagQOS_TLV_PROXY* %1 to i8*
+     [no debug info]:693:1:  call void @klee_make_symbolic(i8* %2, i64 28, i8* getelementptr inbounds ([9 x i8], [9 x i8]* @.str.22, i64 0, i64 0))
+     [no debug info]:694:1:  %3 = bitcast [1024 x i8]* %proxy_0_user_data to i8*
+     [no debug info]:695:1:  call void @klee_make_symbolic(i8* %3, i64 1024, i8* getelementptr inbounds ([19 x i8], [19 x i8]* @.str.23, i64 0, i64 0))
+     [no debug info]:696:1:  %arraydecay = getelementptr inbounds [1024 x i8], [1024 x i8]* %proxy_0_user_data, i64 0, i64 0
+     [no debug info]:697:1:  %4 = load %struct.tagQOS_TLV_PROXY*, %struct.tagQOS_TLV_PROXY** %proxy, align 8
+     [no debug info]:698:1:  %arrayidx = getelementptr inbounds %struct.tagQOS_TLV_PROXY, %struct.tagQOS_TLV_PROXY* %4, i64 0
+     [no debug info]:699:1:  %user_data = getelementptr inbounds %struct.tagQOS_TLV_PROXY, %struct.tagQOS_TLV_PROXY* %arrayidx, i32 0, i32 2
+     [no debug info]:700:1:  store i8* %arraydecay, i8** %user_data, align 1
+     [no debug info]:701:1:  %call1 = call i8* @malloc(i64 28)
+     [no debug info]:702:1:  %5 = bitcast i8* %call1 to %struct.tagQOS_TLV_PROXY*
+     [no debug info]:703:1:  store %struct.tagQOS_TLV_PROXY* %5, %struct.tagQOS_TLV_PROXY** %proxy_0_next, align 8
+     [no debug info]:704:1:  %6 = load %struct.tagQOS_TLV_PROXY*, %struct.tagQOS_TLV_PROXY** %proxy_0_next, align 8
+     [no debug info]:705:1:  %7 = bitcast %struct.tagQOS_TLV_PROXY* %6 to i8*
+     [no debug info]:706:1:  call void @klee_make_symbolic(i8* %7, i64 28, i8* getelementptr inbounds ([17 x i8], [17 x i8]* @.str.24, i64 0, i64 0))
+     [no debug info]:707:1:  %8 = bitcast [1024 x i8]* %proxy_0_next_0_user_data to i8*
+     [no debug info]:708:1:  call void @klee_make_symbolic(i8* %8, i64 1024, i8* getelementptr inbounds ([27 x i8], [27 x i8]* @.str.25, i64 0, i64 0))
+     [no debug info]:709:1:  %arraydecay2 = getelementptr inbounds [1024 x i8], [1024 x i8]* %proxy_0_next_0_user_data, i64 0, i64 0
+     [no debug info]:710:1:  %9 = load %struct.tagQOS_TLV_PROXY*, %struct.tagQOS_TLV_PROXY** %proxy_0_next, align 8
+     [no debug info]:711:1:  %arrayidx3 = getelementptr inbounds %struct.tagQOS_TLV_PROXY, %struct.tagQOS_TLV_PROXY* %9, i64 0
+     [no debug info]:712:1:  %user_data4 = getelementptr inbounds %struct.tagQOS_TLV_PROXY, %struct.tagQOS_TLV_PROXY* %arrayidx3, i32 0, i32 2
+     [no debug info]:713:1:  store i8* %arraydecay2, i8** %user_data4, align 1
+     [no debug info]:714:1:  %call5 = call i8* @malloc(i64 28)
+     [no debug info]:715:1:  %10 = bitcast i8* %call5 to %struct.tagQOS_TLV_PROXY*
+     [no debug info]:716:1:  store %struct.tagQOS_TLV_PROXY* %10, %struct.tagQOS_TLV_PROXY** %proxy_0_next_0_next, align 8
+     [no debug info]:717:1:  %11 = load %struct.tagQOS_TLV_PROXY*, %struct.tagQOS_TLV_PROXY** %proxy_0_next_0_next, align 8
+     [no debug info]:718:1:  %12 = bitcast %struct.tagQOS_TLV_PROXY* %11 to i8*
+     [no debug info]:719:1:  call void @klee_make_symbolic(i8* %12, i64 28, i8* getelementptr inbounds ([25 x i8], [25 x i8]* @.str.26, i64 0, i64 0))
+     [no debug info]:720:1:  %13 = load %struct.tagQOS_TLV_PROXY*, %struct.tagQOS_TLV_PROXY** %proxy_0_next_0_next, align 8
+     [no debug info]:721:1:  %arrayidx6 = getelementptr inbounds %struct.tagQOS_TLV_PROXY, %struct.tagQOS_TLV_PROXY* %13, i64 0
+     [no debug info]:722:1:  %user_data7 = getelementptr inbounds %struct.tagQOS_TLV_PROXY, %struct.tagQOS_TLV_PROXY* %arrayidx6, i32 0, i32 2
+     [no debug info]:723:1:  store i8* null, i8** %user_data7, align 1
+     [no debug info]:724:1:  %14 = load %struct.tagQOS_TLV_PROXY*, %struct.tagQOS_TLV_PROXY** %proxy_0_next_0_next, align 8
+     [no debug info]:725:1:  %arrayidx8 = getelementptr inbounds %struct.tagQOS_TLV_PROXY, %struct.tagQOS_TLV_PROXY* %14, i64 0
+     [no debug info]:726:1:  %next = getelementptr inbounds %struct.tagQOS_TLV_PROXY, %struct.tagQOS_TLV_PROXY* %arrayidx8, i32 0, i32 3
+     [no debug info]:727:1:  store i8* null, i8** %next, align 1
+     [no debug info]:728:1:  %15 = load %struct.tagQOS_TLV_PROXY*, %struct.tagQOS_TLV_PROXY** %proxy_0_next_0_next, align 8
+     [no debug info]:729:1:  %16 = bitcast %struct.tagQOS_TLV_PROXY* %15 to i8*
+     [no debug info]:730:1:  %17 = load %struct.tagQOS_TLV_PROXY*, %struct.tagQOS_TLV_PROXY** %proxy_0_next, align 8
+     [no debug info]:731:1:  %arrayidx9 = getelementptr inbounds %struct.tagQOS_TLV_PROXY, %struct.tagQOS_TLV_PROXY* %17, i64 0
+     [no debug info]:732:1:  %next10 = getelementptr inbounds %struct.tagQOS_TLV_PROXY, %struct.tagQOS_TLV_PROXY* %arrayidx9, i32 0, i32 3
+     [no debug info]:733:1:  store i8* %16, i8** %next10, align 1
+     [no debug info]:734:1:  %18 = load %struct.tagQOS_TLV_PROXY*, %struct.tagQOS_TLV_PROXY** %proxy_0_next, align 8
+     [no debug info]:735:1:  %19 = bitcast %struct.tagQOS_TLV_PROXY* %18 to i8*
+     [no debug info]:736:1:  %20 = load %struct.tagQOS_TLV_PROXY*, %struct.tagQOS_TLV_PROXY** %proxy, align 8
+     [no debug info]:737:1:  %arrayidx11 = getelementptr inbounds %struct.tagQOS_TLV_PROXY, %struct.tagQOS_TLV_PROXY* %20, i64 0
+     [no debug info]:738:1:  %next12 = getelementptr inbounds %struct.tagQOS_TLV_PROXY, %struct.tagQOS_TLV_PROXY* %arrayidx11, i32 0, i32 3
+     [no debug info]:739:1:  store i8* %19, i8** %next12, align 1
+     [no debug info]:740:1:  %call13 = call i8* @malloc(i64 4)
+     [no debug info]:741:1:  %21 = bitcast i8* %call13 to %struct.tagVrpTLVHead*
+     [no debug info]:742:1:  store %struct.tagVrpTLVHead* %21, %struct.tagVrpTLVHead** %head, align 8
+     [no debug info]:743:1:  %22 = load %struct.tagVrpTLVHead*, %struct.tagVrpTLVHead** %head, align 8
+     [no debug info]:744:1:  %23 = bitcast %struct.tagVrpTLVHead* %22 to i8*
+     [no debug info]:745:1:  call void @klee_make_symbolic(i8* %23, i64 4, i8* getelementptr inbounds ([8 x i8], [8 x i8]* @.str.27, i64 0, i64 0))
+     [no debug info]:746:1:  store i32 16, i32* %tlvNum, align 4
+     [no debug info]:747:1:  %24 = load %struct.tagQOS_TLV_PROXY*, %struct.tagQOS_TLV_PROXY** %proxy, align 8
+     [no debug info]:748:1:  %25 = load %struct.tagVrpTLVHead*, %struct.tagVrpTLVHead** %head, align 8
+     [no debug info]:749:1:  %26 = bitcast %struct.tagVrpTLVHead* %25 to i8*
+     [no debug info]:750:1:  %27 = load i32, i32* %tlvNum, align 4
+     [no debug info]:751:1:  %call14 = call i32 @qos_walk_fim_tlv(%struct.tagQOS_TLV_PROXY* %24, i8* %26, i32 %27)
+     [no debug info]:588:1:  %retval = alloca i32, align 4
+     [no debug info]:589:1:  %proxy.addr = alloca %struct.tagQOS_TLV_PROXY*, align 8
+     [no debug info]:590:1:  %head.addr = alloca i8*, align 8
+     [no debug info]:591:1:  %tlvNum.addr = alloca i32, align 4
+     [no debug info]:592:1:  store %struct.tagQOS_TLV_PROXY* %proxy, %struct.tagQOS_TLV_PROXY** %proxy.addr, align 8
+     [no debug info]:593:1:  store i8* %head, i8** %head.addr, align 8
+     [no debug info]:594:1:  store i32 %tlvNum, i32* %tlvNum.addr, align 4
+     [no debug info]:595:1:  %0 = load %struct.tagQOS_TLV_PROXY*, %struct.tagQOS_TLV_PROXY** %proxy.addr, align 8
+     [no debug info]:596:1:  %count = getelementptr inbounds %struct.tagQOS_TLV_PROXY, %struct.tagQOS_TLV_PROXY* %0, i32 0, i32 4
+     [no debug info]:597:1:  %1 = load i32, i32* %count, align 1
+     [no debug info]:598:1:  %2 = load i32, i32* %tlvNum.addr, align 4
+     [no debug info]:599:1:  %cmp = icmp uge i32 %1, %2
+     [no debug info]:600:1:  %conv = zext i1 %cmp to i32
+     [no debug info]:601:1:  %cmp1 = icmp ne i32 %conv, 0
+     [no debug info]:602:1:  br i1 %cmp1, label %if.then, label %do.end
+     [no debug info]:609:2:  %3 = load %struct.tagQOS_TLV_PROXY*, %struct.tagQOS_TLV_PROXY** %proxy.addr, align 8
+     [no debug info]:610:2:  %next = getelementptr inbounds %struct.tagQOS_TLV_PROXY, %struct.tagQOS_TLV_PROXY* %3, i32 0, i32 3
+     [no debug info]:611:2:  %4 = load i8*, i8** %next, align 1
+     [no debug info]:612:2:  %cmp3 = icmp eq i8* %4, null
+     [no debug info]:613:2:  br i1 %cmp3, label %if.then5, label %if.else
+     [no debug info]:623:2:  %7 = load %struct.tagQOS_TLV_PROXY*, %struct.tagQOS_TLV_PROXY** %proxy.addr, align 8
+     [no debug info]:624:2:  %next7 = getelementptr inbounds %struct.tagQOS_TLV_PROXY, %struct.tagQOS_TLV_PROXY* %7, i32 0, i32 3
+     [no debug info]:605:1:  store i32 1, i32* %retval, align 4
+     [no debug info]:625:2:  %8 = load i8*, i8** %next7, align 1
+     [no debug info]:626:2:  %add.ptr = getelementptr inbounds i8, i8* %8, i64 4
+     [no debug info]:627:2:  %9 = load %struct.tagQOS_TLV_PROXY*, %struct.tagQOS_TLV_PROXY** %proxy.addr, align 8
+     [no debug info]:628:2:  %len = getelementptr inbounds %struct.tagQOS_TLV_PROXY, %struct.tagQOS_TLV_PROXY* %9, i32 0, i32 1
+     [no debug info]:629:2:  %10 = load i32, i32* %len, align 1
+     [no debug info]:630:2:  %idx.ext = zext i32 %10 to i64
+     [no debug info]:631:2:  %add.ptr8 = getelementptr inbounds i8, i8* %add.ptr, i64 %idx.ext
+     [no debug info]:632:2:  %11 = load %struct.tagQOS_TLV_PROXY*, %struct.tagQOS_TLV_PROXY** %proxy.addr, align 8
+     [no debug info]:633:2:  %next9 = getelementptr inbounds %struct.tagQOS_TLV_PROXY, %struct.tagQOS_TLV_PROXY* %11, i32 0, i32 3
+     [no debug info]:634:2:  store i8* %add.ptr8, i8** %next9, align 1
+     [no debug info]:635:2:  br label %if.end10
+     [no debug info]:606:1:  br label %return
+     [no debug info]:638:2:  %12 = load %struct.tagQOS_TLV_PROXY*, %struct.tagQOS_TLV_PROXY** %proxy.addr, align 8
+     [no debug info]:639:2:  %type = getelementptr inbounds %struct.tagQOS_TLV_PROXY, %struct.tagQOS_TLV_PROXY* %12, i32 0, i32 0
+     [no debug info]:640:2:  %13 = load %struct.tagQOS_TLV_PROXY*, %struct.tagQOS_TLV_PROXY** %proxy.addr, align 8
+     [no debug info]:641:2:  %len11 = getelementptr inbounds %struct.tagQOS_TLV_PROXY, %struct.tagQOS_TLV_PROXY* %13, i32 0, i32 1
+     [no debug info]:642:2:  %14 = load %struct.tagQOS_TLV_PROXY*, %struct.tagQOS_TLV_PROXY** %proxy.addr, align 8
+     [no debug info]:643:2:  %user_data = getelementptr inbounds %struct.tagQOS_TLV_PROXY, %struct.tagQOS_TLV_PROXY* %14, i32 0, i32 2
+     [no debug info]:644:2:  %15 = load %struct.tagQOS_TLV_PROXY*, %struct.tagQOS_TLV_PROXY** %proxy.addr, align 8
+     [no debug info]:645:2:  %next12 = getelementptr inbounds %struct.tagQOS_TLV_PROXY, %struct.tagQOS_TLV_PROXY* %15, i32 0, i32 3
+     [no debug info]:646:2:  %16 = load i8*, i8** %next12, align 1
+     [no debug info]:647:2:  call void @QOS_GetFimTlvInfo(i32* %type, i32* %len11, i8** %user_data, i8* %16)
+     [no debug info]:553:2:  %type.addr = alloca i32*, align 8
+     [no debug info]:670:1:  %21 = load i32, i32* %retval, align 4
+     [no debug info]:554:2:  %len.addr = alloca i32*, align 8
+     [no debug info]:555:2:  %value.addr = alloca i8**, align 8
+     [no debug info]:556:2:  %tlvIn.addr = alloca i8*, align 8
+     [no debug info]:557:2:  %tlvHead = alloca %struct.FEII_TLV_HEADER_S*, align 8
+     [no debug info]:558:2:  store i32* %type, i32** %type.addr, align 8
+     [no debug info]:559:2:  store i32* %len, i32** %len.addr, align 8
+     [no debug info]:560:2:  store i8** %value, i8*** %value.addr, align 8
+     [no debug info]:671:1:  ret i32 %21
+     [no debug info]:561:2:  store i8* %tlvIn, i8** %tlvIn.addr, align 8
+     [no debug info]:562:2:  %0 = load i8*, i8** %tlvIn.addr, align 8
+     [no debug info]:563:2:  %1 = bitcast i8* %0 to %struct.FEII_TLV_HEADER_S*
+     [no debug info]:752:1:  store i32 %call14, i32* %res, align 4
+     [no debug info]:564:2:  store %struct.FEII_TLV_HEADER_S* %1, %struct.FEII_TLV_HEADER_S** %tlvHead, align 8
+     [no debug info]:565:2:  %2 = load %struct.FEII_TLV_HEADER_S*, %struct.FEII_TLV_HEADER_S** %tlvHead, align 8
+     [no debug info]:566:2:  %usTLVType = getelementptr inbounds %struct.FEII_TLV_HEADER_S, %struct.FEII_TLV_HEADER_S* %2, i32 0, i32 0
+     [no debug info]:567:2:  %3 = load i16, i16* %usTLVType, align 2
+     [no debug info]:568:3:  %conv = zext i16 %3 to i32
+     [no debug info]:569:3:  %4 = load i32*, i32** %type.addr, align 8
+     [no debug info]:570:3:  store i32 %conv, i32* %4, align 4
+     [no debug info]:753:1:  %28 = bitcast i32* %RET to i8*
+     [no debug info]:571:3:  %5 = load %struct.FEII_TLV_HEADER_S*, %struct.FEII_TLV_HEADER_S** %tlvHead, align 8
+     [no debug info]:572:3:  %usTLVLen = getelementptr inbounds %struct.FEII_TLV_HEADER_S, %struct.FEII_TLV_HEADER_S* %5, i32 0, i32 1
+     [no debug info]:573:3:  %6 = load i16, i16* %usTLVLen, align 2
+     [no debug info]:754:1:  call void @klee_make_symbolic(i8* %28, i64 4, i8* getelementptr inbounds ([5 x i8], [5 x i8]* @.str.28, i64 0, i64 0))
+     [no debug info]:574:3:  %conv1 = zext i16 %6 to i32
+     [no debug info]:575:3:  %7 = load i32*, i32** %len.addr, align 8
+     [no debug info]:576:3:  store i32 %conv1, i32* %7, align 4
+     [no debug info]:568:2:  %conv = zext i16 %3 to i32
+     [no debug info]:577:3:  %8 = load %struct.FEII_TLV_HEADER_S*, %struct.FEII_TLV_HEADER_S** %tlvHead, align 8
+     [no debug info]:578:3:  %add.ptr = getelementptr inbounds %struct.FEII_TLV_HEADER_S, %struct.FEII_TLV_HEADER_S* %8, i64 1
+     [no debug info]:579:3:  %9 = bitcast %struct.FEII_TLV_HEADER_S* %add.ptr to i8*
+     [no debug info]:580:3:  %10 = load i8**, i8*** %value.addr, align 8
+     [no debug info]:581:3:  store i8* %9, i8** %10, align 8
+     [no debug info]:582:3:  ret void
+     [no debug info]:648:3:  %17 = load %struct.tagQOS_TLV_PROXY*, %struct.tagQOS_TLV_PROXY** %proxy.addr, align 8
+     [no debug info]:649:3:  %user_data14 = getelementptr inbounds %struct.tagQOS_TLV_PROXY, %struct.tagQOS_TLV_PROXY* %17, i32 0, i32 2
+     [no debug info]:650:3:  %18 = load i8*, i8** %user_data14, align 1
+     [no debug info]:651:3:  %cmp15 = icmp eq i8* %18, null
+     [no debug info]:652:3:  %conv16 = zext i1 %cmp15 to i32
+     [no debug info]:653:3:  %cmp17 = icmp ne i32 %conv16, 0
+     [no debug info]:654:3:  br i1 %cmp17, label %if.then19, label %do.end21
+     [no debug info]:661:3:  %19 = load %struct.tagQOS_TLV_PROXY*, %struct.tagQOS_TLV_PROXY** %proxy.addr, align 8
+     [no debug info]:662:3:  %count22 = getelementptr inbounds %struct.tagQOS_TLV_PROXY, %struct.tagQOS_TLV_PROXY* %19, i32 0, i32 4
+     [no debug info]:663:3:  %20 = load i32, i32* %count22, align 1
+     [no debug info]:664:3:  %inc = add i32 %20, 1
+     [no debug info]:665:3:  store i32 %inc, i32* %count22, align 1
+     [no debug info]:666:3:  store i32 0, i32* %retval, align 4
+     [no debug info]:667:3:  br label %return
+     [no debug info]:670:3:  %21 = load i32, i32* %retval, align 4
+     [no debug info]:671:3:  ret i32 %21
+     [no debug info]:752:3:  store i32 %call14, i32* %res, align 4
+     [no debug info]:755:1:  %29 = load i32, i32* %RET, align 4
+     [no debug info]:753:3:  %28 = bitcast i32* %RET to i8*
+     [no debug info]:754:3:  call void @klee_make_symbolic(i8* %28, i64 4, i8* getelementptr inbounds ([5 x i8], [5 x i8]* @.str.28, i64 0, i64 0))
+     [no debug info]:755:3:  %29 = load i32, i32* %RET, align 4
+     [no debug info]:569:2:  %4 = load i32*, i32** %type.addr, align 8
+     [no debug info]:756:3:  %30 = load i32, i32* %res, align 4
+     [no debug info]:757:3:  %cmp = icmp eq i32 %29, %30
+     [no debug info]:758:3:  %conv = zext i1 %cmp to i32
+     [no debug info]:759:3:  %conv15 = sext i32 %conv to i64
+     [no debug info]:760:3:  call void @klee_assume(i64 %conv15)
+     [no debug info]:761:3:  ret i32 0
+     [no debug info]:570:2:  store i32 %conv, i32* %4, align 4
+     [no debug info]:571:2:  %5 = load %struct.FEII_TLV_HEADER_S*, %struct.FEII_TLV_HEADER_S** %tlvHead, align 8
+     [no debug info]:572:2:  %usTLVLen = getelementptr inbounds %struct.FEII_TLV_HEADER_S, %struct.FEII_TLV_HEADER_S* %5, i32 0, i32 1
+     [no debug info]:573:2:  %6 = load i16, i16* %usTLVLen, align 2
+     [no debug info]:574:2:  %conv1 = zext i16 %6 to i32
+     [no debug info]:575:2:  %7 = load i32*, i32** %len.addr, align 8
+     [no debug info]:576:2:  store i32 %conv1, i32* %7, align 4
+     [no debug info]:577:2:  %8 = load %struct.FEII_TLV_HEADER_S*, %struct.FEII_TLV_HEADER_S** %tlvHead, align 8
+     [no debug info]:578:2:  %add.ptr = getelementptr inbounds %struct.FEII_TLV_HEADER_S, %struct.FEII_TLV_HEADER_S* %8, i64 1
+     [no debug info]:756:1:  %30 = load i32, i32* %res, align 4
+     [no debug info]:579:2:  %9 = bitcast %struct.FEII_TLV_HEADER_S* %add.ptr to i8*
+     [no debug info]:580:2:  %10 = load i8**, i8*** %value.addr, align 8
+     [no debug info]:581:2:  store i8* %9, i8** %10, align 8
+     [no debug info]:757:1:  %cmp = icmp eq i32 %29, %30
+     [no debug info]:582:2:  ret void
+     [no debug info]:648:2:  %17 = load %struct.tagQOS_TLV_PROXY*, %struct.tagQOS_TLV_PROXY** %proxy.addr, align 8
+     [no debug info]:649:2:  %user_data14 = getelementptr inbounds %struct.tagQOS_TLV_PROXY, %struct.tagQOS_TLV_PROXY* %17, i32 0, i32 2
+     [no debug info]:650:2:  %18 = load i8*, i8** %user_data14, align 1
+     [no debug info]:651:2:  %cmp15 = icmp eq i8* %18, null
+     [no debug info]:652:2:  %conv16 = zext i1 %cmp15 to i32
+     [no debug info]:653:2:  %cmp17 = icmp ne i32 %conv16, 0
+     [no debug info]:654:2:  br i1 %cmp17, label %if.then19, label %do.end21
+     [no debug info]:661:2:  %19 = load %struct.tagQOS_TLV_PROXY*, %struct.tagQOS_TLV_PROXY** %proxy.addr, align 8
+     [no debug info]:662:2:  %count22 = getelementptr inbounds %struct.tagQOS_TLV_PROXY, %struct.tagQOS_TLV_PROXY* %19, i32 0, i32 4
+     [no debug info]:663:2:  %20 = load i32, i32* %count22, align 1
+     [no debug info]:758:1:  %conv = zext i1 %cmp to i32
+     [no debug info]:664:2:  %inc = add i32 %20, 1
+     [no debug info]:665:2:  store i32 %inc, i32* %count22, align 1
+     [no debug info]:666:2:  store i32 0, i32* %retval, align 4
+     [no debug info]:759:1:  %conv15 = sext i32 %conv to i64
+     [no debug info]:667:2:  br label %return
+     [no debug info]:670:2:  %21 = load i32, i32* %retval, align 4
+     [no debug info]:671:2:  ret i32 %21
+     [no debug info]:760:1:  call void @klee_assume(i64 %conv15)
+     [no debug info]:752:2:  store i32 %call14, i32* %res, align 4
+     [no debug info]:753:2:  %28 = bitcast i32* %RET to i8*
+     [no debug info]:754:2:  call void @klee_make_symbolic(i8* %28, i64 4, i8* getelementptr inbounds ([5 x i8], [5 x i8]* @.str.28, i64 0, i64 0))
+     [no debug info]:761:1:  ret i32 0
+     [no debug info]:755:2:  %29 = load i32, i32* %RET, align 4
+     [no debug info]:756:2:  %30 = load i32, i32* %res, align 4
+     [no debug info]:757:2:  %cmp = icmp eq i32 %29, %30
+     [no debug info]:758:2:  %conv = zext i1 %cmp to i32
+     [no debug info]:759:2:  %conv15 = sext i32 %conv to i64
+     [no debug info]:760:2:  call void @klee_assume(i64 %conv15)
+     [no debug info]:761:2:  ret i32 0

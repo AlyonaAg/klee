@@ -19,7 +19,7 @@
 #include <time.h>
 
 #include "klee/klee.h"
-
+// #include "klee/Support/ErrorHandling.h"
 #include "klee/ADT/KTest.h"
 
 static KTest *testData = 0;
@@ -50,6 +50,9 @@ static void report_internal_error(const char *msg, ...) {
 }
 
 void klee_make_symbolic(void *array, size_t nbytes, const char *name) {
+
+// klee_message("klee_make_symbolic in intrinsics");
+fprintf(stdout, "klee_make_symbolic in intrinsics");
 
   if (!name)
     name = "unnamed";

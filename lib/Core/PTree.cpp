@@ -22,7 +22,8 @@ using namespace klee;
 using namespace llvm;
 
 namespace {
-
+// та сама опция, позволяющая не оставлять вспомогательные узлы
+// в функции PTree::remove
 cl::opt<bool>
     CompressProcessTree("compress-process-tree",
                         cl::desc("Remove intermediate nodes in the process "
@@ -33,10 +34,12 @@ cl::opt<bool>
 
 PTree::PTree(ExecutionState *initialState)
     : root(PTreeNodePtr(new PTreeNode(nullptr, initialState))) {
+  // конструктор дерева
   initialState->ptreeNode = root.getPointer();
 }
 
 void PTree::attach(PTreeNode *node, ExecutionState *leftState, ExecutionState *rightState) {
+  // пока непонятно где и зачем используется
   assert(node && !node->left.getPointer() && !node->right.getPointer());
   assert(node == rightState->ptreeNode &&
          "Attach assumes the right state is the current state");
@@ -52,6 +55,13 @@ void PTree::attach(PTreeNode *node, ExecutionState *leftState, ExecutionState *r
 }
 
 void PTree::remove(PTreeNode *n) {
+  // удаление листа n, ничего сложного, но лишний мусор осталяет, если 
+  // не сказать ему чтоб убирал (но непонятно каким флагом, но вроде это не
+  // так важно)
+
+  // под мусором имеется ввиду вспомогательные ветки, которые будут в графе,
+  // если есть хоть один дочерний, даже если дочерний также является 
+  // вспомогательным
   assert(!n->left.getPointer() && !n->right.getPointer());
   do {
     PTreeNode *p = n->parent;
@@ -65,9 +75,16 @@ void PTree::remove(PTreeNode *n) {
     }
     delete n;
     n = p;
+    // на второй круг пойдёт только в случае, если удалили оба листа
+    // у вспомогательного узла, в таком случае этот вспомогательный узел
+    // удаляется
   } while (n && !n->left.getPointer() && !n->right.getPointer());
 
   if (n && CompressProcessTree) {
+    // сюда не заходит, если не указывать каким-то специальным параметром значение
+    // CompressProcessTree, но вроде как нужно, чтобы пустые узлы убирать, когда
+    // удаляем листы в дереве.
+
     // We're now at a node that has exactly one child; we've just deleted the
     // other one. Eliminate the node and connect its child to the parent
     // directly (if it's not the root).
@@ -92,6 +109,12 @@ void PTree::remove(PTreeNode *n) {
 }
 
 void PTree::dump(llvm::raw_ostream &os) {
+  // отрисовывает дерево для отладки (записывает в файл), команда для просмотра: 
+  // dot -Tps ptree00000027.dot -o outfile.ps
+
+  // файл klee-control содержит парсинг входных параметров, по идее
+  // куда-то туда это всё заносится, чтобы вывод был автоматический
+
   ExprPPrinter *pp = ExprPPrinter::create(os);
   pp->setNewline("\\l");
   os << "digraph G {\n";
@@ -112,13 +135,15 @@ void PTree::dump(llvm::raw_ostream &os) {
     os << "];\n";
     if (n->left.getPointer()) {
       os << "\tn" << n << " -> n" << n->left.getPointer();
-      os << " [label=0b"
+      // изначально было label=0b, но программа для отрисовки графов жаловалась, пришлось поменять
+      os << " [label=0"
          << std::bitset<PtrBitCount>(n->left.getInt()).to_string() << "];\n";
       stack.push_back(n->left.getPointer());
     }
     if (n->right.getPointer()) {
       os << "\tn" << n << " -> n" << n->right.getPointer();
-      os << " [label=0b"
+      // изначально было label=0b, но программа для отрисовки графов жаловалась, пришлось поменять
+      os << " [label=0"
          << std::bitset<PtrBitCount>(n->right.getInt()).to_string() << "];\n";
       stack.push_back(n->right.getPointer());
     }
@@ -128,6 +153,7 @@ void PTree::dump(llvm::raw_ostream &os) {
 }
 
 PTreeNode::PTreeNode(PTreeNode *parent, ExecutionState *state) : parent{parent}, state{state} {
+  // конструктор узла
   state->ptreeNode = this;
   left = PTreeNodePtr(nullptr);
   right = PTreeNodePtr(nullptr);

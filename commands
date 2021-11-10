@@ -1,0 +1,113 @@
+clang -I home/klee/include -emit-llvm -c -g -O0 -Xclang -disable-O0-optnone test.c
+clang -I home/klee/include -emit-llvm -c test.c
+klee test.bc
+
+run:
+sudo docker run -ti -v /home/al/klee/examples:/home/klee/examples/  --name=klee_container --ulimit='stack=-1:-1' klee/klee
+
+sudo docker run -ti -v /home/al/klee/examples:/home/klee/examples/ --rm  --name=klee_container --ulimit='stack=-1:-1' klee/klee
+
+
+Executor.cpp, .h
+KInstuction.h
+
+create assembly.ll: main.cpp:1415 -> Executor.cpp:567 -> KModule.cpp:302 (void KModule::manifest() in var *module - assembly code)
+bitcode: ModuleUtil.cpp (bool klee::loadFile())
+
+Save instruction in file: void KModule::manifest(), save every functions
+
+write test: Executor.cpp:2128 -> Executor.cpp:3785 -> main.cpp:482 ->
+-> generate test in Executor.cpp:4616 (getSymbolicSolution)
+
+read variable: SpecialFunctionHandler.cpp:830, Executor.cpp:4386 - make symbolics
+
+state.stack - info about execute funcion in .bc, theire instructions
+ki.info - information about execute instuction (number string in .ll, etc)
+
+
+about execute instuction *branches.first.pc.it[0][0].info maybe...
+
+
+create branches:
+      Executor::StatePair branches = fork(state, cond, false); !!
+
+      if (statsTracker && state.stack.back().kf->trackCoverage)
+        statsTracker->markBranchVisited(branches.first, branches.second);
+
+      if (branches.first)
+        transferToBasicBlock(bi->getSuccessor(0), bi->getParent(), *branches.first); !!
+      if (branches.second)
+        transferToBasicBlock(bi->getSuccessor(1), bi->getParent(), *branches.second); !!
+
+
+
+b Executor.cpp:2824
+condition 3 state.pc.it[0][0].info.assemblyLine == 96
+
+
+
+in loop_2: 
+	ki.info.assemblyLine == 160 (%call6 = call i32 (i8*, ...) bitcast (i32 (...)* @free to i32 (i8*, ...)*)(i8* %11), !dbg !250)
+	
+	problems:
+#0  klee::SpecialFunctionHandler::handleFree (this=0x55c563b28700, state=..., target=0x55c563a83290, 
+    arguments=std::vector of length 1, capacity 1 = {...})
+    at /tmp/klee_src/lib/Core/SpecialFunctionHandler.cpp:764
+#1  0x000055c562de1609 in klee::SpecialFunctionHandler::handle (this=0x55c563b28700, state=..., 
+    f=<optimized out>, target=0x55c563a83290, arguments=...)
+    at /tmp/klee_src/lib/Core/SpecialFunctionHandler.cpp:232
+#2  0x000055c562dada03 in klee::Executor::callExternalFunction (this=0x55c563b0b000, state=..., 
+    target=0x55c563a83290, function=0x55c563a62408, arguments=std::vector of length 1, capacity 1 = {...})
+    at /tmp/klee_src/lib/Core/Executor.cpp:3910
+#3  0x000055c562db8a25 in klee::Executor::executeCall (this=0x55c563b0b000, state=..., ki=0x55c563a83290, 
+    f=0x55c563a62408, arguments=std::vector of length 1, capacity 1 = {...})
+    at /tmp/klee_src/lib/Core/Executor.cpp:1709
+#4  0x000055c562dbfff0 in klee::Executor::executeInstruction (this=0x55c563b0b000, state=..., ki=<optimized out>)
+    at /tmp/klee_src/lib/Core/Executor.cpp:2528
+#5  0x000055c562dc23c3 in klee::Executor::run (this=0x55c563b0b000, initialState=...)
+    at /tmp/klee_src/lib/Core/Executor.cpp:3675
+#6  0x000055c562dc2cac in klee::Executor::runFunctionAsMain (this=<optimized out>, f=<optimized out>, argc=1, 
+    argv=0x55c563a64048, envp=<optimized out>) at /tmp/klee_src/lib/Core/Executor.cpp:4551
+#7  0x000055c562d918ea in main (argc=<optimized out>, argv=<optimized out>, envp=<optimized out>)
+    at /tmp/klee_src/tools/klee/main.cpp:1529
+
+
+dump state and tree: Executor.cpp:3677 (dumpStates();dumpPTree();)
+
+
+
+choise path: lib/Core/Searcher.cpp (ExecutionState &RandomPathSearcher::selectState(), 265 lines)
+
+GRAPH: dot -Tps ptree00000027.dot -o outfile.ps
+
+Дерево процессов: ps -e --forest
+
+Тут выбор того, каким алгоритмом поиска следующего состояния будет пользоваться программа: UserSearcher.cpp (initializeSearchOptions()), по дефолту стоят два, при работе программы они чередуются
+
+
+"program": "/home/klee/klee_build/bin/klee",
+"args": ["-debug-print-instructions=all:file", "/home/klee/examples/new/get_sign.bc"]
+
+
+
+const auto start_time = std::chrono::steady_clock::now();
+    executeInstruction(state, ki);
+const auto finish_time =  std::chrono::steady_clock::now();
+std::chrono::duration<double> diff = finish_time - start_time;
+printf("Time: %lf ms for line %d\n", diff.count(), state.prevPC->info->assemblyLine);
+
+
+Попытка добраться до генерации тестовых данных:
+CexCachingSolver::searchForAssignment (/tmp/klee_src/lib/Solver/CexCachingSolver.cpp:131)
+CexCachingSolver::lookupAssignment (/tmp/klee_src/lib/Solver/CexCachingSolver.cpp:214)
+CexCachingSolver::getAssignment (/tmp/klee_src/lib/Solver/CexCachingSolver.cpp:224)
+CexCachingSolver::computeValidity (/tmp/klee_src/lib/Solver/CexCachingSolver.cpp:286)
+CachingSolver::computeValidity (/tmp/klee_src/lib/Solver/CachingSolver.cpp:194)
+IndependentSolver::computeValidity (/tmp/klee_src/lib/Solver/IndependentSolver.cpp:417)
+klee::TimingSolver::evaluate (/tmp/klee_src/lib/Core/TimingSolver.cpp:40)
+klee::Executor::fork (/tmp/klee_src/lib/Core/Executor.cpp:1046)
+klee::Executor::executeInstruction (/tmp/klee_src/lib/Core/Executor.cpp:2229)
+klee::Executor::run (/tmp/klee_src/lib/Core/Executor.cpp:3617)
+klee::Executor::runFunctionAsMain (/tmp/klee_src/lib/Core/Executor.cpp:4503)
+main (/tmp/klee_src/tools/klee/main.cpp:1529)
+
