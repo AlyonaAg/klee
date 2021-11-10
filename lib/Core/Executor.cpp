@@ -1904,9 +1904,8 @@ void Executor::executeCall(ExecutionState &state, KInstruction *ki, Function *f,
     if (state.stack[state.stack.size() - 1].kf == kf)
     {
       state.recursive_calls++;
-      // recursive too deep
-      if (state.recursive_calls >= 3)
-        klee_message("!!!! recursive %d", state.recursive_calls);
+      if (state.recursive_calls >= 4)
+        return;
     }
     else
       state.recursive_calls = 0;
@@ -2541,6 +2540,15 @@ void Executor::executeInstruction(ExecutionState &state, KInstruction *ki) {
       }
 
       executeCall(state, ki, f, arguments);
+
+      if (state.recursive_calls >= 4)
+      {
+        klee_message("!!!! recursive %d", state.recursive_calls);
+
+        state.pc = state.prevPC;
+        removedStates.push_back(&state);
+        return;
+      }
     } else {
       ref<Expr> v = eval(ki, 0, state).value;
 
