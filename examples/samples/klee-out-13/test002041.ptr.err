@@ -1,9 +1,0 @@
-Error: memory error: out of bound pointer
-Stack: 
-	#000000265 in strcat (dest=94648599307776, src=94648599584816)
-	#100000359 in AISiLossLessLocalIniter (appLocal=94648598848512, info=94648599584768)
-	#200000406 in main ()
-Info: 
-	address: 94648599308288
-	next: object at 23269757131584 of size 1536
-		MO18[1536] (no allocation info)
