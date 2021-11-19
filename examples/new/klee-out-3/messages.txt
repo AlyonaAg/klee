@@ -1,7 +1,0 @@
-KLEE: Using STP solver backend
-KLEE: Started...
-KLEE: ReplayKTestDir.empty() && ReplayKTestFile.empty()...
-KLEE: run!
-KLEE: klee_make_symbolic in SpecialFunctionHandler
-KLEE: klee_make_symbolic in SpecialFunctionHandler
-KLEE: klee_make_symbolic in SpecialFunctionHandler
