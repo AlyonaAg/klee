@@ -1,4 +1,0 @@
-Error: memory error: object read only
-Stack: 
-	#000000659 in QOS_JoinTlvs (buff=93971596099584, buffLen, dynTlv=93971596187584, tlvNum, outLen=93971595203024)
-	#100000774 in main ()
