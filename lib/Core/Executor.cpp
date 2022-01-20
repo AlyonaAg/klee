@@ -24,6 +24,7 @@
 #include "StatsTracker.h"
 #include "TimingSolver.h"
 #include "UserSearcher.h"
+#include "FunctionSum.h"
 
 #include "klee/ADT/KTest.h"
 #include "klee/ADT/RNG.h"
@@ -1897,6 +1898,7 @@ void Executor::executeCall(ExecutionState &state, KInstruction *ki, Function *f,
     // instead of the actual instruction, since we can't make a KInstIterator
     // from just an instruction (unlike LLVM).
     KFunction *kf = kmodule->functionMap[f];
+    //FunctionSummaries func(kf, state);
 
     state.pushFrame(state.prevPC, kf);
     state.pc = kf->instructions;
@@ -3604,6 +3606,8 @@ void Executor::run(ExecutionState &initialState) {
   searcher->update(0, newStates, std::vector<ExecutionState *>());
 
   // main interpreter loop
+  FunctionSummaries func;
+
   while (!states.empty() && !haltExecution) {
     ExecutionState &state = searcher->selectState();
     KInstruction *ki = state.pc;
@@ -3620,6 +3624,7 @@ void Executor::run(ExecutionState &initialState) {
       // update searchers when states were terminated early due to memory pressure
       updateStates(nullptr);
     }
+    func.addState(state);
   }
 
   delete searcher;

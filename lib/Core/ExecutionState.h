@@ -144,6 +144,8 @@ struct CleanupPhaseUnwindingInformation : public UnwindingInformation {
 
 /// @brief ExecutionState representing a path under exploration
 class ExecutionState {
+  friend class FunctionSummaries;
+
 #ifdef KLEE_UNITTEST
 public:
 #else
