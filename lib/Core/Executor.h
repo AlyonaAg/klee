@@ -17,6 +17,7 @@
 
 #include "ExecutionState.h"
 #include "UserSearcher.h"
+#include "FunctionSum.h"
 
 #include "klee/ADT/RNG.h"
 #include "klee/Core/Interpreter.h"
@@ -120,6 +121,7 @@ public:
 
   /// The random number generator.
   RNG theRNG;
+  std::vector<FunctionSummaries *> summaries;
 
 private:
   static const char *TerminateReasonNames[];

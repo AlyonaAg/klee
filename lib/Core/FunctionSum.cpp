@@ -7,10 +7,10 @@ FunctionSummaries::FunctionSummaries() :
 }
 
 FunctionSummaries::FunctionSummaries(KFunction *kf,
-                                     ExecutionState *state) :
+                                     ExecutionState &state) :
     kf(kf),
     completed(false){
-startState = new ExecutionState(*state);
+startState = new ExecutionState(state);
 }
 
 void FunctionSummaries::addState(ExecutionState &addedState){

@@ -24,7 +24,7 @@
 #include "StatsTracker.h"
 #include "TimingSolver.h"
 #include "UserSearcher.h"
-#include "FunctionSum.h"
+// #include "FunctionSum.h"
 
 #include "klee/ADT/KTest.h"
 #include "klee/ADT/RNG.h"
@@ -1898,7 +1898,9 @@ void Executor::executeCall(ExecutionState &state, KInstruction *ki, Function *f,
     // instead of the actual instruction, since we can't make a KInstIterator
     // from just an instruction (unlike LLVM).
     KFunction *kf = kmodule->functionMap[f];
-    //FunctionSummaries func(kf, state);
+    // FunctionSummaries func(kf, state);
+    auto *func = new FunctionSummaries(kf, state);
+    summaries.push_back(func);
 
     state.pushFrame(state.prevPC, kf);
     state.pc = kf->instructions;
