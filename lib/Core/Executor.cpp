@@ -1898,11 +1898,12 @@ void Executor::executeCall(ExecutionState &state, KInstruction *ki, Function *f,
     // instead of the actual instruction, since we can't make a KInstIterator
     // from just an instruction (unlike LLVM).
     KFunction *kf = kmodule->functionMap[f];
-    // FunctionSummaries func(kf, state);
+
+    state.pushFrame(state.prevPC, kf);
+
     auto *func = new FunctionSummaries(kf, state);
     summaries.push_back(func);
 
-    state.pushFrame(state.prevPC, kf);
     state.pc = kf->instructions;
 
     if (statsTracker)
