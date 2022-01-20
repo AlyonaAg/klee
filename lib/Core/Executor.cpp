@@ -1898,13 +1898,13 @@ void Executor::executeCall(ExecutionState &state, KInstruction *ki, Function *f,
     // instead of the actual instruction, since we can't make a KInstIterator
     // from just an instruction (unlike LLVM).
     KFunction *kf = kmodule->functionMap[f];
-
+    
     state.pushFrame(state.prevPC, kf);
-
-    auto *func = new FunctionSummaries(kf, state);
-    summaries.push_back(func);
-
     state.pc = kf->instructions;
+    
+    // summaries.push_back(func);
+    auto *func = new FunctionSummaries(kf, state);
+    sum.addFunction(func);
 
     if (statsTracker)
       statsTracker->framePushed(state, &state.stack[state.stack.size() - 2]);
@@ -3609,8 +3609,6 @@ void Executor::run(ExecutionState &initialState) {
   searcher->update(0, newStates, std::vector<ExecutionState *>());
 
   // main interpreter loop
-  FunctionSummaries func;
-
   while (!states.empty() && !haltExecution) {
     ExecutionState &state = searcher->selectState();
     KInstruction *ki = state.pc;
@@ -3627,7 +3625,6 @@ void Executor::run(ExecutionState &initialState) {
       // update searchers when states were terminated early due to memory pressure
       updateStates(nullptr);
     }
-    func.addState(state);
   }
 
   delete searcher;

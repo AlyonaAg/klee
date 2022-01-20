@@ -121,7 +121,7 @@ public:
 
   /// The random number generator.
   RNG theRNG;
-  std::vector<FunctionSummaries *> summaries;
+  Summaries sum;
 
 private:
   static const char *TerminateReasonNames[];

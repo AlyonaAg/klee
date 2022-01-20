@@ -20,3 +20,12 @@ void FunctionSummaries::addState(ExecutionState &addedState){
 void FunctionSummaries::complete(){
     completed = true;
 }
+
+
+// Summaries
+Summaries::Summaries(){
+}
+
+void Summaries::addFunction(FunctionSummaries *func){
+    listFunctionSummaries.push_back(func);
+}

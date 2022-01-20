@@ -25,4 +25,15 @@ public:
     void complete();
 };
 
+class Summaries{
+public:
+    Summaries();
+
+private:
+    std::vector<FunctionSummaries *> listFunctionSummaries;
+
+public:
+    void addFunction(FunctionSummaries *func);
+};
+
 }
