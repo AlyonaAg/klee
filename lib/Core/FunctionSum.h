@@ -12,7 +12,7 @@ class FunctionSummaries{
 public:
     FunctionSummaries();
     FunctionSummaries(KFunction *kf,
-                      ExecutionState *state);
+                      ExecutionState &state);
 
 private:
     KFunction *kf;
