@@ -1904,7 +1904,8 @@ void Executor::executeCall(ExecutionState &state, KInstruction *ki, Function *f,
     
     // summaries.push_back(func);
     auto *func = new FunctionSummaries(kf, state);
-    sum.addFunction(func);
+    if (!sum.searchFunction(kf))
+      sum.addFunction(func);
 
     if (statsTracker)
       statsTracker->framePushed(state, &state.stack[state.stack.size() - 2]);
