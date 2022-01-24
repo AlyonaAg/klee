@@ -2539,8 +2539,6 @@ void Executor::executeInstruction(ExecutionState &state, KInstruction *ki) {
 
       if (state.recursive_calls >= 4)
       {
-        klee_message("!!!! recursive %d", state.recursive_calls);
-
         state.pc = state.prevPC;
         removedStates.push_back(&state);
         return;
