@@ -1902,11 +1902,7 @@ void Executor::executeCall(ExecutionState &state, KInstruction *ki, Function *f,
     KFunction *kf = kmodule->functionMap[f];
 
     if (state.stack[state.stack.size() - 1].kf == kf)
-    {
       state.recursive_calls++;
-      if (state.recursive_calls >= 4)
-        return;
-    }
     else
       state.recursive_calls = 0;
     
