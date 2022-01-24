@@ -22,7 +22,7 @@ private:
   ExecutionState *startState;
 
 public:
-  void addState(ExecutionState &addedState);
+  void addState(ExecutionState &state);
   void complete();
 };
 
@@ -56,3 +56,4 @@ public:
 //    которая функция проходила внутри себя. Или это решится 
 //    автоматически? Возможно...
 // 4) на будущее подумать над восстановлением состояния
+// 5) Возникнут проблемы с рекурсивными функциями

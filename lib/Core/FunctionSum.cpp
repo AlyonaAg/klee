@@ -13,8 +13,14 @@ FunctionSummaries::FunctionSummaries(KFunction *kf,
   startState = new ExecutionState(state);
 }
 
-void FunctionSummaries::addState(ExecutionState &addedState){
-  states.push_back(&addedState);
+void FunctionSummaries::addState(ExecutionState &state){
+  auto *newState = new ExecutionState(state);
+  newState->pc = NULL;
+  newState->prevPC = NULL;
+  newState->stack.clear();
+  newState->incomingBBIndex = 0;
+  newState->depth = newState->depth - startState->depth;
+  states.push_back(newState);
 }
 
 void FunctionSummaries::complete(){
