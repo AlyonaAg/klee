@@ -1904,7 +1904,7 @@ void Executor::executeCall(ExecutionState &state, KInstruction *ki, Function *f,
     
     // summaries.push_back(func);
     auto *func = new FunctionSummaries(kf, state);
-    if (!sum.searchFunction(kf))
+    if (sum.searchFunction(kf) == NULL)
       sum.addFunction(func);
 
     if (statsTracker)
@@ -2128,6 +2128,14 @@ void Executor::executeInstruction(ExecutionState &state, KInstruction *ki) {
       assert(!caller && "caller set on initial stack frame");
       terminateStateOnExit(state);
     } else {
+      FunctionSummaries *func_sum;
+      if ((func_sum = sum.searchFunction(state.stack[state.stack.size() - 1].kf)) 
+          != NULL)
+      {
+        klee_message("!");
+        func_sum->addState(state);
+      }
+
       state.popFrame();
 
       if (statsTracker)

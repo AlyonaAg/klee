@@ -30,13 +30,14 @@ void Summaries::addFunction(FunctionSummaries *func){
   listFunctionSummaries.push_back(func);
 }
 
-bool Summaries::searchFunction(KFunction *kf){
+FunctionSummaries * 
+Summaries::searchFunction(KFunction *kf){
   for (std::vector<FunctionSummaries *>::iterator 
       it = listFunctionSummaries.begin(),
       ie = listFunctionSummaries.end();
      it != ie; ++it){
     if ((*it)->kf == kf)
-    return true;
+    return *it;
   }
-  return false;
+  return NULL;
 }
