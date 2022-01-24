@@ -35,7 +35,7 @@ bool Summaries::searchFunction(KFunction *kf){
       it = listFunctionSummaries.begin(),
       ie = listFunctionSummaries.end();
      it != ie; ++it){
-    if ((*it)->kf)
+    if ((*it)->kf == kf)
     return true;
   }
   return false;
