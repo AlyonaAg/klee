@@ -31,13 +31,35 @@ void FunctionSummaries::addState(ExecutionState &state){
         if ()
     }*/
   newState->setID();
+
+  newState->coveredNew = startState->coveredNew == true &&
+                         newState->coveredNew == true ? 
+                         false : newState->coveredNew;
+
+  for (auto it = startState->coveredLines.begin();
+       it != startState->coveredLines.end(); ++it){
+    if (newState->coveredLines.find(it->first) != 
+        newState->coveredLines.end())
+        newState->coveredLines.erase(it->first);
+  }
+
+  for (auto it = startState->openMergeStack.begin();
+       it != startState->openMergeStack.end(); ++it){
+    //if (std::find(newState->openMergeStack.begin(),
+    //    newState->openMergeStack.end(), *it) != 
+     //   newState->openMergeStack.end())
+        newState->openMergeStack.erase(it);
+  }
+
+
+
   states.push_back(newState);
+  // for future: processTree->attach(current.ptreeNode, falseState, trueState);
 }
 
 void FunctionSummaries::complete(){
   completed = true;
 }
-
 
 // Summaries
 Summaries::Summaries(){
@@ -49,10 +71,8 @@ void Summaries::addFunction(FunctionSummaries *func){
 
 FunctionSummaries * 
 Summaries::searchFunction(KFunction *kf){
-  for (std::vector<FunctionSummaries *>::iterator 
-      it = listFunctionSummaries.begin(),
-      ie = listFunctionSummaries.end();
-     it != ie; ++it){
+  for (auto it = listFunctionSummaries.begin();
+       it != listFunctionSummaries.end(); ++it){
     if ((*it)->kf == kf)
     return *it;
   }
