@@ -1,6 +1,7 @@
 #include <vector>
 
 #include "ExecutionState.h"
+#include "klee/Expr/Constraints.h"
 #include "klee/Module/KModule.h"
 
 namespace klee {

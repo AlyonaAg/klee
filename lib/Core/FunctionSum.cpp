@@ -18,8 +18,19 @@ void FunctionSummaries::addState(ExecutionState &state){
   newState->pc = NULL;
   newState->prevPC = NULL;
   newState->stack.clear();
-  newState->incomingBBIndex = 0;
+
   newState->depth = newState->depth - startState->depth;
+  newState->steppedInstructions = newState->steppedInstructions - 
+                                  startState->steppedInstructions;
+  /*constraints = ConstraintSet();
+  for (itStart = startState->constraints.begin(), 
+      ieStart = startState->constraints.end(),
+      itNew = newState->constraints.begin(),
+      ieNew = newState->constraints.end();
+      itNew != ieNew; itStart++, itNew++){
+        if ()
+    }*/
+  newState->setID();
   states.push_back(newState);
 }
 
