@@ -1,8 +1,0 @@
-KLEE: Using STP solver backend
-KLEE: Started...
-KLEE: ReplayKTestDir.empty() && ReplayKTestFile.empty()...
-KLEE: run!
-KLEE: klee_make_symbolic in SpecialFunctionHandler
-KLEE: Executor::terminateStateOnError
-KLEE: ERROR: sort.c:52: external call with symbolic argument: printf
-KLEE: NOTE: now ignoring this error at this location
