@@ -43,13 +43,6 @@ void FunctionSummaries::addState(ExecutionState &state){
         newState->coveredLines.erase(it->first);
   }
 
-  for (auto it = startState->openMergeStack.begin();
-       it != startState->openMergeStack.end(); ++it){
-    //if (std::find(newState->openMergeStack.begin(),
-    //    newState->openMergeStack.end(), *it) != 
-     //   newState->openMergeStack.end())
-        newState->openMergeStack.erase(it);
-  }
 
 
 
