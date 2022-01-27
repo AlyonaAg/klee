@@ -43,8 +43,23 @@ void FunctionSummaries::addState(ExecutionState &state){
         newState->coveredLines.erase(it->first);
   }
 
+  for (auto it = startState->arrayNames.begin();
+       it != startState->arrayNames.end(); ++it){
+    if (newState->arrayNames.find(*it) !=
+      newState->arrayNames.end())
+        newState->arrayNames.erase(*it);
+  }
 
-
+  for (auto it1 = startState->symbolics.begin();
+       it1 != startState->symbolics.end(); ++it1){
+    auto it2 = newState->symbolics.begin();
+    for (; it2 != newState->symbolics.end(); ++it2){
+      if ((*it1).first == (*it2).first)
+        break;
+    }
+    if (it2 != newState->symbolics.end())
+      newState->symbolics.erase(it2);
+  }
 
   states.push_back(newState);
   // for future: processTree->attach(current.ptreeNode, falseState, trueState);
