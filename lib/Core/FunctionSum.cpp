@@ -22,14 +22,7 @@ void FunctionSummaries::addState(ExecutionState &state){
   newState->depth = newState->depth - startState->depth;
   newState->steppedInstructions = newState->steppedInstructions - 
                                   startState->steppedInstructions;
-  /*constraints = ConstraintSet();
-  for (itStart = startState->constraints.begin(), 
-      ieStart = startState->constraints.end(),
-      itNew = newState->constraints.begin(),
-      ieNew = newState->constraints.end();
-      itNew != ieNew; itStart++, itNew++){
-        if ()
-    }*/
+
   newState->setID();
 
   newState->coveredNew = startState->coveredNew == true &&
@@ -85,4 +78,23 @@ Summaries::searchFunction(KFunction *kf){
     return *it;
   }
   return NULL;
+}
+
+std::vector<FunctionSummaries *>
+Summaries::searchIntersectionFunction(stack_ty stack){
+  std::vector<FunctionSummaries *> result;
+
+  for (auto itF = listFunctionSummaries.begin();
+  itF != listFunctionSummaries.end(); ++itF){
+
+    for (auto itS = stack.begin(); itS != stack.end(); ++itS){
+      if ((*itF)->kf == (*itS).kf){
+        result.push_back(*itF);
+        break;
+      }
+    }
+
+  }
+
+  return result;
 }

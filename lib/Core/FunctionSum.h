@@ -22,6 +22,7 @@ private:
   std::vector<ExecutionState *> states;
   bool completed;
   ExecutionState *startState;
+  ConstraintSet constraints;
 
 public:
   void addState(ExecutionState &state);
@@ -36,8 +37,12 @@ private:
   std::vector<FunctionSummaries *> listFunctionSummaries;
 
 public:
+  using stack_ty = std::vector<StackFrame>;
+
   void addFunction(FunctionSummaries *func);
   FunctionSummaries * searchFunction(KFunction *kf);
+  std::vector<FunctionSummaries *> 
+        searchIntersectionFunction(stack_ty stack);
 };
 
 }

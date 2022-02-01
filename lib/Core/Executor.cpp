@@ -1249,6 +1249,7 @@ void Executor::addConstraint(ExecutionState &state, ref<Expr> condition) {
       klee_warning("seeds patched for violating constraint"); 
   }
 
+  sum.searchIntersectionFunction(state.stack);
   state.addConstraint(condition);
   if (ivcEnabled)
     doImpliedValueConcretization(state, condition, 
