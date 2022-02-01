@@ -1249,7 +1249,12 @@ void Executor::addConstraint(ExecutionState &state, ref<Expr> condition) {
       klee_warning("seeds patched for violating constraint"); 
   }
 
-  sum.searchIntersectionFunction(state.stack);
+  std::vector<FunctionSummaries *> func_sum = 
+      sum.searchIntersectionFunction(state.stack);
+  for (auto it = func_sum.begin(); it != func_sum.end(); ++it){
+    (*it)->addConstraint(condition, state.id);
+  }
+  
   state.addConstraint(condition);
   if (ivcEnabled)
     doImpliedValueConcretization(state, condition, 
@@ -1903,10 +1908,11 @@ void Executor::executeCall(ExecutionState &state, KInstruction *ki, Function *f,
     state.pushFrame(state.prevPC, kf);
     state.pc = kf->instructions;
     
-    // summaries.push_back(func);
-    auto *func = new FunctionSummaries(kf, state);
-    if (sum.searchFunction(kf) == NULL)
+    
+    if (sum.searchFunction(kf) == NULL){
+      auto *func = new FunctionSummaries(kf, state);
       sum.addFunction(func);
+    }
 
     if (statsTracker)
       statsTracker->framePushed(state, &state.stack[state.stack.size() - 2]);

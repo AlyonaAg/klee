@@ -13,6 +13,12 @@ FunctionSummaries::FunctionSummaries(KFunction *kf,
   startState = new ExecutionState(state);
 }
 
+void FunctionSummaries::addConstraint(ref<Expr> e, 
+                                      std::uint32_t id){
+  ConstraintManager c(constraints[id]);
+  c.addConstraint(e);
+}
+
 void FunctionSummaries::addState(ExecutionState &state){
   auto *newState = new ExecutionState(state);
   newState->pc = NULL;
@@ -95,6 +101,5 @@ Summaries::searchIntersectionFunction(stack_ty stack){
     }
 
   }
-
   return result;
 }

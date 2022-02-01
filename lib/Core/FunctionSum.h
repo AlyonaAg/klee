@@ -22,11 +22,12 @@ private:
   std::vector<ExecutionState *> states;
   bool completed;
   ExecutionState *startState;
-  ConstraintSet constraints;
+  std::map <std::uint32_t, ConstraintSet> constraints;
 
 public:
   void addState(ExecutionState &state);
   void complete();
+  void addConstraint(ref<Expr> e, std::uint32_t id);
 };
 
 class Summaries{
