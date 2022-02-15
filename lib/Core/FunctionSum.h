@@ -17,12 +17,12 @@ public:
                       ExecutionState &state);
 
   KFunction *kf;
-
+  std::map <std::uint32_t, ConstraintSet> constraints;
+  
 private:
   std::vector<ExecutionState *> states;
   bool completed;
   ExecutionState *startState;
-  std::map <std::uint32_t, ConstraintSet> constraints;
 
 public:
   void addState(ExecutionState &state);
@@ -44,6 +44,7 @@ public:
   FunctionSummaries * searchFunction(KFunction *kf);
   std::vector<FunctionSummaries *> 
         searchIntersectionFunction(stack_ty stack);
+  void fork(std::uint32_t id_true, std::uint32_t id_false);
 };
 
 }

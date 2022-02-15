@@ -103,3 +103,17 @@ Summaries::searchIntersectionFunction(stack_ty stack){
   }
   return result;
 }
+
+void Summaries::fork(std::uint32_t id_true, 
+                     std::uint32_t id_false){
+  for (auto it = listFunctionSummaries.begin();
+       it != listFunctionSummaries.end(); ++it){
+
+    if ((*it)->constraints.find(id_true) != 
+        (*it)->constraints.end())
+        {
+          ConstraintSet c((*it)->constraints[id_true]);
+          (*it)->constraints[id_false] = c;
+        }
+  }
+}
