@@ -11,15 +11,15 @@ namespace klee {
   struct KFunction;
 
 class FunctionSummaries{
+    friend class Summaries;
 public:
   FunctionSummaries();
   FunctionSummaries(KFunction *kf,
                       ExecutionState &state);
 
+private:
   KFunction *kf;
   std::map <std::uint32_t, ConstraintSet> constraints;
-  
-private:
   std::vector<ExecutionState *> states;
   bool completed;
   ExecutionState *startState;

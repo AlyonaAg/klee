@@ -92,14 +92,11 @@ Summaries::searchIntersectionFunction(stack_ty stack){
 
   for (auto itF = listFunctionSummaries.begin();
   itF != listFunctionSummaries.end(); ++itF){
-
-    for (auto itS = stack.begin(); itS != stack.end(); ++itS){
+    for (auto itS = stack.begin(); itS != stack.end(); ++itS)
       if ((*itF)->kf == (*itS).kf){
         result.push_back(*itF);
         break;
       }
-    }
-
   }
   return result;
 }
@@ -109,8 +106,7 @@ void Summaries::fork(std::uint32_t id_true,
   for (auto it = listFunctionSummaries.begin();
        it != listFunctionSummaries.end(); ++it){
 
-    if ((*it)->constraints.find(id_true) != 
-        (*it)->constraints.end())
+    if ((*it)->constraints.find(id_true) != (*it)->constraints.end())
         {
           ConstraintSet c((*it)->constraints[id_true]);
           (*it)->constraints[id_false] = c;
