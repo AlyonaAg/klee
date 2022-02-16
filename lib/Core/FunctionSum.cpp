@@ -29,6 +29,9 @@ void FunctionSummaries::addState(ExecutionState &state){
   newState->steppedInstructions = newState->steppedInstructions - 
                                   startState->steppedInstructions;
 
+  ConstraintSet c(constraints[state.id]);
+  newState->constraints = c;
+
   newState->setID();
 
   newState->coveredNew = startState->coveredNew == true &&
