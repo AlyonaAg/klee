@@ -23,6 +23,8 @@ private:
   std::vector<ExecutionState *> states;
   bool completed;
   ExecutionState *startState;
+  std::uint32_t countState;
+
 
 public:
   void addState(ExecutionState &state);
@@ -44,7 +46,7 @@ public:
   FunctionSummaries * searchFunction(KFunction *kf);
   std::vector<FunctionSummaries *> 
         searchIntersectionFunction(stack_ty stack);
-  void fork(std::uint32_t id_true, std::uint32_t id_false);
+  void fork(std::uint32_t id_true, std::uint32_t id_false, stack_ty stack);
 };
 
 }

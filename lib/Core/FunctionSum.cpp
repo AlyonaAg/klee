@@ -3,13 +3,15 @@
 using namespace klee;
 
 FunctionSummaries::FunctionSummaries() :
-  completed(false){
+  completed(false),
+  countState(1){
 }
 
 FunctionSummaries::FunctionSummaries(KFunction *kf,
                                      ExecutionState &state) :
     kf(kf),
-    completed(false){
+    completed(false),
+    countState(1){
   startState = new ExecutionState(state);
 }
 
@@ -20,6 +22,10 @@ void FunctionSummaries::addConstraint(ref<Expr> e,
 }
 
 void FunctionSummaries::addState(ExecutionState &state){
+  countState--;
+  if (countState == 0)
+    complete();
+
   auto *newState = new ExecutionState(state);
   newState->pc = NULL;
   newState->prevPC = NULL;
@@ -105,9 +111,13 @@ Summaries::searchIntersectionFunction(stack_ty stack){
 }
 
 void Summaries::fork(std::uint32_t id_true, 
-                     std::uint32_t id_false){
-  for (auto it = listFunctionSummaries.begin();
-       it != listFunctionSummaries.end(); ++it){
+                     std::uint32_t id_false,
+                     stack_ty stack){
+  
+  std::vector<FunctionSummaries *> func_sum = 
+    searchIntersectionFunction(stack);
+  for (auto it = func_sum.begin(); it != func_sum.end(); ++it){
+    (*it)->countState++;
 
     if ((*it)->constraints.find(id_true) != (*it)->constraints.end())
         {

@@ -1206,7 +1206,7 @@ Executor::fork(ExecutionState &current, ref<Expr> condition, bool isInternal) {
       }
     }
 
-    sum.fork((*trueState).id, (*falseState).id);
+    sum.fork((*trueState).id, (*falseState).id, (*trueState).stack);
     addConstraint(*trueState, condition);
     addConstraint(*falseState, Expr::createIsZero(condition));
 
