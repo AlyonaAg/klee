@@ -23,8 +23,9 @@ void FunctionSummaries::addConstraint(ref<Expr> e,
 
 void FunctionSummaries::addState(ExecutionState &state){
   countState--;
-  if (countState == 0)
-    complete();
+  if (countState == 0){
+    //complete();
+  }
 
   auto *newState = new ExecutionState(state);
   newState->pc = NULL;
@@ -99,7 +100,7 @@ std::vector<ExecutionState *> FunctionSummaries::recoveryState
 
     newState->setID();
 
-    result.push_back(newState);
+    //result.push_back(newState);
   }
   return result;
 }
