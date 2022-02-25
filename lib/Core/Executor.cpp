@@ -1909,10 +1909,12 @@ void Executor::executeCall(ExecutionState &state, KInstruction *ki, Function *f,
     state.pushFrame(state.prevPC, kf);
     state.pc = kf->instructions;
     
-    
-    if (sum.searchFunction(kf) == NULL){
+    auto res = sum.searchFunction(kf);
+    if (res == NULL){
       auto *func = new FunctionSummaries(kf, state);
       sum.addFunction(func);
+    } else {
+      res->recoveryState(state);
     }
 
     if (statsTracker)
