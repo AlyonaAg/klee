@@ -19,11 +19,11 @@ public:
   FunctionSummaries(KFunction *kf,
                       ExecutionState &state);
 
+  bool completed;
 private:
   KFunction *kf;
   std::map <std::uint32_t, ConstraintSet> constraints;
   std::vector<ExecutionState *> states;
-  bool completed;
   ExecutionState *startState;
   std::uint32_t countState;
 

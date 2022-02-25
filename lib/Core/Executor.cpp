@@ -1914,9 +1914,14 @@ void Executor::executeCall(ExecutionState &state, KInstruction *ki, Function *f,
       auto *func = new FunctionSummaries(kf, state);
       sum.addFunction(func);
     } else {
+      if (sumKf->completed){
+        --state.steppedInstructions;
+        state.pc = state.prevPC;
+      } else {
       auto sumAddedStates = sumKf->recoveryState(state);
       addedStates.insert(addedStates.end(), sumAddedStates.begin(),
                          sumAddedStates.end());
+      }
     }
 
     if (statsTracker)
