@@ -38,7 +38,7 @@ void FunctionSummaries::addState(ExecutionState &state){
   ConstraintSet c(constraints[state.id]);
   newState->constraints = c;
 
-  // newState->setID();
+  newState->id = state.id;
 
   newState->coveredNew = startState->coveredNew == true &&
                          newState->coveredNew == true ? 
@@ -79,23 +79,23 @@ std::vector<ExecutionState *> FunctionSummaries::recoveryState
 
   for (auto it = states.begin(); it != states.end(); ++it){
     auto *newState = new ExecutionState(state);
-    newState->pc = state.pc;
-    newState->prevPC = state.prevPC;
-    newState->stack = state.stack;
     newState->depth = state.depth + (*it)->depth;
     newState->steppedInstructions = state.steppedInstructions 
                                     + (*it)->steppedInstructions;
-    //newState->addressSpace = new AddressSpace((*it)->addressSpace);
     newState->coveredNew =  (*it)->coveredNew;
     newState->coveredLines.insert((*it)->coveredLines.begin(),
                                   (*it)->coveredLines.end());
     newState->arrayNames.insert((*it)->arrayNames.begin(),
                                   (*it)->arrayNames.end());
     
-    for (auto it1 = (*it)->symbolics.begin();
-         it1 != (*it)->symbolics.end(); ++it1){
-      newState->symbolics.push_back(*it1);
-    }
+    ConstraintManager c(newState->constraints);
+    for (auto itC = constraints[(*it)->id].begin(); 
+         itC != constraints[(*it)->id].end(); itC++)
+      c.addConstraint(*itC);
+
+    for (auto itS = (*it)->symbolics.begin();
+         itS != (*it)->symbolics.end(); ++itS)
+      newState->symbolics.push_back(*itS);
 
     newState->setID();
 
