@@ -38,7 +38,7 @@ void FunctionSummaries::addState(ExecutionState &state){
   ConstraintSet c(constraints[state.id]);
   newState->constraints = c;
 
-  newState->setID();
+  // newState->setID();
 
   newState->coveredNew = startState->coveredNew == true &&
                          newState->coveredNew == true ? 
@@ -71,6 +71,37 @@ void FunctionSummaries::addState(ExecutionState &state){
 
   states.push_back(newState);
   // for future: processTree->attach(current.ptreeNode, falseState, trueState);
+}
+
+std::vector<ExecutionState *> FunctionSummaries::recoveryState
+                                        (ExecutionState &state){
+  std::vector<ExecutionState *> result;
+
+  for (auto it = states.begin(); it != states.end(); ++it){
+    auto *newState = new ExecutionState(state);
+    newState->pc = state.pc;
+    newState->prevPC = state.prevPC;
+    newState->stack = state.stack;
+    newState->depth = state.depth + (*it)->depth;
+    newState->steppedInstructions = state.steppedInstructions 
+                                    + (*it)->steppedInstructions;
+    //newState->addressSpace = new AddressSpace((*it)->addressSpace);
+    newState->coveredNew =  (*it)->coveredNew;
+    newState->coveredLines.insert((*it)->coveredLines.begin(),
+                                  (*it)->coveredLines.end());
+    newState->arrayNames.insert((*it)->arrayNames.begin(),
+                                  (*it)->arrayNames.end());
+    
+    for (auto it1 = (*it)->symbolics.begin();
+         it1 != (*it)->symbolics.end(); ++it1){
+      newState->symbolics.push_back(*it1);
+    }
+
+    newState->setID();
+
+    result.push_back(newState);
+  }
+  return result;
 }
 
 void FunctionSummaries::complete(){

@@ -2,8 +2,10 @@
 #include <algorithm>
 
 #include "ExecutionState.h"
+#include "AddressSpace.h"
 #include "klee/Expr/Constraints.h"
 #include "klee/Module/KModule.h"
+
 
 namespace klee {
   class ExecutionState;
@@ -30,6 +32,7 @@ public:
   void addState(ExecutionState &state);
   void complete();
   void addConstraint(ref<Expr> e, std::uint32_t id);
+  std::vector<ExecutionState *> recoveryState(ExecutionState &state);
 };
 
 class Summaries{
