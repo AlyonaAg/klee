@@ -91,8 +91,9 @@ std::vector<ExecutionState *> FunctionSummaries::recoveryState
     
     ConstraintManager c(newState->constraints);
     for (auto itC = constraints[(*it)->id].begin(); 
-         itC != constraints[(*it)->id].end(); itC++)
-      c.addConstraint(*itC);
+         itC != constraints[(*it)->id].end(); itC++){
+      //c.addConstraint(*itC);
+    }
 
     for (auto itS = (*it)->symbolics.begin();
          itS != (*it)->symbolics.end(); ++itS)
