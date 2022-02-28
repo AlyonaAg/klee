@@ -92,7 +92,7 @@ std::vector<ExecutionState *> FunctionSummaries::recoveryState
     ConstraintManager c(newState->constraints);
     for (auto itC = constraints[(*it)->id].begin(); 
          itC != constraints[(*it)->id].end(); itC++){
-      //c.addConstraint(*itC);
+      c.addConstraint(*itC);
     }
 
     for (auto itS = (*it)->symbolics.begin();
@@ -101,7 +101,7 @@ std::vector<ExecutionState *> FunctionSummaries::recoveryState
 
     newState->setID();
 
-    //result.push_back(newState);
+    result.push_back(newState);
   }
   return result;
 }

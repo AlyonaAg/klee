@@ -1915,13 +1915,13 @@ void Executor::executeCall(ExecutionState &state, KInstruction *ki, Function *f,
       sum.addFunction(func);
     } else {
       if (sumKf->completed){
+        auto sumAddedStates = sumKf->recoveryState(state);
+        addedStates.insert(addedStates.end(), sumAddedStates.begin(),
+                         sumAddedStates.end()); 
+      } /* else {
         --state.steppedInstructions;
         state.pc = state.prevPC;
-      } else {
-      auto sumAddedStates = sumKf->recoveryState(state);
-      addedStates.insert(addedStates.end(), sumAddedStates.begin(),
-                         sumAddedStates.end());
-      }
+      }*/
     }
 
     if (statsTracker)
@@ -2149,7 +2149,6 @@ void Executor::executeInstruction(ExecutionState &state, KInstruction *ki) {
       if ((func_sum = sum.searchFunction(state.stack[state.stack.size() - 1].kf)) 
           != NULL)
       {
-        klee_message("!");
         func_sum->addState(state);
       }
 
