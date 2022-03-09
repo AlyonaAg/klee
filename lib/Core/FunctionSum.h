@@ -3,13 +3,16 @@
 
 #include "ExecutionState.h"
 #include "AddressSpace.h"
+#include "PTree.h"
 #include "klee/Expr/Constraints.h"
 #include "klee/Module/KModule.h"
+
 
 
 namespace klee {
   class ExecutionState;
   class KModule;
+  class PTree;
   struct KFunction;
 
 class FunctionSummaries{
@@ -32,7 +35,8 @@ public:
   void addState(ExecutionState &state);
   void complete();
   void addConstraint(ref<Expr> e, std::uint32_t id);
-  std::vector<ExecutionState *> recoveryState(ExecutionState &state);
+  std::vector<ExecutionState *> recoveryState(ExecutionState &state,
+                            std::unique_ptr<klee::PTree> &processTree);
 };
 
 class Summaries{

@@ -24,7 +24,7 @@ void FunctionSummaries::addConstraint(ref<Expr> e,
 void FunctionSummaries::addState(ExecutionState &state){
   countState--;
   if (countState == 0){
-    //complete();
+    complete();
   }
 
   auto *newState = new ExecutionState(state);
@@ -75,7 +75,8 @@ void FunctionSummaries::addState(ExecutionState &state){
 }
 
 std::vector<ExecutionState *> FunctionSummaries::recoveryState
-                                        (ExecutionState &state){
+                                        (ExecutionState &state,
+                                        std::unique_ptr<klee::PTree> &processTree){
   std::vector<ExecutionState *> result;
 
   for (auto it = states.begin(); it != states.end(); ++it){
@@ -89,11 +90,11 @@ std::vector<ExecutionState *> FunctionSummaries::recoveryState
     newState->arrayNames.insert((*it)->arrayNames.begin(),
                                   (*it)->arrayNames.end());
     
-    ConstraintManager c(newState->constraints);
+    /*ConstraintManager c(newState->constraints);
     for (auto itC = constraints[(*it)->id].begin(); 
          itC != constraints[(*it)->id].end(); itC++){
       c.addConstraint(*itC);
-    }
+    }*/
 
     for (auto itS = (*it)->symbolics.begin();
          itS != (*it)->symbolics.end(); ++itS)
@@ -101,6 +102,7 @@ std::vector<ExecutionState *> FunctionSummaries::recoveryState
 
     newState->setID();
 
+    processTree->attach(state.ptreeNode, newState, &state);
     result.push_back(newState);
   }
   return result;

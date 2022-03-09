@@ -158,6 +158,8 @@ public:
   using stack_ty = std::vector<StackFrame>;
 
   // Execution - Control Flow specific
+  
+  bool blocked = false;
 
   /// @brief Pointer to instruction to be executed after the current
   /// instruction

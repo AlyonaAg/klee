@@ -1436,17 +1436,19 @@ void Executor::printDebugInstructions(ExecutionState &state) {
 }
 
 void Executor::stepInstruction(ExecutionState &state) {
-  printDebugInstructions(state);
-  if (statsTracker)
-    statsTracker->stepInstruction(state);
+  if (!state.blocked) {
+    printDebugInstructions(state);
+    if (statsTracker)
+      statsTracker->stepInstruction(state);
 
-  ++stats::instructions;
-  ++state.steppedInstructions;
-  state.prevPC = state.pc;
-  ++state.pc;
+    ++stats::instructions;
+    ++state.steppedInstructions;
+    state.prevPC = state.pc;
+    ++state.pc;
 
-  if (stats::instructions == MaxInstructions)
-    haltExecution = true;
+    if (stats::instructions == MaxInstructions)
+      haltExecution = true;
+  }
 }
 
 static inline const llvm::fltSemantics *fpWidthToSemantics(unsigned width) {
@@ -1906,23 +1908,26 @@ void Executor::executeCall(ExecutionState &state, KInstruction *ki, Function *f,
     // from just an instruction (unlike LLVM).
     KFunction *kf = kmodule->functionMap[f];
     
-    state.pushFrame(state.prevPC, kf);
-    state.pc = kf->instructions;
-    
     auto sumKf = sum.searchFunction(kf);
     if (sumKf == NULL){
       auto *func = new FunctionSummaries(kf, state);
       sum.addFunction(func);
     } else {
       if (sumKf->completed){
-        auto sumAddedStates = sumKf->recoveryState(state);
+        state.blocked = false;
+        auto sumAddedStates = sumKf->recoveryState(state, processTree);
         addedStates.insert(addedStates.end(), sumAddedStates.begin(),
-                         sumAddedStates.end()); 
-      } /* else {
-        --state.steppedInstructions;
-        state.pc = state.prevPC;
-      }*/
+                         sumAddedStates.end());
+        removedStates.push_back(&state);
+      }  else {
+        state.blocked = true;
+      }
+      return;
     }
+
+    state.pushFrame(state.prevPC, kf);
+    state.pc = kf->instructions;
+    
 
     if (statsTracker)
       statsTracker->framePushed(state, &state.stack[state.stack.size() - 2]);
@@ -3640,15 +3645,17 @@ void Executor::run(ExecutionState &initialState) {
     stepInstruction(state);
 
     executeInstruction(state, ki);
-    timers.invoke();
-    if (::dumpStates) dumpStates();
-    if (::dumpPTree) dumpPTree();
+    if (!state.blocked) {
+      timers.invoke();
+      if (::dumpStates) dumpStates();
+      if (::dumpPTree) dumpPTree();
 
-    updateStates(&state);
+      updateStates(&state);
 
-    if (!checkMemoryUsage()) {
-      // update searchers when states were terminated early due to memory pressure
-      updateStates(nullptr);
+      if (!checkMemoryUsage()) {
+        // update searchers when states were terminated early due to memory pressure
+        updateStates(nullptr);
+      }
     }
   }
 
