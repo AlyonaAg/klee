@@ -91,6 +91,10 @@ std::vector<ExecutionState *> FunctionSummaries::recoveryState
                                   (*it)->arrayNames.end());
     
     /*ConstraintManager c(newState->constraints);
+    for (auto &constraint : constraints[(*it)->id]){
+      c.addConstraint(constraint);
+    }
+
     for (auto itC = constraints[(*it)->id].begin(); 
          itC != constraints[(*it)->id].end(); itC++){
       c.addConstraint(*itC);
