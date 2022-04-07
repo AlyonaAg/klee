@@ -156,9 +156,9 @@ private:
 
 public:
   using stack_ty = std::vector<StackFrame>;
-
+ 
   // Execution - Control Flow specific
-  
+
   bool blocked = false;
 
   /// @brief Pointer to instruction to be executed after the current
@@ -166,7 +166,7 @@ public:
   KInstIterator pc;
 
   /// @brief Pointer to instruction which is currently executed
-  KInstIterator prevPC;
+  KInstIterator prevPC; 
 
   /// @brief Stack representing the current instruction stream
   stack_ty stack;

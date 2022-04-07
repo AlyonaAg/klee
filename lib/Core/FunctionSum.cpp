@@ -21,7 +21,7 @@ void FunctionSummaries::addConstraint(ref<Expr> e,
   c.addConstraint(e);
 }
 
-void FunctionSummaries::addState(ExecutionState &state){
+void FunctionSummaries::addState(ExecutionState &state, ref<Expr> returnValue){
   countState--;
   if (countState == 0){
     complete();
@@ -70,9 +70,12 @@ void FunctionSummaries::addState(ExecutionState &state){
       newState->symbolics.erase(it2);
   }
 
+  KInstIterator kcaller = newState->stack.back().caller;
+  newState->stack.back().locals[kcaller->dest].value = returnValue;
+  
   states.push_back(newState);
-  // for future: processTree->attach(current.ptreeNode, falseState, trueState);
 }
+
 
 std::vector<ExecutionState *> FunctionSummaries::recoveryState
                                         (ExecutionState &state,
@@ -94,7 +97,7 @@ std::vector<ExecutionState *> FunctionSummaries::recoveryState
     for (auto &constraint : constraints[(*it)->id]){
       c.addConstraint(constraint);
     }
-
+    
     for (auto itC = constraints[(*it)->id].begin(); 
          itC != constraints[(*it)->id].end(); itC++){
       c.addConstraint(*itC);

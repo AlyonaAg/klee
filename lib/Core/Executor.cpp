@@ -1269,7 +1269,7 @@ const Cell& Executor::eval(KInstruction *ki, unsigned index,
 
   assert(vnumber != -1 &&
          "Invalid operand to eval(), not a value or constant!");
-
+  
   // Determine if this is a constant or not.
   if (vnumber < 0) {
     unsigned index = -vnumber - 2;
@@ -2150,14 +2150,7 @@ void Executor::executeInstruction(ExecutionState &state, KInstruction *ki) {
       assert(!caller && "caller set on initial stack frame");
       terminateStateOnExit(state);
     } else {
-      FunctionSummaries *func_sum;
-      if ((func_sum = sum.searchFunction(state.stack[state.stack.size() - 1].kf)) 
-          != NULL)
-      {
-        func_sum->addState(state);
-      }
-
-      state.popFrame();
+            state.popFrame();
 
       if (statsTracker)
         statsTracker->framePopped(state);
@@ -2243,6 +2236,13 @@ void Executor::executeInstruction(ExecutionState &state, KInstruction *ki) {
         if (!caller->use_empty()) {
           terminateStateOnExecError(state, "return void when caller expected a result");
         }
+      }
+
+      FunctionSummaries *func_sum;
+      if ((func_sum = sum.searchFunction(state.stack[state.stack.size() - 1].kf)) 
+          != NULL)
+      {
+        func_sum->addState(state, result);
       }
     }      
     break;

@@ -6,7 +6,8 @@
 #include "PTree.h"
 #include "klee/Expr/Constraints.h"
 #include "klee/Module/KModule.h"
-
+#include "klee/Module/KInstruction.h"
+#include "klee/Module/Cell.h"
 
 
 namespace klee {
@@ -14,6 +15,8 @@ namespace klee {
   class KModule;
   class PTree;
   struct KFunction;
+  struct KInstruction;
+  struct Cell;
 
 class FunctionSummaries{
     friend class Summaries;
@@ -32,9 +35,10 @@ private:
 
 
 public:
-  void addState(ExecutionState &state);
+  void addState(ExecutionState &state, ref<Expr> returnValue);
   void complete();
   void addConstraint(ref<Expr> e, std::uint32_t id);
+  void addResult(ref<Expr> e, std::uint32_t id);
   std::vector<ExecutionState *> recoveryState(ExecutionState &state,
                             std::unique_ptr<klee::PTree> &processTree);
 };
